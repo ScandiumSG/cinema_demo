@@ -16,20 +16,22 @@ function App() {
       >
 
         <HeaderComponent />
-        <Routes>
-          <Route 
-            path="/"
-            element={<LandingPage />}
-          />
-          <Route 
-            path="/movies/"
-            element={<MovieOverviewPage />}
-          />
-          <Route // Send unknown paths back to landing page
-            path="*"
-            element={<Navigate replace to="/" />}
-          />
-        </Routes>
+        <div className="app-container">
+          <Routes>
+            <Route 
+              path="/"
+              element={<LandingPage />}
+              />
+            <Route 
+              path="/movies/"
+              element={<MovieOverviewPage />}
+              />
+            <Route // Send unknown paths back to landing page
+              path="*"
+              element={<Navigate replace to="/" />}
+              />
+          </Routes>
+        </div>
       </userContext.Provider>
     </>
   )

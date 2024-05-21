@@ -1,10 +1,12 @@
 .movie-card-list-container {
     position: absolute;
-    top: calc(75px + 2vh);
-    left: 50px;
+    top: calc(2vh);
+    left: 3em;
 
     display: grid;
-    grid-template-columns: 300px 300px;
+    grid-template-columns: 300px 300px 300px;
     column-gap: 30px;
     row-gap: 30px;
+
+    padding-bottom: 40px;
 }

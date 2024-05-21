@@ -5,9 +5,13 @@
     padding: 5px;
     border-radius: 10px;
     cursor: pointer;
+
+    background-color:azure;
 }
 
 .movie-card-container > img {
     width: auto;
     height:300px;
+    border-radius: 5px;
+    border: 0.1px solid lightgray;
 }

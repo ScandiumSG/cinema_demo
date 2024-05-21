@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 
 const MovieOverviewPage = () => {
     const [movieList, setMovieList] = useState<IMovie[]>()
+    const [filteredMoviesList, setFilteredMovieList] = useState<IMovie[]>();
 
     const retrieveMovies = async () => {
         await fetch(getMoviesUnlimited())
@@ -21,12 +22,13 @@ const MovieOverviewPage = () => {
     useEffect(() =>  {
         if (movieList) {
             console.log(movieList[1])
+            setFilteredMovieList([...movieList]);
         }
     }, [movieList])
 
     return(
         <div className="movie-card-list-container">
-            {movieList?.map((movie, index) => (
+            {filteredMoviesList?.map((movie, index) => (
                 <MovieCard key={index} movie={movie} />
             ))}
         </div>
