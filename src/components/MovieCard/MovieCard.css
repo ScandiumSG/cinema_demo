@@ -1,0 +1,13 @@
+.movie-card-container {
+    width: 300px;
+
+    border: 1px solid red;
+    padding: 5px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.movie-card-container > img {
+    width: auto;
+    height:300px;
+}
