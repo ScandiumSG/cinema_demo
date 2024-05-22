@@ -1,12 +1,21 @@
+.movie-card-list-parent-container {
+    display: flexbox;
+
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
 .movie-card-list-container {
     position: absolute;
     top: calc(2vh);
-    left: 3em;
+
+    width: 100%;
+    
 
     display: grid;
     grid-template-columns: 300px 300px 300px;
     column-gap: 30px;
     row-gap: 30px;
-
     padding-bottom: 40px;
 }

@@ -27,10 +27,12 @@ const MovieOverviewPage = () => {
     }, [movieList])
 
     return(
-        <div className="movie-card-list-container">
-            {filteredMoviesList?.map((movie, index) => (
-                <MovieCard key={index} movie={movie} />
-            ))}
+        <div className="movie-card-list-parent-container">
+            <div className="movie-card-list-container">
+                {filteredMoviesList?.map((movie, index) => (
+                    <MovieCard key={index} movie={movie} />
+                ))}
+            </div>
         </div>
     )
 }

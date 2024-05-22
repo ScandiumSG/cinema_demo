@@ -1,0 +1,55 @@
+.login-modal-container {
+    border: 1px solid red;
+
+    width: 300px;
+    height: max-content;
+
+    position:fixed;
+    top: calc(75px + 20vh);
+    left: calc(50vw - calc(300px / 2));
+
+    background-color: whitesmoke;
+    border-radius: 10px;
+}
+
+.login-modal-input-area {
+    display: flex;
+    flex-direction: column;
+
+    justify-content: left;
+    align-items: left;
+
+    width: 80%;
+
+    padding: 5px 10% 5px 10%;
+}
+
+.login-modal-input-area > span {
+    text-align: left;
+}
+
+.login-modal-button-container {
+    width: 80%;
+    padding: 10px 10% 5px 10%;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    position: relative;
+    bottom: 5px;
+}
+
+.login-modal-button {
+    background-color:rgb(42, 214, 157);
+
+    margin-left: 5%;
+    margin-right: 5%;
+    width: max-content;
+    border: none;
+}
+
+.login-modal-button:hover {
+    background-color: darkseagreen;
+}

@@ -8,11 +8,21 @@ import MovieOverviewPage from './pages/MovieOverview/MovieOverviewPage';
 
 function App() {
   const [user, setUser] = useState({})
+  const [showModal, setShowModal] = useState<boolean>(true);
+
+  const showLoginModal = () => {
+    setShowModal(!showModal);
+  }
 
   return (
     <>
       <userContext.Provider
-        value={{user: user, setUser: setUser}}
+        value={{
+          user: user, 
+          setUser: setUser, 
+          showLoginModal: showLoginModal,
+          loginModal: showModal
+        }}
       >
 
         <HeaderComponent />
