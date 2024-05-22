@@ -3,7 +3,9 @@ import "./LoginModal.css"
 import { ILoginCredentials, IUserContext } from "@/interfaces/UserInterfaces";
 import { loginUrl } from "@/util/apiPaths";
 import { userContext } from "@/util/context";
-import spinner from "@/assets/loading_spin.svg";
+import RegisterAccount from "./RegisterAccount/RegisterAccount";
+import LoginInput from "./LoginInputFields/LoginInput";
+import LoginButtons from "./LoginButtons/LoginButtons";
 
 const defaultLoginData = {
     email: "",
@@ -18,6 +20,7 @@ const LoginModal = () => {
         email: sessionStorage.getItem("login_attempt_email") || "",
         password: ""
     })
+
 
     useEffect(() => {
         setLoginData({
@@ -93,47 +96,20 @@ const LoginModal = () => {
 
     return(
         <div className="login-modal-container">
-            <h4>Log in</h4>
-            <div className="login-modal-input-area">
-                <span>Email:</span>
-                <input 
-                    id="email" 
-                    onChange={(e) => handleEmailChange(e)}
-                    value={loginData["email"]}
-                />
-            </div>
-            <div className="login-modal-input-area">
-                <span>Password:</span>
-                <input 
-                    id="password" 
-                    type="password" 
-                    onChange={(e) => handlePasswordChange(e)}
-                    onKeyDown={(e) => enterSubmit(e.key)}
-                    value={loginData["password"]}
-                />
-            </div>
-            {invalidCredentials !== "" ? <span color="red">{invalidCredentials}</span> : <></>}
-            <div className="login-modal-button-container">
-                <button 
-                    className="login-modal-button login-modal-cancel" 
-                    onClick={() => showLoginModal()}
-                >
-                    Cancel
-                </button>
-                { !loading ? 
-                    <button 
-                        className="login-modal-button login-modal-submit" 
-                        onClick={() => postLoginCredentials()}
-                    >
-                        Submit
-                    </button>
-                    :
-                    <button className="login-modal-button login-modal-submit">
-                        <img className="loading-spinner" src={spinner} alt="Verifying..."/>
-                        <span>Verifying...</span>
-                    </button>
-                }
-            </div>
+            <h3>Log in</h3>
+            <LoginInput 
+                loginData={loginData}
+                emailChange={handleEmailChange}
+                passwordChange={handlePasswordChange}
+                enterSubmit={enterSubmit}
+                errorMessage={invalidCredentials}
+            />
+            <LoginButtons 
+                showModal={showLoginModal}
+                submitCredentials={postLoginCredentials}
+                isLoading={loading}
+            />
+            <RegisterAccount />
         </div>
     )
 }
