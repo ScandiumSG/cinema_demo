@@ -11,17 +11,9 @@ export interface IUserData {
     token: string,
 }
 
-export const emptyUserData = {
-    id: "",
-    username: "",
-    email: "",
-    role: 0,
-    token: "",
-}
-
 export interface IUserContext {
-    user: IUserData,
-    setUser: (user: IUserData) => void,
+    user?: IUserData,
+    setUser: (user?: IUserData) => void,
     loginModal: boolean,
     showLoginModal: () => void,
 }

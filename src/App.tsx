@@ -5,19 +5,24 @@ import { userContext } from './util/context';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import LandingPage from './pages/LandingPage/LandingPage';
 import MovieOverviewPage from './pages/MovieOverview/MovieOverviewPage';
-import { IUserData, emptyUserData } from './interfaces/UserInterfaces';
+import { IUserData } from './interfaces/UserInterfaces';
+import { readSessionStorage } from './util/userUtil';
 
 function App() {
-  const [user, setUser] = useState(emptyUserData)
-  const [showModal, setShowModal] = useState<boolean>(true);
+  const [user, setUser] = useState<IUserData|undefined>(readSessionStorage())
+  const [showModal, setShowModal] = useState<boolean>(false);
 
   const showLoginModal = () => {
     setShowModal(!showModal);
   }
 
-  const setUserData = (user: IUserData) => {
-    setUser({...user});
-    console.log("New user data", user);
+  const setUserData = (user?: IUserData) => {
+    if (user !== undefined ) {
+      setUser({...user});
+    } else {
+      setUser(undefined);
+      sessionStorage.removeItem("login_claim");
+    }
   }
 
   return (
