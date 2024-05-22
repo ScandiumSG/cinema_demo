@@ -1,14 +1,20 @@
+import { useContext } from "react";
 import LoginModal from "../common/loginModal/LoginModal";
 import "./HeaderComponent.css"
 import UserOverview from "./UserOverview/UserOverview";
+import { IUserContext } from "@/interfaces/UserInterfaces";
+import { userContext } from "@/util/context";
 
 const HeaderComponent = () => {
+    const { loginModal } = useContext<IUserContext>(userContext);
 
     return (
+        <>
+        {loginModal && <LoginModal />}
         <header className="header-container">
-            <LoginModal />
             <UserOverview/>
         </header>
+        </>
     )
 }
 
