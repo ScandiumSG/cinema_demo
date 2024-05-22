@@ -6,7 +6,7 @@ export const getMoviesUnlimited = () => movieBaseUrl;
 export const getMoviesLimited = (limit: number) => 
     baseUrl + "/movie?limit="+limit;
 export const getSpecificMovieById = (id: number) => 
-    movieBaseUrl + id
+    movieBaseUrl + "/" + id
 
 // AUTHENTICATION ENDPOINT
 const authBaseUrl = baseUrl + "/auth";

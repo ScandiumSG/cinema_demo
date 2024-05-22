@@ -9,9 +9,8 @@
 .movie-card-list-container {
     position: absolute;
     top: calc(2vh);
-
-    width: 100%;
-    
+    left: 5%;
+    width: 95%;
 
     display: grid;
     grid-template-columns: 300px 300px 300px;
