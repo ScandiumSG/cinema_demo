@@ -8,6 +8,8 @@ import MovieOverviewPage from './pages/MovieOverview/MovieOverviewPage';
 import { IUserData } from './interfaces/UserInterfaces';
 import { readSessionStorage } from './util/userUtil';
 import MoviePage from './components/MoviePage/MoviePage';
+import RegistrationPage from './pages/RegistrationPage/RegistrationPage';
+import ProfilePage from './pages/ProfilePage/ProfilePage';
 
 function App() {
   const [user, setUser] = useState<IUserData|undefined>(readSessionStorage())
@@ -52,6 +54,14 @@ function App() {
               path="/movies/:id"
               element={<MoviePage />}
             />
+            <Route 
+              path="user/profile"
+              element={<ProfilePage />}
+            />
+            <Route 
+              path="/user/register/"
+              element={<RegistrationPage />}
+            /> 
             <Route // Send unknown paths back to landing page
               path="*"
               element={<Navigate replace to="/" />}

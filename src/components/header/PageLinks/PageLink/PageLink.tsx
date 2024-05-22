@@ -18,9 +18,10 @@ const PageLink: React.FC<linkProps> = ({displayName, routeName}) => {
     }
 
     useEffect(() => {
+        console.log(location.pathname);
         if (location.pathname === "/" && routeName === "/") {
             setActiveLink(true);
-        } else if (location.pathname.endsWith(routeName)) {
+        } else if (location.pathname.endsWith(routeName) && routeName !== "/") {
             setActiveLink(true);
         } else {
             setActiveLink(false);
