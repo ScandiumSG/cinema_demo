@@ -1,12 +1,12 @@
 .login-modal-container {
-    border: 1px solid red;
-
+    border: rgb(221, 220, 220) solid 10px;
+    z-index: 5;
     width: 300px;
     height: max-content;
 
     position:fixed;
     top: calc(75px + 20vh);
-    left: calc(50vw - calc(300px / 2));
+    left: calc(50vw - calc(300px / 2) - calc(10px / 2));
 
     background-color: whitesmoke;
     border-radius: 10px;
@@ -48,8 +48,43 @@
     margin-right: 5%;
     width: max-content;
     border: none;
+
+    display: flex;
 }
 
 .login-modal-button:hover {
     background-color: darkseagreen;
 }
+
+.loading-spinner {
+    animation: spin 1s linear infinite;
+  }
+  
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  
+  .spinner-path {
+    stroke-dasharray: 31.4159265359;
+    stroke-dashoffset: 31.4159265359;
+    animation: dash 1.5s ease-in-out infinite;
+  }
+  
+  @keyframes dash {
+    0% {
+      stroke-dashoffset: 31.4159265359;
+    }
+    50% {
+      stroke-dashoffset: 0;
+      transform: rotate(135deg);
+    }
+    100% {
+      stroke-dashoffset: -31.4159265359;
+      transform: rotate(450deg);
+    }
+  }

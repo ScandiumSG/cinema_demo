@@ -3,6 +3,7 @@ import "./LoginModal.css"
 import { ILoginCredentials, IUserContext } from "@/interfaces/UserInterfaces";
 import { loginUrl } from "@/util/apiPaths";
 import { userContext } from "@/util/context";
+import spinner from "@/assets/loading_spin.svg";
 
 const defaultLoginData = {
     email: "",
@@ -12,6 +13,7 @@ const defaultLoginData = {
 const LoginModal = () => {
     const { loginModal, showLoginModal, setUser } = useContext<IUserContext>(userContext);
     const [invalidCredentials, setInvalidCredentials] = useState<string>("");
+    const [loading, setLoading] = useState<boolean>(false);
     const [loginData, setLoginData] = useState<ILoginCredentials>({
         email: sessionStorage.getItem("login_attempt_email") || "",
         password: ""
@@ -33,6 +35,12 @@ const LoginModal = () => {
         setLoginData({...loginData, [e.target.id]: e.target.value});
     }
 
+    const enterSubmit = (event: string) => {
+        if (event === "Enter" && !loading) {
+            postLoginCredentials();
+        }
+    }
+
     const postLoginCredentials = async () => {
         let fetchFailedFlag = false;
         if (loginData.email === "" ) {
@@ -50,7 +58,7 @@ const LoginModal = () => {
             }, 
             body: JSON.stringify(loginData)
         }
-
+        setLoading(true)
         await fetch(loginUrl(), loginOptions)
             .then((res) => {
                 if (res.status === 400) {
@@ -74,6 +82,7 @@ const LoginModal = () => {
             .catch((err: Error) => {
                 setInvalidCredentials(err.message)
             })
+            .finally(() =>  setLoading(false))
     }
 
     const resetModal = () => {
@@ -99,6 +108,7 @@ const LoginModal = () => {
                     id="password" 
                     type="password" 
                     onChange={(e) => handlePasswordChange(e)}
+                    onKeyDown={(e) => enterSubmit(e.key)}
                     value={loginData["password"]}
                 />
             </div>
@@ -110,12 +120,19 @@ const LoginModal = () => {
                 >
                     Cancel
                 </button>
-                <button 
-                    className="login-modal-button login-modal-submit" 
-                    onClick={() => postLoginCredentials()}
-                >
-                    Submit
-                </button>
+                { !loading ? 
+                    <button 
+                        className="login-modal-button login-modal-submit" 
+                        onClick={() => postLoginCredentials()}
+                    >
+                        Submit
+                    </button>
+                    :
+                    <button className="login-modal-button login-modal-submit">
+                        <img className="loading-spinner" src={spinner} alt="Verifying..."/>
+                        <span>Verifying...</span>
+                    </button>
+                }
             </div>
         </div>
     )
