@@ -10,7 +10,7 @@ const defaultLoginData = {
 }
 
 const LoginModal = () => {
-    const { loginModal, showLoginModal } = useContext<IUserContext>(userContext);
+    const { loginModal, showLoginModal, setUser } = useContext<IUserContext>(userContext);
     const [invalidCredentials, setInvalidCredentials] = useState<string>("");
     const [loginData, setLoginData] = useState<ILoginCredentials>({
         email: sessionStorage.getItem("login_attempt_email") || "",
@@ -68,6 +68,7 @@ const LoginModal = () => {
                 }})
             .then((res) => {
                 sessionStorage.setItem("login_claim", JSON.stringify(res));
+                setUser(res)
             })
             .then(() => resetModal())
             .catch((err: Error) => {

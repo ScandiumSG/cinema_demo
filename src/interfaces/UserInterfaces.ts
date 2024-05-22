@@ -3,9 +3,25 @@ export interface ILoginCredentials {
     password: string
 }
 
+export interface IUserData {
+    id: string,
+    username: string,
+    email: string,
+    role: number,
+    token: string,
+}
+
+export const emptyUserData = {
+    id: "",
+    username: "",
+    email: "",
+    role: 0,
+    token: "",
+}
+
 export interface IUserContext {
-    user: {},
-    setUser: () => void,
+    user: IUserData,
+    setUser: (user: IUserData) => void,
     loginModal: boolean,
     showLoginModal: () => void,
 }
