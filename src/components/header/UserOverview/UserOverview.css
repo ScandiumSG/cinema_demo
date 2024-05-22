@@ -1,10 +1,13 @@
 .user-overview-outer-container {
     display: flex;
     justify-content: right;
+    align-items: center;
 
     position: relative;
     right: 5px;
 }
 
 .user-overview-outer-container > button {
+    height: fit-content;
+    margin-right: 20px;
 }

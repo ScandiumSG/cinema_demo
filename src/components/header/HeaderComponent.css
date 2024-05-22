@@ -11,6 +11,7 @@
     background-color: blue;
     border: 1px solid red;
 
-    display: grid;
-    justify-content: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }

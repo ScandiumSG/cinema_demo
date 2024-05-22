@@ -12,6 +12,9 @@ const HeaderComponent = () => {
         <>
         {loginModal && <LoginModal />}
         <header className="header-container">
+            <div className="header-cinema-logo">
+                Hello
+            </div>
             <UserOverview/>
         </header>
         </>

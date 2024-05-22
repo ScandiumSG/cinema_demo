@@ -21,8 +21,8 @@ const UserOverview = () => {
 
     return(
         <div className="user-overview-outer-container">
-            <AccountIcon />
             <button onClick={() => logOut()}>Logout</button>
+            <AccountIcon />
         </div>
     )
 }
