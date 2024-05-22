@@ -1,0 +1,10 @@
+.user-overview-outer-container {
+    display: flex;
+    justify-content: right;
+
+    position: relative;
+    right: 5px;
+}
+
+.user-overview-outer-container > button {
+}

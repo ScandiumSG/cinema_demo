@@ -2,6 +2,7 @@ import { useContext } from "react";
 import "./UserOverview.css"
 import { IUserContext } from "@/interfaces/UserInterfaces";
 import { userContext } from "@/util/context";
+import AccountIcon from "@/components/common/AccountIcon/AccountIcon";
 
 const UserOverview = () => {
     const {user, setUser, showLoginModal} = useContext<IUserContext>(userContext);
@@ -10,13 +11,18 @@ const UserOverview = () => {
         setUser(undefined);
     }
 
+    if (!user) {
+        return (
+            <div className="user-overview-outer-container">
+                <button onClick={() => showLoginModal()}>Login</button>
+            </div>
+        )
+    }
+
     return(
-        <div>
-            {!user ? 
-            <button onClick={() => showLoginModal()}>Login</button> 
-            : 
+        <div className="user-overview-outer-container">
+            <AccountIcon />
             <button onClick={() => logOut()}>Logout</button>
-            }
         </div>
     )
 }
