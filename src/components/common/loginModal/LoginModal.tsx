@@ -83,7 +83,7 @@ const LoginModal = () => {
     }
 
     return(
-        <div className="login-modal-container" hidden={!loginModal}>
+        <div className="login-modal-container">
             <h4>Log in</h4>
             <div className="login-modal-input-area">
                 <span>Email:</span>
