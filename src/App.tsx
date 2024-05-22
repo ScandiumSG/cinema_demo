@@ -7,6 +7,7 @@ import LandingPage from './pages/LandingPage/LandingPage';
 import MovieOverviewPage from './pages/MovieOverview/MovieOverviewPage';
 import { IUserData } from './interfaces/UserInterfaces';
 import { readSessionStorage } from './util/userUtil';
+import MoviePage from './components/MoviePage/MoviePage';
 
 function App() {
   const [user, setUser] = useState<IUserData|undefined>(readSessionStorage())
@@ -47,6 +48,10 @@ function App() {
               path="/movies/"
               element={<MovieOverviewPage />}
               />
+            <Route 
+              path="/movies/:id"
+              element={<MoviePage />}
+            />
             <Route // Send unknown paths back to landing page
               path="*"
               element={<Navigate replace to="/" />}
