@@ -1,0 +1,17 @@
+<svg width="250" height="50" viewBox="0 0 250 50" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="30" cy="25" r="5" fill="grey">
+    <animate attributeName="fill" values="grey;#E32636;grey" dur="3s" begin="0s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="80" cy="25" r="5" fill="grey">
+    <animate attributeName="fill" values="grey;#E32636;grey" dur="3s" begin="0.2s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="130" cy="25" r="5" fill="grey">
+    <animate attributeName="fill" values="grey;#E32636;grey" dur="3s" begin="0.4s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="180" cy="25" r="5" fill="grey">
+    <animate attributeName="fill" values="grey;#E32636;grey" dur="3s" begin="0.6s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="230" cy="25" r="5" fill="grey">
+    <animate attributeName="fill" values="grey;#E32636;grey" dur="3s" begin="0.8s" repeatCount="indefinite"/>
+  </circle>
+</svg>
