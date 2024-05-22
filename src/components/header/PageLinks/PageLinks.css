@@ -1,0 +1,21 @@
+.page-links-parent-container {
+    display: flex;
+    flex-direction: row;
+    align-items: last baseline;
+    justify-content: center;
+
+    height: 100%;
+}
+
+.page-links-container {
+    margin: 0px 10px;
+    cursor: pointer;
+    height: 40px;
+    padding-bottom: 4px;
+    border-bottom: 2px none;
+    margin-bottom: 5px;
+}
+
+.page-links-container.active {
+    border-bottom: 2px black solid;
+}
