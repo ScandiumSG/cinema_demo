@@ -3,6 +3,15 @@ export interface ILoginCredentials {
     password: string
 }
 
+export interface IRegisterCredentials extends ILoginCredentials{
+    username: string
+}
+
+export interface IRegistrationError {
+    code: string,
+    description: string
+}
+
 export interface IUserData {
     id: string,
     username: string,

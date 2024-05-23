@@ -1,0 +1,27 @@
+.register-account-parent-container {
+    display: flex;
+    flex-direction: column;
+    
+    width: 70%;
+
+    position: relative;
+    left: calc(calc(calc(100% - 70%) / 2));
+    top: 1.5rem;
+    align-items: center;
+}
+
+.register-account-header-container {
+    width: 100%;
+}
+
+.register-account-input-container {
+    display: flex;
+    flex-direction: column;
+
+    width: 100%;
+    margin-bottom: 2rem;
+}
+
+.register-account-button {
+    margin: 0px 1rem;
+}
