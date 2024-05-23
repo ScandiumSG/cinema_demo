@@ -44,10 +44,11 @@ const RegisterAccount = () => {
                     setErrorArray([...res])
                 } else {
                     setErrorArray([])
-                }
-                console.log(res)
-            }
-        )
+                }})
+            .finally(() => {
+                if (!errorSwitch) {
+                    navigate("/");
+            }})
     }
 
     return(
@@ -62,7 +63,7 @@ const RegisterAccount = () => {
                     fieldId={"email"}
                     fieldType={"text"}
                     fieldDescription="Email address"
-                    error={errorArray.find((e) => e.code === "DuplicateEmail") || undefined}
+                    error={errorArray.find((e) => e.code.toLowerCase().includes("email")) || undefined}
                 />
                 <RegisterAccountInputField 
                     accountData={accountData}
@@ -70,7 +71,7 @@ const RegisterAccount = () => {
                     fieldId={"username"}
                     fieldType={"text"}
                     fieldDescription="Your username"
-                    error={errorArray.find((e) => e.code === "DuplicateUserName") || undefined}
+                    error={errorArray.find((e) => e.code.toLowerCase().includes("username")) || undefined}
                 />
                 <RegisterAccountInputField 
                     accountData={accountData}
@@ -78,7 +79,7 @@ const RegisterAccount = () => {
                     fieldId={"password"}
                     fieldType={"password"}
                     fieldDescription="Password"
-                    error={undefined}
+                    error={errorArray.find((e) => e.code.toLowerCase().includes("password")) || undefined}
                 />
             </div>
             <div className="register-account-button-container">
