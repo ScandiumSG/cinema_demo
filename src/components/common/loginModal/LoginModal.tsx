@@ -3,7 +3,7 @@ import "./LoginModal.css"
 import { ILoginCredentials, IUserContext } from "@/interfaces/UserInterfaces";
 import { loginUrl } from "@/util/apiPaths";
 import { userContext } from "@/util/context";
-import RegisterAccount from "./RegisterAccount/RegisterAccount";
+import RegisterAccountInteraction from "./RegisterAccountInteraction/RegisterAccountInteraction";
 import LoginInput from "./LoginInputFields/LoginInput";
 import LoginButtons from "./LoginButtons/LoginButtons";
 
@@ -109,7 +109,7 @@ const LoginModal = () => {
                 submitCredentials={postLoginCredentials}
                 isLoading={loading}
             />
-            <RegisterAccount />
+            <RegisterAccountInteraction resetModal={resetModal}/>
         </div>
     )
 }
