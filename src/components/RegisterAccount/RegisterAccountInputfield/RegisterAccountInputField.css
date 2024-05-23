@@ -10,7 +10,3 @@
 .register-account-input-field-label, .register-account-input-field-value, .registration-field-error {
     text-align: left;
 }
-
-.registration-field-error > * {
-    text-decoration: red;
-}
