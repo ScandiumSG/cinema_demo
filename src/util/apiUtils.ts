@@ -1,5 +1,13 @@
 const baseUrl = import.meta.env.VITE_BACKEND_BASE_URL;
 
+// GENERAL FETCH OPTIONS
+// TODO: Add auth token from user to this one
+const fetchOptions = {
+    "headers": {
+        "Content-Type": "application/json",
+    },
+}
+
 // MOVIE ENDPOINT
 const movieBaseUrl = baseUrl + "/movie"
 export const getMoviesUnlimited = () => movieBaseUrl;

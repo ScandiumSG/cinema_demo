@@ -2,7 +2,7 @@ import { ChangeEvent, useState } from "react";
 import "./RegisterAccount.css"
 import { IRegisterCredentials, IRegistrationError } from "@/interfaces/UserInterfaces";
 import RegisterAccountInputField from "./RegisterAccountInputfield/RegisterAccountInputField";
-import { registerUrl } from "@/util/apiPaths";
+import { registerUrl } from "@/util/apiUtils";
 import { useNavigate } from "react-router-dom";
 
 const defaultValues: IRegisterCredentials = {

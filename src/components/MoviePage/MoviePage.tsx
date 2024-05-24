@@ -2,7 +2,7 @@ import { useParams } from "react-router-dom";
 import "./MoviePage.css"
 import { useEffect, useState } from "react";
 import { IMovieDetails } from "@/interfaces/IMovie";
-import { getSpecificMovieById } from "@/util/apiPaths";
+import { getSpecificMovieById } from "@/util/apiUtils";
 import { timeCalculator } from "@/util/timeUtils";
 import loading from "@/assets/loading_dots.svg"
 
