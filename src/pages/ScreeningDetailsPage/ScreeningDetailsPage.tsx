@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import "./ScreeningDetailsPage.css"
 import { useEffect, useState } from "react";
 import { IScreening } from "@/interfaces/IScreening";
@@ -11,6 +11,7 @@ import ScreeningMovieDetails from "@/components/ScreeningMovieDetails/ScreeningM
 const ScreeningDetailsPage = () => {
     const { movieId, screeningId } = useParams();
     const [screeningData, setScreeningData] = useState<IScreening>();
+    const navigate = useNavigate();
 
     const fetchData = async () => {
         if (movieId === undefined || screeningId === undefined) {
@@ -38,18 +39,27 @@ const ScreeningDetailsPage = () => {
         fetchData();
     }, [movieId, screeningId])
 
+    if (screeningData === undefined) {
+        return(
+            <div className="screening-error-container">
+                Could not find the provided screening
+                <button onClick={() => navigate("/")}>Return to frontpage</button>
+            </div>
+        )
+    }
+
     return(
         <div className="screening-details-page-parent-container">
             <div className="screening-details-page-container  highlight">
                 <div className="screening-details-header">
                     <h2>
-                        {screeningData?.theater.name}
+                        {screeningData.theater.name}
                     </h2>
                     <p>
-                        {translateDateTimeString(screeningData!.startTime)}
+                        {translateDateTimeString(screeningData.startTime)}
                     </p>
                 </div>
-                <ScreeningMovieDetails movie={screeningData!.movie} />
+                <ScreeningMovieDetails movie={screeningData.movie} />
                 <div>                
                     <span>Movie id: </span>
                     <span>{movieId}</span>
