@@ -1,0 +1,19 @@
+.screening-details-page-parent-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+
+    padding-top: 5rem;
+}
+.screening-details-page-container {
+    width: 96%;
+    height: 90%;
+
+}
+
+.screening-details-header {
+    margin-bottom: 2rem;
+}
+
