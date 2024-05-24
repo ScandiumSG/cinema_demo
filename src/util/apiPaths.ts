@@ -8,6 +8,12 @@ export const getMoviesLimited = (limit: number) =>
 export const getSpecificMovieById = (id: number) => 
     movieBaseUrl + "/" + id
 
+// SCREENING ENDPOINT
+const baseScreeningUrl = baseUrl + "/screening"
+export const getScreeningDetails = (movieId: number, screeningId: number) => {
+    return baseScreeningUrl + "/" + screeningId + "-" + movieId;
+}
+
 // AUTHENTICATION ENDPOINT
 const authBaseUrl = baseUrl + "/auth";
 export const loginUrl = () => authBaseUrl + "/login"
