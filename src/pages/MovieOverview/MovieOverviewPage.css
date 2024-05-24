@@ -13,11 +13,29 @@
     width: 95%;
 
     display: grid;
-    grid-template-columns: 300px 300px 300px;
-    column-gap: 30px;
-    row-gap: 30px;
-    padding-bottom: 40px;
+    grid-template-columns: 20rem 20rem 20rem 20rem;
+    column-gap: 2rem;
+    row-gap: 2rem;
+    padding-bottom: 3rem;
 
     align-items: center;
     justify-content: center;
+}
+
+@media only screen and (max-width: calc(95rem)) {
+    .movie-card-list-container {
+        grid-template-columns: 20rem 20rem 20rem;
+    }
+}
+
+@media only screen and (max-width: calc(65rem)) {
+    .movie-card-list-container {
+        grid-template-columns: 20rem 20rem;
+    }
+}
+
+@media only screen and (max-width: calc(43rem)) {
+    .movie-card-list-container {
+        grid-template-columns: 20rem;
+    }
 }
