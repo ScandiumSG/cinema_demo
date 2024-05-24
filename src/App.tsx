@@ -11,6 +11,7 @@ import MoviePage from './components/MoviePage/MoviePage';
 import RegistrationPage from './pages/RegistrationPage/RegistrationPage';
 import ProfilePage from './pages/ProfilePage/ProfilePage';
 import ScreeningDetailsPage from './pages/ScreeningDetailsPage/ScreeningDetailsPage';
+import UpcomingScreenings from './pages/UpcomingScreenings/UpcomingScreenings';
 
 function App() {
   const [user, setUser] = useState<IUserData|undefined>(readSessionStorage())
@@ -58,6 +59,10 @@ function App() {
             <Route 
               path="/screening/:movieId/:screeningId"
               element={<ScreeningDetailsPage />}
+            />
+            <Route 
+              path="screening/upcoming"
+              element={<UpcomingScreenings />}
             />
             <Route 
               path="user/profile"
