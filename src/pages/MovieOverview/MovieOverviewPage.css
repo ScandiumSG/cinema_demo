@@ -1,5 +1,6 @@
 .movie-card-list-parent-container {
-    display: flexbox;
+    display: flex;
+    flex-direction: column;
 
     align-items: center;
     justify-content: center;
@@ -9,7 +10,6 @@
 .movie-card-list-container {
     position: absolute;
     top: calc(2vh);
-    left: 5%;
     width: 95%;
 
     display: grid;
@@ -17,4 +17,7 @@
     column-gap: 30px;
     row-gap: 30px;
     padding-bottom: 40px;
+
+    align-items: center;
+    justify-content: center;
 }
