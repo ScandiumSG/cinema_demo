@@ -3,3 +3,8 @@ export const timeCalculator = (timeInMinutes: number) => {
     const minutes = timeInMinutes - 60 * hours
     return hours+":"+minutes.toString().padStart(2, "0");
 }
+
+export const translateDateTimeString = (timeString: string) => {
+    const dateObject: Date = new Date(timeString)
+    return dateObject.toLocaleDateString() + " " + dateObject.toLocaleTimeString();
+}
