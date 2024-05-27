@@ -31,6 +31,6 @@ export const loginUrl = () => authBaseUrl + "/login"
 export const registerUrl = () => authBaseUrl + "/signup";
 
 // PROFILE ENDPOINT
-const profileBaseUrl = baseUrl + "/user":
+const profileBaseUrl = baseUrl + "/user";
 export const userInfoUrl = () => profileBaseUrl + "/change";
 export const userPasswordUrl = () => profileBaseUrl + "/changepw";
