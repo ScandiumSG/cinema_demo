@@ -10,4 +10,7 @@
 .upcoming-screenings-container {
     height: calc(100% - 2rem);
     width: 90%;
+
+    overflow: scroll;
+    scrollbar-width: none;
 }
