@@ -16,7 +16,7 @@ export interface IUserData {
     id: string,
     username: string,
     email: string,
-    role: number,
+    role: string,
     token: string,
 }
 
