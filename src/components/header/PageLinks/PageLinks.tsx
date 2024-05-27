@@ -6,6 +6,7 @@ const PageLinks = () => {
     return(
         <div className="page-links-parent-container">
             <PageLink displayName="Frontpage" routeName="/"/>     
+            <PageLink displayName="Upcoming" routeName="screening/upcoming" />
             <PageLink displayName="Movies" routeName="movies" />
         </div>
     )
