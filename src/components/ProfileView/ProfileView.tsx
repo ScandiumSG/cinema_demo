@@ -11,7 +11,7 @@ interface ITempData extends IUserData {
 }
 
 const ProfileView = () => {
-    const { user } = useContext<IUserContext>(userContext);
+    const { user, setUser } = useContext<IUserContext>(userContext);
     const [tempUserdata, setTempUserdata] = useState<ITempData | undefined>();
 
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -44,7 +44,6 @@ const ProfileView = () => {
             username: tempUserdata?.username,
             password: tempUserdata?.password,
         }
-        console.log("Put data:", JSON.stringify(putData))
 
         const fetchOptions = {
             "method": "PUT",
@@ -53,7 +52,16 @@ const ProfileView = () => {
             },
             "body": JSON.stringify(putData)
         }
-        await fetch(userInfoUrl(), fetchOptions);
+        await fetch(userInfoUrl(), fetchOptions)
+            .then((res) => res.json())
+            .then((res) => {
+                setUser({...user!, 
+                    email: res.data.email, 
+                    username: res.data.userName
+                })
+                return res;
+            })
+            .then((res) => console.log(res));
     }
 
     if (tempUserdata === undefined || user === undefined) {

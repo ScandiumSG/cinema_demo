@@ -26,3 +26,15 @@ export interface IUserContext {
     loginModal: boolean,
     showLoginModal: () => void,
 }
+
+export interface IUserInformationChange {
+    id: string,
+    email: string, 
+    username: string,
+}
+
+export interface IUserPasswordChange {
+    id: string,
+    old_password: string,
+    new_password: string,
+}
