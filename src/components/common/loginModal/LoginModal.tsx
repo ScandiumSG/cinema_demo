@@ -1,7 +1,7 @@
 import { ChangeEvent, useContext, useEffect, useState } from "react";
 import "./LoginModal.css"
 import { ILoginCredentials, IUserContext } from "@/interfaces/UserInterfaces";
-import { loginUrl } from "@/util/apiPaths";
+import { loginUrl } from "@/util/apiUtils";
 import { userContext } from "@/util/context";
 import RegisterAccountInteraction from "./RegisterAccountInteraction/RegisterAccountInteraction";
 import LoginInput from "./LoginInputFields/LoginInput";

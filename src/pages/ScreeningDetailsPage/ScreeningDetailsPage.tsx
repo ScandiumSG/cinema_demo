@@ -2,7 +2,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import "./ScreeningDetailsPage.css"
 import { useEffect, useState } from "react";
 import { IScreening } from "@/interfaces/IScreening";
-import { getScreeningDetails } from "@/util/apiPaths";
+import { getScreeningDetails } from "@/util/apiUtils";
 import { translateDateTimeString } from "@/util/timeUtils";
 import ScreeningMovieDetails from "@/components/ScreeningMovieDetails/ScreeningMoviedetails";
 

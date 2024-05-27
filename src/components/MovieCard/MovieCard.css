@@ -1,17 +1,16 @@
 .movie-card-container {
     width: 300px;
 
-    border: 1px solid red;
     padding: 5px;
     border-radius: 10px;
     cursor: pointer;
 
-    background-color:azure;
+    background-color:var(--card-bg-color);
 }
 
 .movie-card-container > img {
     width: auto;
     height:300px;
     border-radius: 5px;
-    border: 0.1px solid lightgray;
+    border: 0.1px solid var(--light-border-color);
 }
