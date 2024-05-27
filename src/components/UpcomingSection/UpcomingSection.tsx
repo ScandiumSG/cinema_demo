@@ -1,6 +1,7 @@
 import { IScreening } from "@/interfaces/IScreening";
 import "./UpcomingSection.css"
 import { useEffect, useState } from "react";
+import UpcomingCard from "./UpcomingCard/UpcomingCard";
 
 interface IUpcomingInput {
     sectionDate: string,
@@ -36,17 +37,15 @@ const UpcomingSection: React.FC<IUpcomingInput> = ({sectionDate, entries}) => {
     }, [sectionDate])
 
     return(
-        <div>
-            <h3>{dateString}</h3>
-            {entries.map((Screening: IScreening, index: number) => {
-                return(
-                    <div key={index}>
-                        <span>{Screening.id}</span>
-                        <span>{Screening.movie.title}</span>
-                        <span>{Screening.theater.name}</span>
-                    </div>
-                )
-            })}
+        <div className="upcoming-section-container">
+            <h2 className="upcoming-section-header">{dateString}</h2>
+            <div className="upcoming-card-list-container">
+                {entries.map((Screening: IScreening, index: number) => {
+                    return(
+                        <UpcomingCard key={index} screening={Screening}/>
+                    )
+                })}
+            </div>
         </div>
     )
 }
