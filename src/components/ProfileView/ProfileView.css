@@ -1,0 +1,13 @@
+.profile-view-parent-container {
+    width: 80%;
+    height: fit-content;
+
+    display: flex;
+    flex-direction: column;
+
+    place-content: center;
+}
+
+.profile-view-header {
+    position: sticky;
+}
