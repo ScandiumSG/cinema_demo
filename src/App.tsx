@@ -24,6 +24,7 @@ function App() {
   const setUserData = (user?: IUserData) => {
     if (user !== undefined ) {
       setUser({...user});
+      sessionStorage.setItem("login_claim", JSON.stringify(user))
     } else {
       setUser(undefined);
       sessionStorage.removeItem("login_claim");
