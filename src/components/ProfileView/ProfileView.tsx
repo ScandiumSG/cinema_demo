@@ -4,6 +4,7 @@ import { IUserContext, IUserData } from "@/interfaces/UserInterfaces";
 import { userContext } from "@/util/context";
 import InfoField from "./InfoField/InfoField";
 import { userInfoUrl } from "@/util/apiUtils";
+import NoUserWarning from "./NoUserWarning/NoUserWarning";
 
 interface ITempData extends IUserData {
     password: string
@@ -28,6 +29,9 @@ const ProfileView = () => {
     }
 
     useEffect(() => {
+        if (user === undefined) {
+            return;
+        }
         const userData: any = user;
         userData.password = "";
         setTempUserdata(userData)
@@ -52,14 +56,9 @@ const ProfileView = () => {
         await fetch(userInfoUrl(), fetchOptions);
     }
 
-    // TODO: Fix this error handling
-    if (tempUserdata === undefined) {
+    if (tempUserdata === undefined || user === undefined) {
         return(
-            <div>
-                <h3>You are not logged in. </h3>
-                <button>Login</button>
-                <button>To frontpage</button>
-            </div>
+            <NoUserWarning />
         )
     }
 
