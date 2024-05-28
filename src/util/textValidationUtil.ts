@@ -12,12 +12,7 @@ const passwordValidationRules: validationRule[] = [
  {
     name: "Must be atleast 6 characters in length",
     func: (password: string) => {return password.length >= 6}
- }, {
-    name: "Must have capital first letter",
-    func: (password: string) => {
-        return password.at(0)!.toUpperCase() == password!.at(0);
-    }
- }
+ },
 ]
 
 export const validatePassword = (password: string) => {

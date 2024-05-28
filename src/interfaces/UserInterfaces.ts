@@ -35,6 +35,6 @@ export interface IUserInformationChange {
 
 export interface IUserPasswordChange {
     id: string,
-    old_password: string,
-    new_password: string,
+    oldPassword: string,
+    newPassword: string,
 }
