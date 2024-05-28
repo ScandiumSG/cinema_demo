@@ -6,8 +6,33 @@
     flex-direction: column;
 
     place-content: center;
+    padding-top: 2rem;
+}
+
+.profile-view-special-role-notification {
+    font-size: large;
+    font-weight: 600;
+}
+
+.profile-view-special-role-notification > * {
+    margin: 0px;
 }
 
 .profile-view-header {
     position: sticky;
+}
+
+.profile-view-header {
+    text-align: left;
+    padding-left: 0.5rem;
+}
+
+.profile-personal-information-container {
+    background-color: var(--card-bg-color);
+    padding-bottom: 1.5rem;
+}
+
+.profile-personal-information-container > button {
+    background-color: var(--button-color);
+    color: var(--primary-text-color);
 }

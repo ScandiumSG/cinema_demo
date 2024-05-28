@@ -5,6 +5,7 @@ import { userContext } from "@/util/context";
 import InfoField from "./InfoField/InfoField";
 import { userInfoUrl } from "@/util/apiUtils";
 import NoUserWarning from "./NoUserWarning/NoUserWarning";
+import ChangePassword from "./ChangePassword/ChangePassword";
 
 interface ITempData extends IUserData {
     password: string
@@ -72,37 +73,45 @@ const ProfileView = () => {
 
     return(
         <div className="profile-view-parent-container">
-            <h2 className="profile-view-header">Profile information</h2>
-            {tempUserdata!.role === "Admin" && <span>Role: {tempUserdata!.role}</span>}
-            <InfoField 
-                fieldId={"email"} 
-                fieldValue={tempUserdata!.email} 
-                labelValue={"Email"} 
-                handleChange={handleChange} 
-            />
-            <InfoField 
-                fieldId={"username"} 
-                fieldValue={tempUserdata!.username} 
-                labelValue={"Username"} 
-                handleChange={handleChange} 
-            />
-            {fieldsEdited() && 
+            {tempUserdata!.role === "Admin" && 
+            <div className="profile-view-special-role-notification">
+                <p>Currently logged into a special account!</p>
+                <p>Role: {tempUserdata!.role}</p>
+            </div>
+            }
+            <div className="profile-personal-information-container top-rounded-corners">
+                <h2 className="profile-view-header">Profile information</h2>
                 <InfoField 
+                    fieldId={"email"} 
+                    fieldValue={tempUserdata!.email} 
+                    labelValue={"Email"} 
+                    handleChange={handleChange} 
+                    />
+                <InfoField 
+                    fieldId={"username"} 
+                    fieldValue={tempUserdata!.username} 
+                    labelValue={"Username"} 
+                    handleChange={handleChange} 
+                    />
+                {fieldsEdited() && 
+                    <InfoField 
                     fieldId={"password"} 
                     fieldValue={tempUserdata.password} 
                     labelValue={"Password"} 
                     handleChange={handleChange} 
                     fieldType="password"
-                />
-            }
-            {fieldsEdited() && 
-                <button 
+                    />
+                }
+                {fieldsEdited() && 
+                    <button 
                     disabled={tempUserdata.password === ""}
                     onClick={() => submitChanges()}
-                >
-                    Submit changes
-                </button>
-            }
+                    >
+                        Submit changes
+                    </button>
+                }
+            </div>
+            <ChangePassword />
         </div>
     )
 }
