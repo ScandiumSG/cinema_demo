@@ -11,20 +11,20 @@ const LoginButtons: React.FC<ILoginButtons> = ({showModal, submitCredentials, is
     return(
         <div className="login-modal-button-container">
             <button 
-                className="login-modal-button login-modal-cancel" 
+                className="green-button-button login-modal-cancel" 
                 onClick={() => showModal()}
             >
                 Cancel
             </button>
             { !isLoading ? 
                 <button 
-                    className="login-modal-button login-modal-submit" 
+                    className="green-button-button login-modal-submit" 
                     onClick={() => submitCredentials()}
                 >
                     Log in
                 </button>
                 :
-                <button className="login-modal-button login-modal-submit">
+                <button className="green-button-button login-modal-submit">
                     <img className="loading-spinner" src={spinner} alt="Verifying..."/>
                     <span>Verifying...</span>
                 </button>

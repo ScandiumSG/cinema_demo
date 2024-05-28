@@ -10,7 +10,7 @@ const AccountIcon = () => {
     const { user } = useContext<IUserContext>(userContext)
 
     const handleClick = () => {
-        //navigate("/profile")
+        navigate("/user/profile")
     }
 
     return (

@@ -78,7 +78,6 @@ const LoginModal = () => {
                     return res;
                 }})
             .then((res) => {
-                sessionStorage.setItem("login_claim", JSON.stringify(res));
                 setUser(res)
             })
             .then(() => resetModal())

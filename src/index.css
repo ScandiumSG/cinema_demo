@@ -13,9 +13,11 @@
   -moz-osx-font-smoothing: grayscale;
 
   
+  --primary-text-color: whitesmoke;
   --card-bg-color: azure;
   --light-border-color: lightgray;
   --site-bg-color: lightblue;
+  --button-color: blue;
 
   --header-height: 5rem;
 }
@@ -76,4 +78,27 @@ button:focus-visible {
 
 .highlight {
   border: 1px solid red;
+}
+
+.top-rounded-corners {
+  border-radius: 10px 10px 0px 0px;
+}
+
+.clickable {
+  cursor: pointer;
+}
+
+.green-button {
+  background-color:rgb(42, 214, 157);
+
+  margin-left: 5%;
+  margin-right: 5%;
+  width: max-content;
+  border: none;
+
+  display: flex;
+}
+
+.green-button:hover {
+  background-color: darkseagreen;
 }

@@ -1,9 +1,10 @@
+import ProfileView from "@/components/ProfileView/ProfileView";
 import "./ProfilePage.css"
 
 const ProfilePage = () => {
     return(
-        <div>
-            Profile page placeholder
+        <div className="profile-page-parent-container">
+            <ProfileView />
         </div>
     )
 }

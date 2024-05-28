@@ -1,0 +1,12 @@
+.field-match-container {
+    text-align: left;
+    padding-left: 3rem;
+}
+
+.field-match-postive {
+    color: green;
+}
+
+.field-match-negative {
+    color: crimson;
+}

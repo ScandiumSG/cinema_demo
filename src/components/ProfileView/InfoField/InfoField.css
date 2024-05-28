@@ -1,0 +1,29 @@
+.info-field-container {
+    display: flex;
+    flex-direction: column;
+
+    margin: 1rem 0.5rem;
+}
+
+.info-field-label {
+    text-align: left;
+    font-size: large;
+}
+
+.info-field-value-container {
+    display: flex;
+    flex-direction: row;
+}
+
+.info-field-value {
+    font-size: large;
+    font-style: normal;
+
+    width: 20rem;
+}
+
+.info-field-toggle-editable-button {
+    margin: 0px;
+    padding: 2px;
+    border: 1px solid var(--light-border-color)
+}
