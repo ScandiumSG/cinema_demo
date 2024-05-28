@@ -8,6 +8,11 @@
     background-color:var(--card-bg-color);
 }
 
+.movie-card-title-header {
+    margin: 0px;
+    margin-bottom: 0.5rem;
+}
+
 .movie-card-container > img {
     width: auto;
     height:300px;

@@ -19,12 +19,11 @@ const MovieCard = ({movie}: Props) => {
             className="movie-card-container"
             onClick={() => handleCardInteraction()}
         >
-            <h3>{movie.title}</h3>
+            <h3 className="movie-card-title-header">{movie.title}</h3>
             <img src="https://image.tmdb.org/t/p/original/hkxxMIGaiCTmrEArK7J56JTKUlB.jpg" />
             <div>
                 <span>Runtime: {timeCalculator(movie.runtime)}</span>
             </div>
-            {movie.year != new Date().getFullYear() ? <span>{movie.year}</span> : <></>}
         </div>
     )
 }
