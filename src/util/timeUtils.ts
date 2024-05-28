@@ -8,3 +8,10 @@ export const translateDateTimeString = (timeString: string) => {
     const dateObject: Date = new Date(timeString)
     return dateObject.toLocaleDateString() + " " + dateObject.toLocaleTimeString();
 }
+
+export const getTimeFromDateTimeString = (dateTimeString: string) => {
+    const timeString = dateTimeString.split("T")[1];
+    const timeWithoutSeconds = timeString.substring(0,5);
+
+    return timeWithoutSeconds;
+}
