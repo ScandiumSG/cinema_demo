@@ -38,6 +38,7 @@ const InfoField: React.FC<IInfoFieldProps> = ({fieldId, fieldValue, labelValue, 
                 />
                 {fieldType !== "password" &&
                     <button
+                        className="info-field-toggle-editable-button"
                         onClick={() => toggleEdit()}
                     >
                         Click

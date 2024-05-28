@@ -22,7 +22,8 @@
     width: 20rem;
 }
 
-.info-field-value-container > button {
+.info-field-toggle-editable-button {
     margin: 0px;
     padding: 2px;
+    border: 1px solid var(--light-border-color)
 }
