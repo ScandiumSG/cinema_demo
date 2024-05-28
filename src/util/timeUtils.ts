@@ -9,6 +9,11 @@ export const translateDateTimeString = (timeString: string) => {
     return dateObject.toLocaleDateString() + " " + dateObject.toLocaleTimeString();
 }
 
+export const translateDateTimeStringWithoutSeconds = (timeString: string) => {
+    const string = translateDateTimeString(timeString);
+    return string.substring(0, string.length-3);
+}
+
 export const getTimeFromDateTimeString = (dateTimeString: string) => {
     const timeString = dateTimeString.split("T")[1];
     const timeWithoutSeconds = timeString.substring(0,5);
