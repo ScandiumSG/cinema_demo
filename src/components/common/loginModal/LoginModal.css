@@ -41,21 +41,6 @@
     bottom: 5px;
 }
 
-.login-modal-button {
-    background-color:rgb(42, 214, 157);
-
-    margin-left: 5%;
-    margin-right: 5%;
-    width: max-content;
-    border: none;
-
-    display: flex;
-}
-
-.login-modal-button:hover {
-    background-color: darkseagreen;
-}
-
 .login-modal-register-container {
     display: flex;
     flex-direction: column;
