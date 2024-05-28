@@ -24,6 +24,10 @@ export const getScreeningDetails = (movieId: number, screeningId: number) => {
 export const getUpcomingScreenings = (dateLimit: string, itemLimit: number) => {
     return baseScreeningUrl + "/upcoming/" + dateLimit + "?limit=" + itemLimit;
 }
+export const getUpcomingSpecificScreenings = (movieId: number, dateLimit: string, itemLimit: number) => {
+    return baseScreeningUrl + "/upcoming/" + movieId + "/" + dateLimit + "?limit=" + itemLimit;
+}
+
 
 // AUTHENTICATION ENDPOINT
 const authBaseUrl = baseUrl + "/auth";
