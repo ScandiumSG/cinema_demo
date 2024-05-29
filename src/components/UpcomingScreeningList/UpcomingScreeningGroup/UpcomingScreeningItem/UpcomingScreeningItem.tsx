@@ -1,6 +1,6 @@
 import { IScreening } from "@/interfaces/IScreening";
 import "./UpcomingScreeningItem.css"
-import { translateDateTimeStringWithoutSeconds } from "@/util/timeUtils";
+import { getTimeFromDateTimeString } from "@/util/timeUtils";
 
 interface IScreeningItem {
     screening: IScreening,
@@ -8,9 +8,9 @@ interface IScreeningItem {
 
 const UpcomingScreeningItem: React.FC<IScreeningItem> = ({screening}) => {
     return(
-        <div className="upcoming-screening-item">
+        <div className="upcoming-screening-item clickable">
             <div>
-                <span>{translateDateTimeStringWithoutSeconds(screening.startTime)} - </span>
+                <span>{getTimeFromDateTimeString(screening.startTime)} - </span>
                 <span>{screening.theater.name}</span>
             </div>
             {/* Tickets left, requires connection of tickets to the screening endpoint in backend.

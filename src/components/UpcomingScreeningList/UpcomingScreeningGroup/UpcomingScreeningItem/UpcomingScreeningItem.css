@@ -1,0 +1,8 @@
+.upcoming-screening-item {
+    background-color: var(--card-bg-color);
+    border-radius: 5px;
+    height: fit-content;
+    overflow: scroll;
+
+    margin-bottom: 0.5rem;
+}
