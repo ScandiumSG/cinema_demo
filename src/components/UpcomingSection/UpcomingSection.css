@@ -21,3 +21,20 @@
     z-index: 5;
 }
 
+.upcoming-card-list-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 1rem;
+    width: 100%;
+    max-width: 100%;
+}
+
+@media only screen and (max-width: calc(800px)) {
+    .upcoming-card-list-container {
+        display:flex;
+        flex-direction: column;
+
+        justify-content: center;
+        align-items: center;
+    }
+}
