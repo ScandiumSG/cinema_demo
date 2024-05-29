@@ -12,3 +12,10 @@ export interface IScreening {
 export interface IUpcomingScreening {
     [date: string]: IScreening[];
 }
+
+export interface IPurchaseModalContext {
+    showPurchase: boolean,
+    setShowPurchase: () => void,
+    showSeatingMap: boolean,
+    setShowSeatingMap: () => void,
+}
