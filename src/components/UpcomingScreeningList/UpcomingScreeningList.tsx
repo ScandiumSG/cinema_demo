@@ -11,7 +11,7 @@ interface IScreeningListProps {
 
 const UpcomingScreeningList: React.FC<IScreeningListProps> = ({movieId}) => {
     const [upcomingScreening, setUpcomingScreenings] = useState<IUpcomingScreening>()
-    const [noUpcoming, setNoUpcoming] = useState<boolean>(true);
+    const [noUpcoming, setNoUpcoming] = useState<boolean>(false);
     const [numberOfScreenings, setNumberOfScreenings] = useState<number>(10);
     const currentDate: Date = new Date();
 
@@ -36,6 +36,14 @@ const UpcomingScreeningList: React.FC<IScreeningListProps> = ({movieId}) => {
     useEffect(() => {
         fetchScreenings();
     }, [movieId])
+
+    if (upcomingScreening === undefined) {
+        return(
+            <div>
+                Loading...
+            </div>
+        )
+    }
 
     if (noUpcoming) {
         return(

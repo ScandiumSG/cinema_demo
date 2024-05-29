@@ -53,13 +53,16 @@ const ScreeningDetailsPage = () => {
             <div className="screening-details-page-container  highlight">
                 <div className="screening-details-header">
                     <h2>
-                        {screeningData.theater.name}
+                        Theater: {screeningData.theater.name}
                     </h2>
                     <p>
-                        {translateDateTimeString(screeningData.startTime)}
+                        Playing at: {translateDateTimeString(screeningData.startTime)}
                     </p>
                 </div>
-                <ScreeningMovieDetails movie={screeningData.movie} />
+                <div className="screening-details-content-container">
+                    <ScreeningMovieDetails movie={screeningData.movie} />
+                    <div>Yo</div>
+                </div>
                 <div>                
                     <span>Movie id: </span>
                     <span>{movieId}</span>

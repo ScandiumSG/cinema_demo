@@ -34,3 +34,18 @@
     margin-bottom: 2rem;
 }
 
+.screening-details-header > h2 {
+    margin-top: 0px;
+}
+
+.screening-details-content-container {
+    display: grid;
+    grid-template-columns: 60% 40%;
+}
+
+@media only screen and (max-width: calc(1200px)) {
+    .screening-details-content-container {
+        display: flex;
+        flex-direction: column;
+    }
+}
