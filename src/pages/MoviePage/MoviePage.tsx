@@ -5,6 +5,7 @@ import { IMovieDetails } from "@/interfaces/IMovie";
 import { getSpecificMovieById } from "@/util/apiUtils";
 import { timeCalculator } from "@/util/timeUtils";
 import loading from "@/assets/loading_dots.svg"
+import UpcomingScreeningList from "@/components/UpcomingScreeningList/UpcomingScreeningList";
 
 const MoviePage = () => {
     const [movieData, setMovieData] = useState<IMovieDetails>();
@@ -36,12 +37,17 @@ const MoviePage = () => {
     }
 
     return(
-        <div className="movie-page-parent-container">
+        <div className="movie-page-parent-container scrollable">
             <div className="movie-page-header-information">
                 <h2>{movieData?.title}</h2>
             </div>
-            <div className="movie-page-image">
-                <img src="https://image.tmdb.org/t/p/original/hkxxMIGaiCTmrEArK7J56JTKUlB.jpg" />
+            <div className="movie-page-center-container">
+                <div className="movie-page-image">
+                    <img src="https://image.tmdb.org/t/p/original/hkxxMIGaiCTmrEArK7J56JTKUlB.jpg" />
+                </div>
+                <div className="movie-page-upcoming-screenings">
+                    <UpcomingScreeningList movieId={movieData.id}/>
+                </div>
             </div>
             <div className="movie-page-information-section">
                 <div className="movie-page-information-description">

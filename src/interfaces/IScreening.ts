@@ -8,3 +8,7 @@ export interface IScreening {
     tickets: [],
     startTime: string
 }
+
+export interface IUpcomingScreening {
+    [date: string]: IScreening[];
+}

@@ -7,7 +7,7 @@ import LandingPage from './pages/LandingPage/LandingPage';
 import MovieOverviewPage from './pages/MovieOverview/MovieOverviewPage';
 import { IUserData } from './interfaces/UserInterfaces';
 import { readSessionStorage } from './util/userUtil';
-import MoviePage from './components/MoviePage/MoviePage';
+import MoviePage from './pages/MoviePage/MoviePage';
 import RegistrationPage from './pages/RegistrationPage/RegistrationPage';
 import ProfilePage from './pages/ProfilePage/ProfilePage';
 import ScreeningDetailsPage from './pages/ScreeningDetailsPage/ScreeningDetailsPage';
