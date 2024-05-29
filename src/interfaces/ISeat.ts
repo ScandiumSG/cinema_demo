@@ -3,3 +3,10 @@ export default interface ISeat {
     row: number,
     seatNumber: number
 }
+
+export interface ISeatData {
+    seatId: number,
+    seatRow: number,
+    seatNumber: number,
+    available: boolean,
+}
