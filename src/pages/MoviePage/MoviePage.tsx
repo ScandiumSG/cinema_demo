@@ -6,16 +6,28 @@ import { getSpecificMovieById } from "@/util/apiUtils";
 import { timeCalculator } from "@/util/timeUtils";
 import loading from "@/assets/loading_dots.svg"
 import UpcomingScreeningList from "@/components/UpcomingScreeningList/UpcomingScreeningList";
+import { purchaseModalContext } from "@/util/context";
+import PurchaseModal from "@/components/PurchaseModal/PurchaseModal";
 
 const MoviePage = () => {
     const [movieData, setMovieData] = useState<IMovieDetails>();
     const { id } = useParams();
-
+    const [showPurchase, setShowPurchase] = useState<boolean>(true);
+    const [showSeatingMap, setShowSeatingMap] = useState<boolean>(false);
+    
     const retrieveData = async (index: number) => {
         await fetch(getSpecificMovieById(index))
             .then((res) => res.json())
             .then((res) => res.data)
             .then((res) => setMovieData({...res}))
+    }
+
+    const displayPurchase = () => {
+        setShowPurchase(!showPurchase);
+    }
+
+    const displaySeating = () => {
+        setShowSeatingMap(!showSeatingMap);
     }
 
     useEffect(() => {
@@ -37,6 +49,15 @@ const MoviePage = () => {
     }
 
     return(
+        <purchaseModalContext.Provider
+            value={{
+                showPurchase: showPurchase, 
+                setShowPurchase: displayPurchase, 
+                showSeatingMap: showSeatingMap,
+                setShowSeatingMap: displaySeating
+            }}
+      >
+        {showPurchase && <PurchaseModal />}
         <div className="movie-page-parent-container scrollable">
             <div className="movie-page-header-information">
                 <h2>{movieData?.title}</h2>
@@ -65,6 +86,7 @@ const MoviePage = () => {
                 </div>
             </div>
         </div>
+        </purchaseModalContext.Provider>
     )
 }
 
