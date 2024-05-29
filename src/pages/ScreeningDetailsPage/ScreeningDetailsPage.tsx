@@ -51,7 +51,7 @@ const ScreeningDetailsPage = () => {
 
     return(
         <div className="screening-details-page-parent-container">
-            <div className="screening-details-page-container  highlight">
+            <div className="screening-details-page-container  scrollable highlight">
                 <div className="screening-details-header">
                     <h2>
                         Theater: {screeningData.theater.name}
@@ -62,8 +62,8 @@ const ScreeningDetailsPage = () => {
                 </div>
                 <div className="screening-details-content-container">
                     <ScreeningMovieDetails movie={screeningData.movie} />
-                    <div>
-                        <TheaterSeatSelector theaterId={screeningData.theater.id}/>
+                    <div className="screening-details-content-theater-map">
+                        <TheaterSeatSelector theaterSeats={screeningData.theater.seats} theaterId={screeningData.theater.id}/>
                     </div>
                 </div>
                 <div>                
