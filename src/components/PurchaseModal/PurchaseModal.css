@@ -1,0 +1,16 @@
+.purchase-modal-container {
+    background-color: var(--card-bg-color);
+    z-index: 5;
+    border-radius: 10px;
+
+    display: flex;
+    flex-direction: column;
+    place-content: center;
+
+    width: 60vw;
+    height: fit-content;
+
+    position: fixed;
+    left: calc(50vw - calc(60vw / 2));
+    top: calc(50vh - var(--header-height));
+}
