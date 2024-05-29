@@ -5,6 +5,7 @@ import { IScreening } from "@/interfaces/IScreening";
 import { getScreeningDetails } from "@/util/apiUtils";
 import { translateDateTimeString } from "@/util/timeUtils";
 import ScreeningMovieDetails from "@/components/ScreeningMovieDetails/ScreeningMoviedetails";
+import TheaterSeatSelector from "@/components/TheaterSeatMap/TheaterSeatMap";
 
 // path="/screening/:screeningId/:movieId"
 
@@ -61,7 +62,9 @@ const ScreeningDetailsPage = () => {
                 </div>
                 <div className="screening-details-content-container">
                     <ScreeningMovieDetails movie={screeningData.movie} />
-                    <div>Yo</div>
+                    <div>
+                        <TheaterSeatSelector theaterId={screeningData.theater.id}/>
+                    </div>
                 </div>
                 <div>                
                     <span>Movie id: </span>
