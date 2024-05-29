@@ -88,6 +88,11 @@ button:focus-visible {
   cursor: pointer;
 }
 
+.scrollable {
+  overflow: scroll;
+  scrollbar-width: none;
+}
+
 .green-button {
   background-color:rgb(42, 214, 157);
 

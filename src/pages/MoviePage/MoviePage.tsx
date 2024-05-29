@@ -37,7 +37,7 @@ const MoviePage = () => {
     }
 
     return(
-        <div className="movie-page-parent-container">
+        <div className="movie-page-parent-container scrollable">
             <div className="movie-page-header-information">
                 <h2>{movieData?.title}</h2>
             </div>
