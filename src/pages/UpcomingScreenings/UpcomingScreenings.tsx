@@ -1,13 +1,12 @@
 import UpcomingSection from "@/components/UpcomingSection/UpcomingSection";
 import "./UpcomingScreenings.css"
 import { useEffect, useState } from "react";
-import { IScreening } from "@/interfaces/IScreening";
+import { IScreening, IUpcomingScreening } from "@/interfaces/IScreening";
 import { getUpcomingScreenings } from "@/util/apiUtils";
 import loadingDots from "@/assets/loading_dots.svg";
+import { sortScreeningsByDate } from "@/util/sortingUtils";
 
-interface IUpcomingScreening {
-    [date: string]: IScreening[];
-}
+
 
 const UpcomingScreenings = () => {
     const [upcomingDates, setUpcomingDates] = useState<IUpcomingScreening>();
@@ -20,17 +19,8 @@ const UpcomingScreenings = () => {
             .then((res) => res.json())
             .then((res) => res.data)
 
-        const screeningsByDate: IUpcomingScreening = {};
-        upcomingScreenings?.forEach(screening => {
-            const date = screening.startTime.split("T")[0]
-            // Check if the date already exists in the object
-            if (!screeningsByDate[date]) {
-                // If not, create a new array for that date
-                screeningsByDate[date] = [];
-            }
-            screeningsByDate[date].push(screening);
-        })
-        setUpcomingDates(screeningsByDate);
+        const sortedScreening = sortScreeningsByDate(upcomingScreenings)
+        setUpcomingDates(sortedScreening);
     }
 
     useEffect(() => {
