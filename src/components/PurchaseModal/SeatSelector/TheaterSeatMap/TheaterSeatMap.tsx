@@ -45,12 +45,14 @@ const TheaterSeatSelector: React.FC<ITheaterSeatMap> = ({theaterSeats, theaterId
         const maxColumn = data.reduce((maxRow, seat) => {
             return seat.seatNumber > maxRow ? seat.seatNumber : maxRow;
         }, 0)
-        setMaxX(maxColumn * 60);
-        setMaxY(maxRow * 90);
+        setMaxX(Math.min(maxColumn * 40, 800));
+        setMaxY(Math.min(maxRow * 50, 660));
     }
 
     useEffect(() => {
-        translateSeatData(theaterSeats)
+        if (theaterSeats) {
+            translateSeatData(theaterSeats)
+        }
     }, [theaterSeats])
 
     useEffect(() => {
@@ -58,7 +60,7 @@ const TheaterSeatSelector: React.FC<ITheaterSeatMap> = ({theaterSeats, theaterId
     }, [selectedSeat])
 
     if (seatData === undefined) {
-        return(<div>Loading...</div>)
+        return(<div>Could not find any seats associated with the theater.</div>)
     } 
 
     return(
@@ -82,8 +84,8 @@ const TheaterSeatSelector: React.FC<ITheaterSeatMap> = ({theaterSeats, theaterId
                     key={index}
                     className={seat.available ? "available" : "occupied"}
                     xlinkHref="#movie-seat"
-                    x={seat.seatNumber * 40 + (seat.seatRow % 2 * 15)}
-                    y={seat.seatRow * 60}
+                    x={seat.seatNumber * 35 + (seat.seatRow % 2 * 12)}
+                    y={seat.seatRow * 40}
                     seat-id={seat.seatId}
                     seat-row={seat.seatRow}
                     seat-number={seat.seatNumber}
