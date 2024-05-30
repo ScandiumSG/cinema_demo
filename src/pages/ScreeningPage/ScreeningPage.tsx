@@ -3,7 +3,6 @@ import "./ScreeningPage.css"
 import { useEffect, useState } from "react";
 import { getSpecificMovieById } from "@/util/apiUtils";
 import ScreeningMovieDetails from "@/components/ScreeningMovieDetails/ScreeningMoviedetails";
-import TheaterSeatSelector from "@/components/PurchaseModal/SeatView/SeatSelector/TheaterSeatMap/TheaterSeatMap";
 import UpcomingScreeningList from "@/components/UpcomingScreeningList/UpcomingScreeningList";
 import { IMovieDetails } from "@/interfaces/IMovie";
 import { purchaseModalContext } from "@/util/context";
