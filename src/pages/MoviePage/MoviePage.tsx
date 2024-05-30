@@ -5,15 +5,12 @@ import { IMovieDetails } from "@/interfaces/IMovie";
 import { getSpecificMovieById } from "@/util/apiUtils";
 import { timeCalculator } from "@/util/timeUtils";
 import loading from "@/assets/loading_dots.svg"
-import UpcomingScreeningList from "@/components/UpcomingScreeningList/UpcomingScreeningList";
-import { purchaseModalContext } from "@/util/context";
-import PurchaseModal from "@/components/PurchaseModal/PurchaseModal";
+
 
 const MoviePage = () => {
     const [movieData, setMovieData] = useState<IMovieDetails>();
     const { id } = useParams();
-    const [showPurchase, setShowPurchase] = useState<boolean>(true);
-    const [showSeatingMap, setShowSeatingMap] = useState<boolean>(false);
+
     
     const retrieveData = async (index: number) => {
         await fetch(getSpecificMovieById(index))
@@ -22,13 +19,7 @@ const MoviePage = () => {
             .then((res) => setMovieData({...res}))
     }
 
-    const displayPurchase = () => {
-        setShowPurchase(!showPurchase);
-    }
 
-    const displaySeating = () => {
-        setShowSeatingMap(!showSeatingMap);
-    }
 
     useEffect(() => {
         if (id !== undefined) {
@@ -49,15 +40,6 @@ const MoviePage = () => {
     }
 
     return(
-        <purchaseModalContext.Provider
-            value={{
-                showPurchase: showPurchase, 
-                setShowPurchase: displayPurchase, 
-                showSeatingMap: showSeatingMap,
-                setShowSeatingMap: displaySeating
-            }}
-      >
-        {showPurchase && <PurchaseModal />}
         <div className="movie-page-parent-container scrollable">
             <div className="movie-page-header-information">
                 <h2>{movieData?.title}</h2>
@@ -66,9 +48,7 @@ const MoviePage = () => {
                 <div className="movie-page-image">
                     <img src="https://image.tmdb.org/t/p/original/hkxxMIGaiCTmrEArK7J56JTKUlB.jpg" />
                 </div>
-                <div className="movie-page-upcoming-screenings">
-                    <UpcomingScreeningList movieId={movieData.id}/>
-                </div>
+                <div>Placeholder</div>
             </div>
             <div className="movie-page-information-section">
                 <div className="movie-page-information-description">
@@ -86,7 +66,6 @@ const MoviePage = () => {
                 </div>
             </div>
         </div>
-        </purchaseModalContext.Provider>
     )
 }
 
