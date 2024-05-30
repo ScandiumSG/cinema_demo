@@ -14,14 +14,14 @@ const TicketCounterItem: React.FC<ITicketCounterItemProps> = ({seat}) => {
         if (seat.id === -1) {
             return "Select a seat"
         } else {
-            return `Row ${seat.row} Seat: ${seat.seatNumber}`;
+            return `Row: ${seat.row} Seat: ${seat.seatNumber}`;
         }
     }
 
     return(
         <div className="ticket-counter-item-container">
             <span>{generateString(seat)}</span>
-            <button onClick={() => discardSeat(seat)}>X</button>
+            <button className="ticket-counter-item-button" onClick={() => discardSeat(seat)}>X</button>
         </div>
     )
 }
