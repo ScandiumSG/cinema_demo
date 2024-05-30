@@ -1,14 +1,15 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import "./TheaterSeatMap.css"
-import ISeat, { ISeatData } from "@/interfaces/ISeat";
+import ISeat, { ISeatData, ISeatingContext } from "@/interfaces/ISeat";
+import { seatingContext } from "@/util/context";
 
 interface ITheaterSeatMap {
+    currentSelected: ISeat[] | undefined,
     theaterSeats: ISeat[],
-    theaterId: number,
 }
 
 
-const TheaterSeatSelector: React.FC<ITheaterSeatMap> = ({theaterSeats, theaterId}) => {
+const TheaterSeatSelector: React.FC<ITheaterSeatMap> = ({currentSelected, theaterSeats}) => {
     const [seatData, setSeatData] = useState<ISeatData[]>();
     const [maxX, setMaxX] = useState<number>(400);
     const [maxY, setMaxY] = useState<number>(400);
@@ -18,7 +19,9 @@ const TheaterSeatSelector: React.FC<ITheaterSeatMap> = ({theaterSeats, theaterId
         seatNumber: 0,
     });
     
-    const selectSeat = (e: any) => {
+    const { selectSeat } = useContext<ISeatingContext>(seatingContext);
+
+    const emitSeat = (e: any) => {
         const seatId = e.target.getAttribute("seat-id");
         const seatRow = e.target.getAttribute("seat-row");
         const seatNumber = e.target.getAttribute("seat-number");
@@ -27,6 +30,11 @@ const TheaterSeatSelector: React.FC<ITheaterSeatMap> = ({theaterSeats, theaterId
             row: seatRow,
             seatNumber: seatNumber,
         })
+        selectSeat({...{
+            id: seatId,
+            row: seatRow,
+            seatNumber: seatNumber,
+        }});
     }
 
     const translateSeatData = (seatingData: ISeat[]) => {
@@ -49,15 +57,24 @@ const TheaterSeatSelector: React.FC<ITheaterSeatMap> = ({theaterSeats, theaterId
         setMaxY(Math.min(maxRow * 50, 660));
     }
 
+    const determineSeatOccupancy = (id: number, available: boolean) => {
+        if (currentSelected?.find((s) => s.id == id)) {
+            console.log("Determining occupancy")
+            return "selected"
+        } else {
+            if (available) {
+                return "available";
+            } else {
+                return "occupied";
+            }
+        }
+    }
+
     useEffect(() => {
         if (theaterSeats) {
             translateSeatData(theaterSeats)
         }
     }, [theaterSeats])
-
-    useEffect(() => {
-        console.log(selectedSeat);
-    }, [selectedSeat])
 
     if (seatData === undefined) {
         return(<div>Could not find any seats associated with the theater.</div>)
@@ -68,28 +85,28 @@ const TheaterSeatSelector: React.FC<ITheaterSeatMap> = ({theaterSeats, theaterId
             {/* Define the movie seat symbol */}
             <symbol id="movie-seat" viewBox={`0 0 ${maxX-10} ${maxY-10}`} >
                 {/* Left arm */}
-                <rect x="1" y="1" width="6" height="20" fill="gray" stroke="black" rx="2"/>
+                <rect x="1" y="1" width="6" height="20" fill="inherit" stroke="black" rx="2"/>
                 {/* Right arm */}
-                <rect x="25" y="1" width="6" height="20" fill="gray" stroke="black" rx="2"/>
+                <rect x="25" y="1" width="6" height="20" fill="inherit" stroke="black" rx="2"/>
                 {/* Seat cushion */}
-                <rect x="8" y="1" width="16" height="14" fill="gray" stroke="black"
+                <rect x="8" y="1" width="16" height="14" fill="inherit" stroke="black"
                 rx="4"/>
                 {/* Seat back */}
-                <rect x="7" y="16" width="19" height="4" fill="gray" stroke="black"
+                <rect x="7" y="16" width="19" height="4" fill="inherit" stroke="black"
                 rx="4"/>
             </symbol>
 
             {seatData.map((seat: ISeatData, index: number) => (
                 <use 
                     key={index}
-                    className={seat.available ? "available" : "occupied"}
+                    className={`theater-seat-map-seat-symbol ${determineSeatOccupancy(seat.seatId, seat.available)}`}
                     xlinkHref="#movie-seat"
                     x={seat.seatNumber * 35 + (seat.seatRow % 2 * 12)}
                     y={seat.seatRow * 40}
                     seat-id={seat.seatId}
                     seat-row={seat.seatRow}
                     seat-number={seat.seatNumber}
-                    onClick={(e) => selectSeat(e)}
+                    onClick={(e) => emitSeat(e)}
                 />
             ))}
         </svg>

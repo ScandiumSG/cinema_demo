@@ -1,0 +1,13 @@
+.theater-seat-map-seat-symbol.selected {
+    fill: lightcoral;
+}
+
+
+.theater-seat-map-seat-symbol.available {
+    fill: darkgreen;
+}
+
+
+.theater-seat-map-seat-symbol.occupied {
+    fill: lightgray;
+}
