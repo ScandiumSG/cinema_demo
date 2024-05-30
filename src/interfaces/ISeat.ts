@@ -10,3 +10,10 @@ export interface ISeatData {
     seatNumber: number,
     available: boolean,
 }
+
+export interface ISeatingContext {
+    selectSeat: (seat: ISeat) => void;
+    discardSeat: (seat: ISeat) => void;
+    allowSeating: boolean,
+    toggleAllowSeating: () => void,
+}
