@@ -24,6 +24,14 @@ const SeatSelector: React.FC<ISeatSelectorProps> = ({ticketSelection, screening}
     const [allowSeatSelection, setAllowSeatSelection] = useState<boolean>(true);
 
     const selectSeat = (seat: ISeat) => {
+        //Check if seat already exists in seatSelection
+        const previouslySelected = seatSelection
+            ?.findIndex((s: ISeat) => s.id == seat.id);
+        if (previouslySelected !== -1) {
+            discardSeat(seat);
+            return;
+        }
+
         const seatIndex = seatSelection?.findIndex((s: ISeat) => s.id === -1);
         if ((seatIndex !== -1 && seatIndex !== undefined) && seatSelection) {
             const modifiedSeatSelection = seatSelection;
@@ -66,7 +74,7 @@ const SeatSelector: React.FC<ISeatSelectorProps> = ({ticketSelection, screening}
     }, [ticketSelection])
 
     return(
-        <div>
+        <div className="seat-selector-parent-container">
             <seatingContext.Provider 
             value={{
                 selectSeat: selectSeat,
@@ -74,11 +82,17 @@ const SeatSelector: React.FC<ISeatSelectorProps> = ({ticketSelection, screening}
                 allowSeating: allowSeatSelection,
                 toggleAllowSeating: lockSeatSelection
             }}>
-                {seatSelection && <TicketCounter selection={seatSelection}/>}
-                <TheaterSeatSelector 
-                    currentSelected={seatSelection}
-                    theaterSeats={screening?.theater?.seats} 
-                    />
+                <div        
+                    className="seat-selector-theater-seat-selector-parent-container"
+                >
+                    {seatSelection && <TicketCounter selection={seatSelection}/>}
+                    <div className="seat-selector-theater-selector-container">
+                        <TheaterSeatSelector 
+                            currentSelected={seatSelection}
+                            theaterSeats={screening?.theater?.seats} 
+                        />
+                    </div>
+                </div>
                 <ScaleControl />
             </seatingContext.Provider>
         </div>

@@ -1,5 +1,5 @@
 .theater-seat-map-seat-symbol.selected {
-    fill: lightcoral;
+    fill: gold;
 }
 
 
@@ -10,4 +10,8 @@
 
 .theater-seat-map-seat-symbol.occupied {
     fill: lightgray;
+}
+
+.theater-seat-map-seat-symbol {
+    cursor: pointer;
 }

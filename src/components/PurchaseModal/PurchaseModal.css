@@ -14,6 +14,7 @@
     position: fixed;
     left: calc(50vw - calc(var(--purchase-modal-width) / 2));
     top: calc(20vh - var(--header-height));
+
 }
 
 .purchase-modal-cancel-purchase-container {

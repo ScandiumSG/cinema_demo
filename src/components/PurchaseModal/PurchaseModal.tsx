@@ -1,13 +1,11 @@
-import { ticketOptions } from "@/util/ticketUtils";
 import "./PurchaseModal.css"
-import TicketItem from "./TicketItem/TicketItem";
 import { useContext, useEffect, useState } from "react";
 import { ITicketHandler } from "@/interfaces/ITicket";
 import { IPurchaseModalContext, IScreening } from "@/interfaces/IScreening";
 import { translateDateTimeStringWithoutSeconds } from "@/util/timeUtils";
 import { purchaseModalContext } from "@/util/context";
-import TheaterSeatSelector from "./SeatSelector/TheaterSeatMap/TheaterSeatMap";
-import SeatSelector from "./SeatSelector/SeatSelector";
+import SeatView from "./SeatView/SeatView";
+import TicketView from "./TicketView/TicketView";
 
 interface IPurchaseModalProps {
     screening: IScreening,
@@ -64,24 +62,9 @@ const PurchaseModal: React.FC<IPurchaseModalProps> = ({screening}) => {
                 </button>
             </div>
             {showSeatMap ?
-                <SeatSelector ticketSelection={selectTickets} screening={screening}/>
-            : 
-            <div className="purchase-modal-ticket-options">
-                {ticketOptions.map((ticketGroup, index: number) => (
-                    <TicketItem 
-                    key={index} 
-                    itemCategory={ticketGroup.name}
-                    itemPrice={ticketGroup.price}
-                    tickets={selectTickets}
-                    increment={addTicket}
-                    decrement={removeTicket}
-                    />
-                ))}
-            </div>
+                <SeatView selectTickets={selectTickets} screening={screening} /> : 
+                <TicketView selectTickets={selectTickets} addTicket={addTicket} removeTicket={removeTicket} setShowSeatMap={setShowSeatMap} />
             }
-            <div className="purchase-modal-confirm-container">
-                <button onClick={() => setShowSeatMap(true)}>Select seating</button>
-            </div>
         </div>
     )
 }
