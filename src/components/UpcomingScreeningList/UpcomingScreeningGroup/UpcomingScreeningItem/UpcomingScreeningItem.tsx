@@ -1,23 +1,20 @@
 import { IScreening } from "@/interfaces/IScreening";
 import "./UpcomingScreeningItem.css"
 import { getTimeFromDateTimeString } from "@/util/timeUtils";
-import { useNavigate } from "react-router-dom";
 
 interface IScreeningItem {
     screening: IScreening,
 }
 
 const UpcomingScreeningItem: React.FC<IScreeningItem> = ({screening}) => {
-    const navigate = useNavigate();
-    const navigateToScreening = () => {
-        const navString = `/screening/${screening.movie.id}/${screening.id}`
-        navigate(navString);
+    const interactWithScreening = () => {
+        return;
     }
 
     return(
         <div 
             className="upcoming-screening-item clickable"
-            onClick={() => navigateToScreening()}
+            onClick={() => interactWithScreening()}
         >
             <div>
                 <span>{getTimeFromDateTimeString(screening.startTime)} - </span>
