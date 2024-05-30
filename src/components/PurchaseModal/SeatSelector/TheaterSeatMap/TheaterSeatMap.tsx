@@ -13,11 +13,6 @@ const TheaterSeatSelector: React.FC<ITheaterSeatMap> = ({currentSelected, theate
     const [seatData, setSeatData] = useState<ISeatData[]>();
     const [maxX, setMaxX] = useState<number>(400);
     const [maxY, setMaxY] = useState<number>(400);
-    const [selectedSeat, setSelectedSeat] = useState<ISeat>({
-        id: 0,
-        row: 0,
-        seatNumber: 0,
-    });
     
     const { selectSeat } = useContext<ISeatingContext>(seatingContext);
 
@@ -25,11 +20,6 @@ const TheaterSeatSelector: React.FC<ITheaterSeatMap> = ({currentSelected, theate
         const seatId = e.target.getAttribute("seat-id");
         const seatRow = e.target.getAttribute("seat-row");
         const seatNumber = e.target.getAttribute("seat-number");
-        setSelectedSeat({
-            id: seatId,
-            row: seatRow,
-            seatNumber: seatNumber,
-        })
         selectSeat({...{
             id: seatId,
             row: seatRow,
@@ -59,7 +49,6 @@ const TheaterSeatSelector: React.FC<ITheaterSeatMap> = ({currentSelected, theate
 
     const determineSeatOccupancy = (id: number, available: boolean) => {
         if (currentSelected?.find((s) => s.id == id)) {
-            console.log("Determining occupancy")
             return "selected"
         } else {
             if (available) {
