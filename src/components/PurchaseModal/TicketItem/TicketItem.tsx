@@ -1,7 +1,16 @@
 import { standardCurrency } from "@/util/localizationUtil";
 import "./TicketItem.css"
+import { ITicketHandler } from "@/interfaces/ITicket";
 
-const TicketItem: React.FC<{itemCategory: string, itemPrice: number, numberOfItems: number}> = ({itemCategory, itemPrice, numberOfItems}) => {
+interface ITicketItemProps {
+    itemCategory: string, 
+    itemPrice: number, 
+    tickets: ITicketHandler,
+    increment: (ticketType: string) => void,
+    decrement: (ticketType: string) => void,
+}
+
+const TicketItem: React.FC<ITicketItemProps> = ({itemCategory, itemPrice, tickets, increment, decrement}) => {
     return(
         <div className="ticket-item-container">
             <h3 className="ticket-item-category-header">
@@ -11,13 +20,13 @@ const TicketItem: React.FC<{itemCategory: string, itemPrice: number, numberOfIte
                 {itemPrice+standardCurrency}
             </p>
             <div className="ticket-item-button-container">
-                <button className="ticket-item-add-button">
+                <button className="ticket-item-add-button" onClick={() => increment(itemCategory)}>
                     +
                 </button>
-                {numberOfItems !== 0 && 
+                {(tickets[itemCategory] || 0) !== 0 && 
                     <>
-                        <span>{numberOfItems}</span>
-                        <button className="ticket-item-remove-button">
+                        <span>{tickets[itemCategory] || 0}</span>
+                        <button className="ticket-item-remove-button" onClick={() => decrement(itemCategory)}>
                             -
                         </button>
                     </>
