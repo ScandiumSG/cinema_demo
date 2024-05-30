@@ -3,7 +3,7 @@ import "./ScreeningPage.css"
 import { useEffect, useState } from "react";
 import { getSpecificMovieById } from "@/util/apiUtils";
 import ScreeningMovieDetails from "@/components/ScreeningMovieDetails/ScreeningMoviedetails";
-import TheaterSeatSelector from "@/components/TheaterSeatMap/TheaterSeatMap";
+import TheaterSeatSelector from "@/components/PurchaseModal/SeatSelector/TheaterSeatMap/TheaterSeatMap";
 import UpcomingScreeningList from "@/components/UpcomingScreeningList/UpcomingScreeningList";
 import { IMovieDetails } from "@/interfaces/IMovie";
 import { purchaseModalContext } from "@/util/context";
@@ -15,7 +15,7 @@ import { IScreening } from "@/interfaces/IScreening";
 const ScreeningPage = () => {
     const { movieId } = useParams();
     const [movieData, setMovieData] = useState<IMovieDetails>();
-    const [selectedScreening, setSelectedScreening] = useState<IScreening>();
+    const [selectedScreening, setSelectedScreening] = useState<IScreening | undefined>();
     const [showPurchase, setShowPurchase] = useState<boolean>(true);
     const [showSeatingMap, setShowSeatingMap] = useState<boolean>(false);
     const navigate = useNavigate();
@@ -38,7 +38,7 @@ const ScreeningPage = () => {
             .catch((err: Error) => console.log(err.message));
     }
 
-    const displayPurchase = (screening: IScreening) => {
+    const displayPurchase = (screening: IScreening | undefined) => {
         setSelectedScreening(screening);
         setShowPurchase(!showPurchase);
     }
@@ -72,7 +72,7 @@ const ScreeningPage = () => {
             setShowSeatingMap: displaySeating
         }}
         >
-            {selectedScreening && <PurchaseModal screening={selectedScreening}/>}
+        {selectedScreening && <PurchaseModal screening={selectedScreening}/>}
         <div className="screening-page-parent-container">
             <div className="screening-page-container  scrollable highlight">
                 <div className="screening-content-container">
