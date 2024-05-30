@@ -1,14 +1,10 @@
-import { ITicketHandler } from "@/interfaces/ITicket";
 import "./TicketCounter.css"
 
 import ISeat from "@/interfaces/ISeat";
 import TicketCounterItem from "./TicketCounterItem/TicketCounterItem";
 
-const TicketCounter: React.FC<{selection: ISeat[], remove: (seat: ISeat) => void}> = ({selection, remove}) => {
-    
-    const removePickedSeat = () => {
-        
-    }
+const TicketCounter: React.FC<{selection: ISeat[]}> = ({selection}) => {
+
 
     if (!selection) {
         return(
