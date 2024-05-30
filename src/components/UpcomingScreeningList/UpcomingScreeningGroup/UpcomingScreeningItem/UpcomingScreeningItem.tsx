@@ -1,16 +1,20 @@
-import { IScreening } from "@/interfaces/IScreening";
+import { IPurchaseModalContext, IScreening } from "@/interfaces/IScreening";
 import "./UpcomingScreeningItem.css"
 import { getTimeFromDateTimeString } from "@/util/timeUtils";
+import { useContext } from "react";
+import { purchaseModalContext } from "@/util/context";
 
 interface IScreeningItem {
     screening: IScreening,
 }
 
 const UpcomingScreeningItem: React.FC<IScreeningItem> = ({screening}) => {
-    const interactWithScreening = () => {
-        return;
-    }
+    const { setShowPurchase } = useContext<IPurchaseModalContext>(purchaseModalContext);
 
+    const interactWithScreening = () => {
+        setShowPurchase(screening);
+    }
+    
     return(
         <div 
             className="upcoming-screening-item clickable"
