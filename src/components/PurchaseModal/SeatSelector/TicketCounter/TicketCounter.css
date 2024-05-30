@@ -1,0 +1,11 @@
+.ticket-counter-parent-container {
+    display: flex;
+    flex-direction: column;
+
+    position: absolute;
+    left: 0.5rem;
+}
+
+.ticket-counter-header {
+    margin: 0px;
+}
