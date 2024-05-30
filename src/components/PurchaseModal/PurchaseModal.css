@@ -7,10 +7,21 @@
     flex-direction: column;
     place-content: center;
 
-    width: 60vw;
+    --purchase-modal-width: 80vw;
+    width: var(--purchase-modal-width);
     height: fit-content;
 
     position: fixed;
-    left: calc(50vw - calc(60vw / 2));
-    top: calc(50vh - var(--header-height));
+    left: calc(50vw - calc(var(--purchase-modal-width) / 2));
+    top: calc(20vh - var(--header-height));
+}
+
+.purchase-modal-cancel-purchase-container {
+    position: absolute;
+    top: 0.2rem;
+    right: 0.2rem;
+}
+
+.purchase-modal-cancel-purchase {
+    background: none;
 }
