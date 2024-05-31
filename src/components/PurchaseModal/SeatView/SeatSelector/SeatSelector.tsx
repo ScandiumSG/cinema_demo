@@ -3,10 +3,11 @@ import "./SeatSelector.css"
 import TheaterSeatSelector from "./TheaterSeatMap/TheaterSeatMap";
 import TicketCounter from "./TicketCounter/TicketCounter";
 import ScaleControl from "./ScaleControl/ScaleControl";
-import { ITicketHandler } from "@/interfaces/ITicket";
+import { ITicketFromScreening, ITicketHandler } from "@/interfaces/ITicket";
 import { useEffect, useState } from "react";
 import ISeat from "@/interfaces/ISeat";
 import { seatingContext } from "@/util/context";
+import { getTicketsForScreening } from "@/util/apiUtils";
 
 interface ISeatSelectorProps {
     ticketSelection: ITicketHandler,
@@ -22,6 +23,7 @@ const oneSeatSelectedObject = {
 const SeatSelector: React.FC<ISeatSelectorProps> = ({ticketSelection, screening}) => {
     const [seatSelection, setSeatSelection] = useState<ISeat[] | undefined>();
     const [allowSeatSelection, setAllowSeatSelection] = useState<boolean>(true);
+    const [occupiedSeats, setOccupiedSeats] = useState<ISeat[] | undefined>();
 
     const selectSeat = (seat: ISeat) => {
         //Check if seat already exists in seatSelection
@@ -65,6 +67,20 @@ const SeatSelector: React.FC<ISeatSelectorProps> = ({ticketSelection, screening}
         setAllowSeatSelection(!allowSeatSelection);
     }
 
+    const getTicketsToScreening = async (screeningId: number) => {
+        await fetch(getTicketsForScreening(screeningId))
+            .then((res) => res.json())
+            .then((res) => res.data)
+            .then((res: ITicketFromScreening[]) => (
+                res.map((ticket) => ticket.seat)
+            ))
+            .then((res) => setOccupiedSeats([...res]))
+    }
+
+    useEffect(() => {
+        getTicketsToScreening(screening.id);
+    }, [screening])
+
     useEffect(() =>  {
         const seatArray: ISeat[] | undefined = [];
         for (let i = 0; i < ticketSelection.totalTickets; i++) {
@@ -88,6 +104,7 @@ const SeatSelector: React.FC<ISeatSelectorProps> = ({ticketSelection, screening}
                     {seatSelection && <TicketCounter selection={seatSelection}/>}
                     <div className="seat-selector-theater-selector-container">
                         <TheaterSeatSelector 
+                            occupiedSeats={occupiedSeats}
                             currentSelected={seatSelection}
                             theaterSeats={screening?.theater?.seats} 
                         />
