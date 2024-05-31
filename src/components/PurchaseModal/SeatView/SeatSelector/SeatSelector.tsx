@@ -11,6 +11,8 @@ import { seatingContext } from "@/util/context";
 interface ISeatSelectorProps {
     ticketSelection: ITicketHandler,
     screening: IScreening,
+    seatSelection: ISeat[] | undefined,
+    setSelection: (seats: ISeat[]) => void,
 }
 
 const oneSeatSelectedObject = {
@@ -19,8 +21,7 @@ const oneSeatSelectedObject = {
     seatNumber: -1,
 }
 
-const SeatSelector: React.FC<ISeatSelectorProps> = ({ticketSelection, screening}) => {
-    const [seatSelection, setSeatSelection] = useState<ISeat[] | undefined>();
+const SeatSelector: React.FC<ISeatSelectorProps> = ({ticketSelection, screening, seatSelection, setSelection}) => {
     const [allowSeatSelection, setAllowSeatSelection] = useState<boolean>(true);
     const [occupiedSeats, setOccupiedSeats] = useState<ISeat[] | undefined>();
 
@@ -38,7 +39,7 @@ const SeatSelector: React.FC<ISeatSelectorProps> = ({ticketSelection, screening}
             const modifiedSeatSelection = seatSelection;
             modifiedSeatSelection[seatIndex] = seat;
             sortSeats(modifiedSeatSelection)
-            setSeatSelection([...modifiedSeatSelection]);
+            setSelection([...modifiedSeatSelection]);
         }
     }
 
@@ -50,7 +51,7 @@ const SeatSelector: React.FC<ISeatSelectorProps> = ({ticketSelection, screening}
                 .splice(modifiedSeatSelection.indexOf(seatToRemove), 1)
             modifiedSeatSelection.push(oneSeatSelectedObject);
             sortSeats(modifiedSeatSelection)
-            setSeatSelection([...modifiedSeatSelection]);
+            setSelection([...modifiedSeatSelection]);
         }
     }
 
@@ -76,7 +77,7 @@ const SeatSelector: React.FC<ISeatSelectorProps> = ({ticketSelection, screening}
         for (let i = 0; i < ticketSelection.totalTickets; i++) {
             seatArray.push(oneSeatSelectedObject)
         }
-        setSeatSelection([...seatArray])
+        setSelection([...seatArray])
     }, [ticketSelection])
 
     return(
