@@ -14,7 +14,7 @@ const TheaterSeatSelector: React.FC<ITheaterSeatMap> = ({occupiedSeats, currentS
     const [seatData, setSeatData] = useState<ISeatData[]>();
     const [maxX, setMaxX] = useState<number>(400);
     const [maxY, setMaxY] = useState<number>(400);
-    
+
     const { selectSeat } = useContext<ISeatingContext>(seatingContext);
 
     const emitSeat = (e: any) => {
@@ -76,7 +76,7 @@ const TheaterSeatSelector: React.FC<ITheaterSeatMap> = ({occupiedSeats, currentS
         if (theaterSeats) {
             translateSeatData(theaterSeats)
         }
-    }, [theaterSeats])
+    }, [theaterSeats, occupiedSeats])
 
     if (seatData === undefined || occupiedSeats === undefined) {
         return(<div>Could not find any seats associated with the theater.</div>)

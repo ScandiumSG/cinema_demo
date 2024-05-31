@@ -14,6 +14,7 @@ export interface IScreening {
     id: number,
     movie: IMovieDetails,
     theater: ITheater,
+    ticketsSold: number,
     tickets: ITicketFromScreening[],
     startTime: string
 }

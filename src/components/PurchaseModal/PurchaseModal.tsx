@@ -43,12 +43,6 @@ const PurchaseModal: React.FC<IPurchaseModalProps> = ({screening}) => {
         }
     }
 
-    console.log(screening);
-
-    useEffect(() => {
-        console.log(selectTickets);
-    }, [selectTickets])
-
     return(
         <div className="purchase-modal-container">
             <div className="purchase-modal-screening-info">

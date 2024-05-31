@@ -7,7 +7,6 @@ import { ITicketFromScreening, ITicketHandler } from "@/interfaces/ITicket";
 import { useEffect, useState } from "react";
 import ISeat from "@/interfaces/ISeat";
 import { seatingContext } from "@/util/context";
-import { getTicketsForScreening } from "@/util/apiUtils";
 
 interface ISeatSelectorProps {
     ticketSelection: ITicketHandler,
@@ -67,18 +66,9 @@ const SeatSelector: React.FC<ISeatSelectorProps> = ({ticketSelection, screening}
         setAllowSeatSelection(!allowSeatSelection);
     }
 
-    const getTicketsToScreening = async (screeningId: number) => {
-        await fetch(getTicketsForScreening(screeningId))
-            .then((res) => res.json())
-            .then((res) => res.data)
-            .then((res: ITicketFromScreening[]) => (
-                res.map((ticket) => ticket.seat)
-            ))
-            .then((res) => setOccupiedSeats([...res]))
-    }
-
     useEffect(() => {
-        getTicketsToScreening(screening.id);
+        const occupiedSeats = screening.tickets.map((ticket: ITicketFromScreening) => (ticket.seat));
+        setOccupiedSeats([...occupiedSeats]);
     }, [screening])
 
     useEffect(() =>  {
