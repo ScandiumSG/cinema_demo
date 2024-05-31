@@ -4,19 +4,23 @@ import ISeat, { ISeatData, ISeatingContext } from "@/interfaces/ISeat";
 import { seatingContext } from "@/util/context";
 
 interface ITheaterSeatMap {
+    occupiedSeats: ISeat[] | undefined,
     currentSelected: ISeat[] | undefined,
     theaterSeats: ISeat[],
 }
 
 
-const TheaterSeatSelector: React.FC<ITheaterSeatMap> = ({currentSelected, theaterSeats}) => {
+const TheaterSeatSelector: React.FC<ITheaterSeatMap> = ({occupiedSeats, currentSelected, theaterSeats}) => {
     const [seatData, setSeatData] = useState<ISeatData[]>();
     const [maxX, setMaxX] = useState<number>(400);
     const [maxY, setMaxY] = useState<number>(400);
-    
+
     const { selectSeat } = useContext<ISeatingContext>(seatingContext);
 
     const emitSeat = (e: any) => {
+        if (e.target.getAttribute("class").includes("occupied")) {
+            return;
+        }
         const seatId = e.target.getAttribute("seat-id");
         const seatRow = e.target.getAttribute("seat-row");
         const seatNumber = e.target.getAttribute("seat-number");
@@ -27,13 +31,22 @@ const TheaterSeatSelector: React.FC<ITheaterSeatMap> = ({currentSelected, theate
         }});
     }
 
+    const isSeatAvailable = (seat: ISeat) => {
+        if (!occupiedSeats) {
+            return true;
+        } else{
+            return !occupiedSeats.some((s) => s.id === seat.id);
+        }
+    }
+
     const translateSeatData = (seatingData: ISeat[]) => {
         const data: ISeatData[] = seatingData.map((seat: ISeat) => {
+            const seatAvailable = isSeatAvailable(seat); 
             return({
                 seatId: seat.id,
                 seatRow: seat.row,
                 seatNumber: seat.seatNumber,
-                available: true,
+                available: seatAvailable,
             })
         })
         setSeatData([...data])
@@ -63,9 +76,9 @@ const TheaterSeatSelector: React.FC<ITheaterSeatMap> = ({currentSelected, theate
         if (theaterSeats) {
             translateSeatData(theaterSeats)
         }
-    }, [theaterSeats])
+    }, [theaterSeats, occupiedSeats])
 
-    if (seatData === undefined) {
+    if (seatData === undefined || occupiedSeats === undefined) {
         return(<div>Could not find any seats associated with the theater.</div>)
     } 
 

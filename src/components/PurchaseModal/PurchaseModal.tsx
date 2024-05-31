@@ -1,5 +1,5 @@
 import "./PurchaseModal.css"
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { ITicketHandler } from "@/interfaces/ITicket";
 import { IPurchaseModalContext, IScreening } from "@/interfaces/IScreening";
 import { translateDateTimeStringWithoutSeconds } from "@/util/timeUtils";
@@ -42,12 +42,6 @@ const PurchaseModal: React.FC<IPurchaseModalProps> = ({screening}) => {
             setSelectTickets({...tickets, totalTickets: numTickets-1});
         }
     }
-
-    console.log(screening);
-
-    useEffect(() => {
-        console.log(selectTickets);
-    }, [selectTickets])
 
     return(
         <div className="purchase-modal-container">

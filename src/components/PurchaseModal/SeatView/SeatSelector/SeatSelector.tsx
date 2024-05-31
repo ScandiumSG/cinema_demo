@@ -3,7 +3,7 @@ import "./SeatSelector.css"
 import TheaterSeatSelector from "./TheaterSeatMap/TheaterSeatMap";
 import TicketCounter from "./TicketCounter/TicketCounter";
 import ScaleControl from "./ScaleControl/ScaleControl";
-import { ITicketHandler } from "@/interfaces/ITicket";
+import { ITicketFromScreening, ITicketHandler } from "@/interfaces/ITicket";
 import { useEffect, useState } from "react";
 import ISeat from "@/interfaces/ISeat";
 import { seatingContext } from "@/util/context";
@@ -22,6 +22,7 @@ const oneSeatSelectedObject = {
 const SeatSelector: React.FC<ISeatSelectorProps> = ({ticketSelection, screening}) => {
     const [seatSelection, setSeatSelection] = useState<ISeat[] | undefined>();
     const [allowSeatSelection, setAllowSeatSelection] = useState<boolean>(true);
+    const [occupiedSeats, setOccupiedSeats] = useState<ISeat[] | undefined>();
 
     const selectSeat = (seat: ISeat) => {
         //Check if seat already exists in seatSelection
@@ -65,6 +66,11 @@ const SeatSelector: React.FC<ISeatSelectorProps> = ({ticketSelection, screening}
         setAllowSeatSelection(!allowSeatSelection);
     }
 
+    useEffect(() => {
+        const occupiedSeats = screening.tickets.map((ticket: ITicketFromScreening) => (ticket.seat));
+        setOccupiedSeats([...occupiedSeats]);
+    }, [screening])
+
     useEffect(() =>  {
         const seatArray: ISeat[] | undefined = [];
         for (let i = 0; i < ticketSelection.totalTickets; i++) {
@@ -88,6 +94,7 @@ const SeatSelector: React.FC<ISeatSelectorProps> = ({ticketSelection, screening}
                     {seatSelection && <TicketCounter selection={seatSelection}/>}
                     <div className="seat-selector-theater-selector-container">
                         <TheaterSeatSelector 
+                            occupiedSeats={occupiedSeats}
                             currentSelected={seatSelection}
                             theaterSeats={screening?.theater?.seats} 
                         />
