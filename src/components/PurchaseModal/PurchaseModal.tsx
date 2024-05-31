@@ -1,5 +1,5 @@
 import "./PurchaseModal.css"
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { ITicketHandler } from "@/interfaces/ITicket";
 import { IPurchaseModalContext, IScreening } from "@/interfaces/IScreening";
 import { translateDateTimeStringWithoutSeconds } from "@/util/timeUtils";
