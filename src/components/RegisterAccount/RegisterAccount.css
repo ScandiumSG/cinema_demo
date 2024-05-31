@@ -3,7 +3,7 @@
     flex-direction: column;
     
     width: 70%;
-
+    min-width: 28rem;
     position: relative;
     left: calc(calc(calc(100% - 70%) / 2));
     top: 1.5rem;
@@ -24,4 +24,11 @@
 
 .register-account-button {
     margin: 0px 1rem;
+}
+
+@media only screen and (max-width: calc(32rem)) {
+    .register-account-parent-container {
+        width: 100%;
+        left: 0px;
+    }
 }

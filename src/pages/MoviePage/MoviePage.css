@@ -4,12 +4,12 @@
     align-items: center;
 
     position: relative;
-    top: 1em;
+    top: 0px;
     left: 5vw;
 
     padding: 2vw;
     width: calc(100vw - calc(2*2vw) - 10vw);
-    height: calc(calc(100vh - calc(2*2vw)) - 6em - 2em);
+    height: 100%;
     
     border-radius: 1rem;
 }

@@ -40,7 +40,7 @@ const UpcomingScreenings = () => {
 
     return(
         <div className="upcoming-screenings-parent-container">
-            <div className="upcoming-screenings-container highlight">
+            <div className="upcoming-screenings-container">
                 {Object.keys(upcomingDates).map((date: string, index: number) => {
                     return(<UpcomingSection 
                         key={index}

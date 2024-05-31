@@ -73,7 +73,7 @@ const ScreeningPage = () => {
         >
         {selectedScreening && <PurchaseModal screening={selectedScreening}/>}
         <div className="screening-page-parent-container">
-            <div className="screening-page-container  scrollable highlight">
+            <div className="screening-page-container">
                 <div className="screening-content-container">
                     <ScreeningMovieDetails movie={movieData} />
                     <div className="screening-upcoming-screenings">

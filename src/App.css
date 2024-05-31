@@ -1,22 +1,21 @@
 #root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+  margin: 0 0;
+  padding: 0rem;
   text-align: center;
+  align-content: first baseline;
+  height: 100vh;
+  width: 100vw;
+  
 }
 
 .app-container {
-  position: fixed;
-  top: 75px;
-  left: 0px;
-
   background-color: var(--site-bg-color);
   width: calc(100vw);
-  height: calc(100vh - 75px);
+  height: fit-content;
+  min-height: calc(100vh - var(--header-height));
 
-  overflow: scroll;
-  scrollbar-width: thin;
-
+  position: absolute;
+  top: var(--header-height);
   margin: 0px;
   border: 0px;
 

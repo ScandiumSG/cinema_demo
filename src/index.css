@@ -19,7 +19,7 @@
   --site-bg-color: lightblue;
   --button-color: blue;
 
-  --header-height: 5rem;
+  --header-height: 3rem;
 }
 
 a {
@@ -89,7 +89,7 @@ button:focus-visible {
 }
 
 .scrollable {
-  overflow-x: clip;
+  overflow-x: scroll;
   overflow-y: scroll;
   scrollbar-width: none;
 }
