@@ -1,5 +1,6 @@
 .profile-view-parent-container {
     width: 80%;
+    min-width: 22rem;
     height: fit-content;
 
     display: flex;
@@ -35,4 +36,10 @@
 .profile-personal-information-container > button {
     background-color: var(--button-color);
     color: var(--primary-text-color);
+}
+
+@media only screen and (max-width: calc(28rem)) {
+    .profile-view-parent-container {
+        width: 100vw;
+    }
 }
