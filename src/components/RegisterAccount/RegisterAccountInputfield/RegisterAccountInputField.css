@@ -3,10 +3,17 @@
     grid-template-columns: 8rem minmax(8rem, calc(100% - 8rem));
 
     padding: 0px 5%;
-
+    
     margin-top: 1.5rem;
 }
 
 .register-account-input-field-label, .register-account-input-field-value, .registration-field-error {
     text-align: left;
+}
+
+@media only screen and (max-width: calc(32rem)) {
+    .register-account-input-field-container {
+        display: flex;
+        flex-direction: column;
+    }
 }
