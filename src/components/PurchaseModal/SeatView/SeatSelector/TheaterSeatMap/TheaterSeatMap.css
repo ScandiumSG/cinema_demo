@@ -10,6 +10,7 @@
 
 .theater-seat-map-seat-symbol.occupied {
     fill: lightgray;
+    cursor: default;
 }
 
 .theater-seat-map-seat-symbol {
