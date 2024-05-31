@@ -19,7 +19,7 @@ export const getSpecificMovieById = (id: number) =>
 // SCREENING ENDPOINT
 const baseScreeningUrl = baseUrl + "/screening"
 export const getScreeningDetails = (movieId: number, screeningId: number) => {
-    return baseScreeningUrl + "/" + screeningId + "-" + movieId;
+    return baseScreeningUrl + "/" + screeningId + "/" + movieId;
 }
 export const getUpcomingScreenings = (dateLimit: string, itemLimit: number) => {
     return baseScreeningUrl + "/upcoming/" + dateLimit + "?limit=" + itemLimit;
