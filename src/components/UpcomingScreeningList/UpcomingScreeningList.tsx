@@ -26,7 +26,7 @@ const UpcomingScreeningList: React.FC<IScreeningListProps> = ({movieId}) => {
             })
             .then((res) => res.json())
             .then((res) => res.data)
-            .then((res) => {console.log(res); setNoUpcoming(false); return res})
+            .then((res) => {setNoUpcoming(false); return res})
             .catch(() => setNoUpcoming(true))
 
         const sortedScreenings = sortScreeningsByDate(fetchedScreenings);

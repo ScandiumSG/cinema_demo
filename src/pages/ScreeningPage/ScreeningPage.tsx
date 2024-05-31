@@ -47,10 +47,6 @@ const ScreeningPage = () => {
     }
 
     useEffect(() => {
-        console.log(movieData)
-    }, [movieData])
-
-    useEffect(() => {
         fetchData();
     }, [movieId])
 
