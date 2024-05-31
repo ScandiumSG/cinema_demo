@@ -1,0 +1,17 @@
+.ticket-counter-item-container {
+    margin-bottom: 0.5rem;
+    border: 1px solid var(--light-border-color);
+
+    padding: 0.3rem;
+    background-color: var(--card-bg-color);
+    width: 10rem;
+
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.ticket-counter-item-button {
+    position: relative;
+    right: -0.2rem;
+}

@@ -15,7 +15,8 @@ export const translateDateTimeStringWithoutSeconds = (timeString: string) => {
 }
 
 export const getTimeFromDateTimeString = (dateTimeString: string) => {
-    const timeString = dateTimeString.split("T")[1];
+    const localTimeString = translateDateTimeString(dateTimeString);
+    const timeString = localTimeString.split(" ")[1];
     const timeWithoutSeconds = timeString.substring(0,5);
 
     return timeWithoutSeconds;

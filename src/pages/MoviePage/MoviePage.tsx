@@ -5,18 +5,21 @@ import { IMovieDetails } from "@/interfaces/IMovie";
 import { getSpecificMovieById } from "@/util/apiUtils";
 import { timeCalculator } from "@/util/timeUtils";
 import loading from "@/assets/loading_dots.svg"
-import UpcomingScreeningList from "@/components/UpcomingScreeningList/UpcomingScreeningList";
+
 
 const MoviePage = () => {
     const [movieData, setMovieData] = useState<IMovieDetails>();
     const { id } = useParams();
 
+    
     const retrieveData = async (index: number) => {
         await fetch(getSpecificMovieById(index))
             .then((res) => res.json())
             .then((res) => res.data)
             .then((res) => setMovieData({...res}))
     }
+
+
 
     useEffect(() => {
         if (id !== undefined) {
@@ -45,9 +48,7 @@ const MoviePage = () => {
                 <div className="movie-page-image">
                     <img src="https://image.tmdb.org/t/p/original/hkxxMIGaiCTmrEArK7J56JTKUlB.jpg" />
                 </div>
-                <div className="movie-page-upcoming-screenings">
-                    <UpcomingScreeningList movieId={movieData.id}/>
-                </div>
+                <div>Placeholder</div>
             </div>
             <div className="movie-page-information-section">
                 <div className="movie-page-information-description">

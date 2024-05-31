@@ -10,8 +10,8 @@ import { readSessionStorage } from './util/userUtil';
 import MoviePage from './pages/MoviePage/MoviePage';
 import RegistrationPage from './pages/RegistrationPage/RegistrationPage';
 import ProfilePage from './pages/ProfilePage/ProfilePage';
-import ScreeningDetailsPage from './pages/ScreeningDetailsPage/ScreeningDetailsPage';
 import UpcomingScreenings from './pages/UpcomingScreenings/UpcomingScreenings';
+import ScreeningPage from './pages/ScreeningPage/ScreeningPage';
 
 function App() {
   const [user, setUser] = useState<IUserData|undefined>(readSessionStorage())
@@ -58,8 +58,8 @@ function App() {
               element={<MoviePage />}
             />
             <Route 
-              path="/screening/:movieId/:screeningId"
-              element={<ScreeningDetailsPage />}
+              path="/screening/:movieId/"
+              element={<ScreeningPage />}
             />
             <Route 
               path="screening/upcoming"

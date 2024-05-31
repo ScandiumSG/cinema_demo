@@ -1,0 +1,24 @@
+.ticket-item-container {
+    box-shadow: 0.4rem;
+    border: 1px solid black;
+
+    display: flex;
+    flex-direction: column;
+
+    text-align: left;
+    padding: 0.3rem;
+}
+
+.ticket-item-category-header {
+    margin: 0px;
+}
+
+.ticket-item-price {
+    margin: 0px;
+}
+
+.ticket-item-button-container {
+    position: absolute;
+    right: 2rem;
+    direction: rtl;
+}

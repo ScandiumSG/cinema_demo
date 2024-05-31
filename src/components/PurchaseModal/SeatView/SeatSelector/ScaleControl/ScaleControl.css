@@ -1,0 +1,18 @@
+.scale-control-parent-container {
+    position: relative;
+    right: 0.4rem;
+    top: 30%;
+
+    float: right;
+    z-index: 7;
+}
+
+.scale-control-button-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.scale-control-button-container > button {
+    margin: 0px;
+    padding: 0.3rem;
+}

@@ -1,0 +1,17 @@
+.ticket-counter-parent-container {
+    display: flex;
+    flex-direction: column;
+
+    z-index: 7;
+
+    position: static;
+    width: fit-content;
+    left: 0.2rem;
+
+    overflow: scroll;
+    width: 11.2rem;
+}
+
+.ticket-counter-header {
+    margin: 0px;
+}

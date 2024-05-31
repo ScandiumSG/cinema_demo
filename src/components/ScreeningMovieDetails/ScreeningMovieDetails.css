@@ -9,6 +9,7 @@
 
     position: relative;
     height: 70%;
+    margin-bottom: 5rem;
 }
 
 .screening-movie-details-poster {
@@ -52,4 +53,20 @@
     position: relative;
 
     text-align: left;
+}
+
+
+@media only screen and (max-width: calc(600px)) {
+    .screening-movie-details {
+        flex-direction: column;
+    }
+
+    .screening-movie-details-info {
+        width: 90%;
+    }
+
+    .screening-movie-details-description {
+        max-height: 16rem;
+        height: fit-content;
+    }
 }

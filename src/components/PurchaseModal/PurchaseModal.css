@@ -1,0 +1,28 @@
+.purchase-modal-container {
+    background-color: var(--card-bg-color);
+    z-index: 5;
+    border-radius: 10px;
+
+    display: flex;
+    flex-direction: column;
+    place-content: center;
+
+    --purchase-modal-width: 80vw;
+    width: var(--purchase-modal-width);
+    height: fit-content;
+
+    position: fixed;
+    left: calc(50vw - calc(var(--purchase-modal-width) / 2));
+    top: calc(20vh - var(--header-height));
+
+}
+
+.purchase-modal-cancel-purchase-container {
+    position: absolute;
+    top: 0.2rem;
+    right: 0.2rem;
+}
+
+.purchase-modal-cancel-purchase {
+    background: none;
+}
