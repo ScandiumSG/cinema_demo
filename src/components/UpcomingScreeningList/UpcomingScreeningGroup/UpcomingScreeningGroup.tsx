@@ -28,11 +28,13 @@ const UpcomingScreeningGroup: React.FC<IScreeningProps> = ({date, screenings}) =
             <span className="upcoming-screening-group-date-header">
                 {date}
             </span>
-            {groupedScreenings!.map((screening: IScreening, index: number) => {
-                return(
-                    <ScreeningItem key={index} screening={screening}/>
-                )
-            })}
+            <div className="upcoming-screening-group-card-container">
+                {groupedScreenings!.map((screening: IScreening, index: number) => {
+                    return(
+                        <ScreeningItem key={index} screening={screening}/>
+                    )
+                })}
+            </div>
         </div>
     )
 }
