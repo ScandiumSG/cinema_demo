@@ -8,6 +8,7 @@ import { IUserContext } from "@/interfaces/UserInterfaces";
 import { userContext } from "@/util/context";
 import { postTicket } from "@/util/apiUtils";
 import loading from "@/assets/loading_dots.svg"
+import spinner from "@/assets/loading_spin.svg";
 
 interface ISeatViewProps {
     selectTickets: ITicketHandler,
@@ -17,6 +18,7 @@ interface ISeatViewProps {
 
 const SeatView: React.FC<ISeatViewProps> = ({selectTickets, screening, refetchScreening}) => {
     const [seatSelection, setSeatSelection] = useState<ISeat[]>();
+    const [isLoading, setIsLoading] = useState<boolean>(true);
     const { user } = useContext<IUserContext>(userContext);
 
     const changeSeatSelection = (seats: ISeat[]) => {
@@ -28,7 +30,7 @@ const SeatView: React.FC<ISeatViewProps> = ({selectTickets, screening, refetchSc
         if (screening === undefined) {
             return;
         }
-
+        setIsLoading(true);
         const postContent: ITicketPost = {
             "screeningId": screening.id,
             "movieId": screening.movie.id,
@@ -45,10 +47,10 @@ const SeatView: React.FC<ISeatViewProps> = ({selectTickets, screening, refetchSc
         }
 
         await fetch(postTicket(), options)
-            .then((res) => {console.log(res.status, res.statusText); return res; })
             .then((res) => res.json())
             .then((res) => res.data)
             .then(() => refetchScreening())
+            .finally(() => setIsLoading(false))
     }
 
     if (screening === undefined) {
@@ -68,7 +70,21 @@ const SeatView: React.FC<ISeatViewProps> = ({selectTickets, screening, refetchSc
                 setSelection={changeSeatSelection}
             />
             <div className="purchase-modal-confirm-container">
-                    <button onClick={() => purchaseTickets()}>Confirm seats</button>
+            { !isLoading ? 
+                <button 
+                    className="purchase-modal-confirm-button standard-button"
+                    onClick={() => purchaseTickets()}
+                >
+                    Confirm seats
+                </button>
+                :
+                <button 
+                    className="purchase-modal-confirm-button-verify standard-button"
+                >
+                    <img className="loading-spinner" src={spinner} alt="Verifying..."/>
+                    <span>Purchasing...</span>
+                </button>
+            }
             </div>
         </>
     )
