@@ -24,6 +24,7 @@ const oneSeatSelectedObject = {
 const SeatSelector: React.FC<ISeatSelectorProps> = ({ticketSelection, screening, seatSelection, setSelection}) => {
     const [allowSeatSelection, setAllowSeatSelection] = useState<boolean>(true);
     const [occupiedSeats, setOccupiedSeats] = useState<ISeat[] | undefined>();
+    const [currentScreening, setCurrentScreening] = useState<IScreening>(screening)
 
     const selectSeat = (seat: ISeat) => {
         //Check if seat already exists in seatSelection
@@ -68,9 +69,13 @@ const SeatSelector: React.FC<ISeatSelectorProps> = ({ticketSelection, screening,
     }
 
     useEffect(() => {
-        const occupiedSeats = screening.tickets.map((ticket: ITicketFromScreening) => (ticket.seat));
-        setOccupiedSeats([...occupiedSeats]);
+        setCurrentScreening(screening)
     }, [screening])
+
+    useEffect(() => {
+        const occupiedSeats = currentScreening.tickets.map((ticket: ITicketFromScreening) => (ticket.seat));
+        setOccupiedSeats([...occupiedSeats]);
+    }, [currentScreening])
 
     useEffect(() =>  {
         const seatArray: ISeat[] | undefined = [];
@@ -97,7 +102,7 @@ const SeatSelector: React.FC<ISeatSelectorProps> = ({ticketSelection, screening,
                         <TheaterSeatSelector 
                             occupiedSeats={occupiedSeats}
                             currentSelected={seatSelection}
-                            theaterSeats={screening?.theater?.seats} 
+                            theaterSeats={currentScreening?.theater?.seats} 
                         />
                     </div>
                 </div>
