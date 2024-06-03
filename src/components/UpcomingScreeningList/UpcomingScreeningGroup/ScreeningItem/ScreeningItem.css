@@ -1,11 +1,12 @@
 .screening-item {
     background-color: var(--card-bg-color);
+    border: 1px solid var(--light-border-color);
     border-radius: 5px;
     height: fit-content;
     width: 8rem;
     min-width: 6rem;
 
-    margin: 0px 0.5rem 1rem 0.5rem
+    margin: 0px 0.5rem 1.2rem 0.5rem
 }
 
 .screening-item-start-time {
