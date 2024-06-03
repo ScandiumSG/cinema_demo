@@ -38,7 +38,9 @@ const ScreeningPage = () => {
     }
 
     const displayPurchase = (screening: IScreening | undefined) => {
-        setSelectedScreening(screening);
+        if (screening) {
+            setSelectedScreening({...screening});
+        }
         setShowPurchase(!showPurchase);
     }
 
@@ -67,7 +69,7 @@ const ScreeningPage = () => {
             setShowSeatingMap: displaySeating
         }}
         >
-        {selectedScreening && <PurchaseModal screening={selectedScreening}/>}
+        {(showPurchase && selectedScreening) && <PurchaseModal screening={{...selectedScreening}}/>}
         <div className="screening-page-parent-container">
             <div className="screening-page-container">
                 <div className="screening-content-container">

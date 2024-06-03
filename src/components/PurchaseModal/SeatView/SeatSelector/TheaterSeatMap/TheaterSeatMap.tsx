@@ -61,13 +61,13 @@ const TheaterSeatSelector: React.FC<ITheaterSeatMap> = ({occupiedSeats, currentS
     }
 
     const determineSeatOccupancy = (id: number, available: boolean) => {
-        if (currentSelected?.find((s) => s.id == id)) {
-            return "selected"
+        if (!available) {
+            return "occupied"
         } else {
-            if (available) {
-                return "available";
+            if (currentSelected?.find((s) => s.id == id)) {
+                return "selected"
             } else {
-                return "occupied";
+                return "available"
             }
         }
     }

@@ -11,6 +11,8 @@ import { seatingContext } from "@/util/context";
 interface ISeatSelectorProps {
     ticketSelection: ITicketHandler,
     screening: IScreening,
+    seatSelection: ISeat[] | undefined,
+    setSelection: (seats: ISeat[]) => void,
 }
 
 const oneSeatSelectedObject = {
@@ -19,10 +21,10 @@ const oneSeatSelectedObject = {
     seatNumber: -1,
 }
 
-const SeatSelector: React.FC<ISeatSelectorProps> = ({ticketSelection, screening}) => {
-    const [seatSelection, setSeatSelection] = useState<ISeat[] | undefined>();
+const SeatSelector: React.FC<ISeatSelectorProps> = ({ticketSelection, screening, seatSelection, setSelection}) => {
     const [allowSeatSelection, setAllowSeatSelection] = useState<boolean>(true);
     const [occupiedSeats, setOccupiedSeats] = useState<ISeat[] | undefined>();
+    const [currentScreening, setCurrentScreening] = useState<IScreening>(screening)
 
     const selectSeat = (seat: ISeat) => {
         //Check if seat already exists in seatSelection
@@ -38,7 +40,7 @@ const SeatSelector: React.FC<ISeatSelectorProps> = ({ticketSelection, screening}
             const modifiedSeatSelection = seatSelection;
             modifiedSeatSelection[seatIndex] = seat;
             sortSeats(modifiedSeatSelection)
-            setSeatSelection([...modifiedSeatSelection]);
+            setSelection([...modifiedSeatSelection]);
         }
     }
 
@@ -50,7 +52,7 @@ const SeatSelector: React.FC<ISeatSelectorProps> = ({ticketSelection, screening}
                 .splice(modifiedSeatSelection.indexOf(seatToRemove), 1)
             modifiedSeatSelection.push(oneSeatSelectedObject);
             sortSeats(modifiedSeatSelection)
-            setSeatSelection([...modifiedSeatSelection]);
+            setSelection([...modifiedSeatSelection]);
         }
     }
 
@@ -67,16 +69,20 @@ const SeatSelector: React.FC<ISeatSelectorProps> = ({ticketSelection, screening}
     }
 
     useEffect(() => {
-        const occupiedSeats = screening.tickets.map((ticket: ITicketFromScreening) => (ticket.seat));
-        setOccupiedSeats([...occupiedSeats]);
+        setCurrentScreening(screening)
     }, [screening])
+
+    useEffect(() => {
+        const occupiedSeats = currentScreening.tickets.map((ticket: ITicketFromScreening) => (ticket.seat));
+        setOccupiedSeats([...occupiedSeats]);
+    }, [currentScreening])
 
     useEffect(() =>  {
         const seatArray: ISeat[] | undefined = [];
         for (let i = 0; i < ticketSelection.totalTickets; i++) {
             seatArray.push(oneSeatSelectedObject)
         }
-        setSeatSelection([...seatArray])
+        setSelection([...seatArray])
     }, [ticketSelection])
 
     return(
@@ -96,7 +102,7 @@ const SeatSelector: React.FC<ISeatSelectorProps> = ({ticketSelection, screening}
                         <TheaterSeatSelector 
                             occupiedSeats={occupiedSeats}
                             currentSelected={seatSelection}
-                            theaterSeats={screening?.theater?.seats} 
+                            theaterSeats={currentScreening?.theater?.seats} 
                         />
                     </div>
                 </div>
