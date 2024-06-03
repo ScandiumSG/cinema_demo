@@ -1,7 +1,6 @@
-import { IScreening, IUpcomingScreening } from "@/interfaces/IScreening";
+import { IScreening } from "@/interfaces/IScreening";
 import "./UpcomingScreeningGroup.css"
 import { useEffect, useState } from "react";
-import { sortScreeningsByDate } from "@/util/sortingUtils";
 import ScreeningItem from "./ScreeningItem/ScreeningItem";
 
 interface IScreeningProps {
