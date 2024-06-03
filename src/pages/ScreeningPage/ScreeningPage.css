@@ -42,7 +42,7 @@
     padding: 1rem;
 
     display: grid;
-    grid-template-columns: 55% 45%;
+    grid-template-columns: 30rem calc(100% - 30rem);
 }
 
 .screening-content-theater-map {
