@@ -1,6 +1,6 @@
 .login-modal-container {
     border: rgb(221, 220, 220) solid 10px;
-    z-index: 5;
+    z-index: 10;
     width: 300px;
     height: max-content;
 
