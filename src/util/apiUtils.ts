@@ -30,7 +30,7 @@ export const getUpcomingSpecificScreenings = (movieId: number, dateLimit: string
 
 // TICKET ENDPOINT
 const ticketBaseUrl = baseUrl + "/tickets";
-export const postTicket = () => ticketBaseUrl + "/";
+export const postTicket = () => ticketBaseUrl;
 
 // AUTHENTICATION ENDPOINT
 const authBaseUrl = baseUrl + "/auth";
