@@ -5,16 +5,16 @@ import { IScreening, IUpcomingScreening } from "@/interfaces/IScreening";
 import { getUpcomingScreenings } from "@/util/apiUtils";
 import loadingDots from "@/assets/loading_dots.svg";
 import { sortScreeningsByDate } from "@/util/sortingUtils";
+import { getRoundedCurrentTimeIsoString } from "@/util/timeUtils";
 
 
 
 const UpcomingScreenings = () => {
     const [upcomingDates, setUpcomingDates] = useState<IUpcomingScreening>();
     const [numberOfUpcoming, setNumberOfUpcoming] = useState<number>(10);
-    const currentDate: Date = new Date();
 
     const fetchScreenings = async () => {
-        const dateString = currentDate.toISOString();
+        const dateString = getRoundedCurrentTimeIsoString();
         const upcomingScreenings: IScreening[] = await fetch(getUpcomingScreenings(dateString, numberOfUpcoming))
             .then((res) => res.json())
             .then((res) => res.data)

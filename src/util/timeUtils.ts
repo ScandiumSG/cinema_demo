@@ -21,3 +21,15 @@ export const getTimeFromDateTimeString = (dateTimeString: string) => {
 
     return timeWithoutSeconds;
 }
+
+export const getRoundedCurrentTimeIsoString = () => {
+    const curDate = new Date();
+    curDate.setSeconds(0,0);
+
+    const mins = curDate.getMinutes();
+    const roundedMins = Math.floor(mins / 15) * 15;
+
+    curDate.setMinutes(roundedMins);
+
+    return curDate.toISOString();
+}
