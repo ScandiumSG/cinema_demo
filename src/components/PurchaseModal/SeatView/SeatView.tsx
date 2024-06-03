@@ -7,13 +7,15 @@ import ISeat from "@/interfaces/ISeat";
 import { IUserContext } from "@/interfaces/UserInterfaces";
 import { userContext } from "@/util/context";
 import { postTicket } from "@/util/apiUtils";
+import loading from "@/assets/loading_dots.svg"
 
 interface ISeatViewProps {
     selectTickets: ITicketHandler,
-    screening: IScreening,
+    screening: IScreening | undefined,
+    refetchScreening: () => void,
 }
 
-const SeatView: React.FC<ISeatViewProps> = ({selectTickets, screening}) => {
+const SeatView: React.FC<ISeatViewProps> = ({selectTickets, screening, refetchScreening}) => {
     const [seatSelection, setSeatSelection] = useState<ISeat[]>();
     const { user } = useContext<IUserContext>(userContext);
 
@@ -22,6 +24,11 @@ const SeatView: React.FC<ISeatViewProps> = ({selectTickets, screening}) => {
     }
 
     const purchaseTickets = async () => {
+        // TODO: Display this error/wait message
+        if (screening === undefined) {
+            return;
+        }
+
         const postContent: ITicketPost = {
             "screeningId": screening.id,
             "movieId": screening.movie.id,
@@ -29,21 +36,27 @@ const SeatView: React.FC<ISeatViewProps> = ({selectTickets, screening}) => {
             "seatId": seatSelection!.map((seat: ISeat) => (seat.id))
         }
 
-        console.log(postContent);
-
         const options =  {
             "method": "POST",
             "headers": {
                 "Content-Type": "application/json",
             },
-            "body": JSON.stringify(seatSelection)
+            "body": JSON.stringify(postContent)
         }
 
         await fetch(postTicket(), options)
-            .then((res) => {console.log(res); return res; })
+            .then((res) => {console.log(res.status, res.statusText); return res; })
             .then((res) => res.json())
             .then((res) => res.data)
-            .then((res) => console.log(res))
+            .then(() => refetchScreening())
+    }
+
+    if (screening === undefined) {
+        return(
+            <div>
+                <img src={loading} />
+            </div>
+        )
     }
 
     return(
