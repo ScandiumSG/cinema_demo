@@ -16,10 +16,14 @@
   --primary-text-color: whitesmoke;
   --card-bg-color: azure;
   --light-border-color: lightgray;
-  --site-bg-color: lightblue;
-  --button-color: blue;
+  --site-bg-color: rgb(221, 235, 240);
+  --secondary-card-bg-color: rgba(186, 186, 255, 0.473);
+  --button-color: rgb(42, 214, 157);
 
   --header-height: 3rem;
+  --header-bg-color: goldenrod;
+  --header-border-color: Royalblue;
+
 }
 
 a {
@@ -95,7 +99,7 @@ button:focus-visible {
 }
 
 .standard-button {
-  background-color:rgb(42, 214, 157);
+  background-color:var(--button-color);
 
   margin-left: 5%;
   margin-right: 5%;

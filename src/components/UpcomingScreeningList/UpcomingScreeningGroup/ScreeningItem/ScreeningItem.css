@@ -1,8 +1,26 @@
-.upcoming-screening-item {
+.screening-item {
     background-color: var(--card-bg-color);
+    border: 1px solid var(--light-border-color);
     border-radius: 5px;
     height: fit-content;
-    overflow: scroll;
+    width: 8rem;
+    min-width: 6rem;
 
-    margin-bottom: 0.5rem;
+    margin: 0px 0.5rem 1.2rem 0.5rem
+}
+
+.screening-item-start-time {
+    font-size: larger;
+    font-weight: 700;
+
+    margin: 0rem;
+}
+
+.screening-item-theater {
+    font-size: small;
+    font-variant: small-caps;
+    font-style: italic;
+
+    margin-top: 0rem;
+    margin-bottom: 0rem;
 }

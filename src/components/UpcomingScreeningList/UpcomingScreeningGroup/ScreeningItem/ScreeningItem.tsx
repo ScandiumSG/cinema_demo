@@ -17,18 +17,20 @@ const ScreeningItem: React.FC<IScreeningItem> = ({screening}) => {
     
     return(
         <div 
-            className="upcoming-screening-item clickable"
+            className="screening-item clickable"
             onClick={() => interactWithScreening()}
         >
-            <div>
-                <span>{getTimeFromDateTimeString(screening.startTime)} - </span>
-                <span>{screening.theater.name}</span>
+            <div className="screening-item-primary">
+                <p className="screening-item-theater">
+                    {screening.theater.name}
+                </p>
+                <p className="screening-item-start-time">
+                    {getTimeFromDateTimeString(screening.startTime)}
+                </p>
             </div>
-            {/* Tickets left, requires connection of tickets to the screening endpoint in backend.
-            <div>
-                {screening.theater.capacity - screening.tickets.length} tickets left
+            <div className="screening-item-secondary">
+                {screening.theater.capacity - screening.ticketsSold} / {screening.theater.capacity}
             </div>
-            */}
         </div>
     )
 }

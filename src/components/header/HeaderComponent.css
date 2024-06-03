@@ -8,8 +8,8 @@
     width: 100vw;
 
 
-    background-color: lightseagreen;
-    border-bottom: solid 5px green;
+    background-color: var(--header-bg-color);
+    border-bottom: solid 5px var(--header-border-color);
 
     display: flex;
     justify-content: space-between;

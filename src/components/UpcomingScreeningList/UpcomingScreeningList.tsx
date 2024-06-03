@@ -4,6 +4,7 @@ import { IUpcomingScreening } from "@/interfaces/IScreening";
 import { getUpcomingSpecificScreenings } from "@/util/apiUtils";
 import UpcomingScreeningGroup from "./UpcomingScreeningGroup/UpcomingScreeningGroup";
 import { sortScreeningsByDate } from "@/util/sortingUtils";
+import { getRoundedCurrentTimeIsoString } from "@/util/timeUtils";
 
 interface IScreeningListProps {
     movieId: number,
@@ -13,16 +14,15 @@ const UpcomingScreeningList: React.FC<IScreeningListProps> = ({movieId}) => {
     const [upcomingScreening, setUpcomingScreenings] = useState<IUpcomingScreening>()
     const [noUpcoming, setNoUpcoming] = useState<boolean>(false);
     const [numberOfScreenings, setNumberOfScreenings] = useState<number>(10);
-    const currentDate: Date = new Date();
 
     const fetchScreenings = async () => {
 
-        const fetchedScreenings = await fetch(getUpcomingSpecificScreenings(movieId, currentDate.toISOString(), numberOfScreenings))
+        const fetchedScreenings = await fetch(getUpcomingSpecificScreenings(movieId, getRoundedCurrentTimeIsoString(), numberOfScreenings))
             .then((res) => {
                 if (res.status == 204) {
                     throw new Error("Found no screenings")
                 }
-                return res
+                return res;
             })
             .then((res) => res.json())
             .then((res) => res.data)
@@ -35,7 +35,12 @@ const UpcomingScreeningList: React.FC<IScreeningListProps> = ({movieId}) => {
 
     useEffect(() => {
         fetchScreenings();
-    }, [movieId])
+        const refetchTime = 0.5 * 60 * 1000 // Time in ms, currently: 5min
+        const interval = setInterval(() => fetchScreenings(), refetchTime)
+        return () => {
+            clearInterval(interval);
+        }
+    }, [])
 
     if (upcomingScreening === undefined) {
         return(
