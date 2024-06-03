@@ -94,7 +94,7 @@ button:focus-visible {
   scrollbar-width: none;
 }
 
-.green-button {
+.standard-button {
   background-color:rgb(42, 214, 157);
 
   margin-left: 5%;
@@ -105,6 +105,6 @@ button:focus-visible {
   display: flex;
 }
 
-.green-button:hover {
+.standard-button:hover {
   background-color: darkseagreen;
 }
