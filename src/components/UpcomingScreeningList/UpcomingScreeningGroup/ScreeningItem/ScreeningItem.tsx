@@ -24,11 +24,9 @@ const ScreeningItem: React.FC<IScreeningItem> = ({screening}) => {
                 <span>{getTimeFromDateTimeString(screening.startTime)} - </span>
                 <span>{screening.theater.name}</span>
             </div>
-            {/* Tickets left, requires connection of tickets to the screening endpoint in backend.
             <div>
-                {screening.theater.capacity - screening.tickets.length} tickets left
+                {screening.theater.capacity - screening.ticketsSold} / {screening.theater.capacity}
             </div>
-            */}
         </div>
     )
 }
