@@ -27,7 +27,7 @@ export const getRoundedCurrentTimeIsoString = () => {
     curDate.setSeconds(0,0);
 
     const mins = curDate.getMinutes();
-    const roundedMins = Math.floor(mins / 15) * 15;
+    const roundedMins = Math.floor(mins / 5) * 5;
 
     curDate.setMinutes(roundedMins);
 
