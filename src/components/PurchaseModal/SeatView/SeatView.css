@@ -1,0 +1,13 @@
+.purchase-modal-confirm-container {
+    display: flex;
+    justify-content: center;
+}
+
+.purchase-modal-confirm-button-verify {
+    padding: 0.3rem;
+
+    display: flex;
+    flex-direction: row;
+
+    place-content: center;
+}

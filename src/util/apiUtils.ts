@@ -31,6 +31,9 @@ export const getUpcomingSpecificScreenings = (movieId: number, dateLimit: string
 // TICKET ENDPOINT
 const ticketBaseUrl = baseUrl + "/tickets";
 export const postTicket = () => ticketBaseUrl;
+export const getTicketsForScreening = (screeningId: number, movieId: number) => {
+    return `${ticketBaseUrl}/refetch/${screeningId}/${movieId}` 
+}
 
 // AUTHENTICATION ENDPOINT
 const authBaseUrl = baseUrl + "/auth";
