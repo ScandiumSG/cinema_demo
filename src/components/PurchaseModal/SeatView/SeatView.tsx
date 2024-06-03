@@ -18,7 +18,7 @@ interface ISeatViewProps {
 
 const SeatView: React.FC<ISeatViewProps> = ({selectTickets, screening, refetchScreening}) => {
     const [seatSelection, setSeatSelection] = useState<ISeat[]>();
-    const [isLoading, setIsLoading] = useState<boolean>(true);
+    const [isLoading, setIsLoading] = useState<boolean>(false);
     const { user } = useContext<IUserContext>(userContext);
 
     const changeSeatSelection = (seats: ISeat[]) => {
