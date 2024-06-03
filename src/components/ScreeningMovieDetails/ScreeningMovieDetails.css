@@ -1,8 +1,6 @@
 .screening-movie-details {
     display: flex;
-    flex-direction: row;
-
-    align-items: start;
+    flex-direction: column;
     justify-content: left;
 
     padding: 0px 2rem;
@@ -12,7 +10,15 @@
     margin-bottom: 5rem;
 }
 
+.screening-movie-information {
+    width: 100%;
+}
+
 .screening-movie-details-poster {
+    display: flex;
+
+
+    position: relative;
     width: 20rem;
     max-height: 100%;
 }
@@ -22,30 +28,49 @@
     flex-direction: column;
 
     justify-content: start;
-    align-items: center;
+    align-items: left;
 
     position: relative;
-    width: calc(100% - 20rem);
-    height: 100%;
+    width: 100%;
 
     padding: 0rem 1rem 1rem 1rem;
+}
+
+.screening-movie-deatils-description-header {
+    text-align: left;
+    display: flex;
+    justify-content: left;
+
+    padding-bottom: 0px;
+
+    width: fit-content;
+    border-bottom: 1px solid black;
 }
 
 .screening-movie-details-title, .screening-movie-details-description {
     text-align: left;
     margin-bottom: 0px;
-    width: 100%;
+    width: calc(100% - 1rem);
 }
 
 .screening-movie-details-title {
     margin-top: 0px;
     height: 4rem;
-    overflow: scroll;
 }
 
 .screening-movie-details-description {
-    height: 16rem;
-    overflow: scroll;
+    display: flex;
+    justify-content: left;
+
+    height: 15rem;
+    max-width: 20rem;
+    overflow-y: scroll;
+
+    background-color: var(--secondary-card-bg-color);
+    border-radius: 10px;
+
+    padding: 0.5rem;
+    margin-top: 0px;
 }
 
 .screening-movie-meta-info {
