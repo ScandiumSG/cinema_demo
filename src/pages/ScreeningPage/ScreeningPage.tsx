@@ -9,12 +9,10 @@ import { purchaseModalContext } from "@/util/context";
 import PurchaseModal from "@/components/PurchaseModal/PurchaseModal";
 import { IScreening } from "@/interfaces/IScreening";
 
-// path="/screening/:movieId"
-
 const ScreeningPage = () => {
     const { movieId } = useParams();
     const [movieData, setMovieData] = useState<IMovieDetails>();
-    const [selectedScreening, setSelectedScreening] = useState<IScreening | undefined>();
+    const [selectedScreening, setSelectedScreening] = useState<IScreening>();
     const [showPurchase, setShowPurchase] = useState<boolean>(true);
     const [showSeatingMap, setShowSeatingMap] = useState<boolean>(false);
     const navigate = useNavigate();
@@ -38,10 +36,12 @@ const ScreeningPage = () => {
     }
 
     const displayPurchase = (screening: IScreening | undefined) => {
+        console.log(screening);
+        console.log(showPurchase);
+        setShowPurchase(!showPurchase);
         if (screening) {
             setSelectedScreening({...screening});
         }
-        setShowPurchase(!showPurchase);
     }
 
     const displaySeating = () => {
