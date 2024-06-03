@@ -2,8 +2,8 @@
     background-color: var(--card-bg-color);
     border-radius: 5px;
     height: fit-content;
-    width: 12rem;
-    min-width: 8rem;
+    width: 8rem;
+    min-width: 6rem;
 
     margin: 0px 0.5rem 1rem 0.5rem
 }
