@@ -65,7 +65,7 @@ const PurchaseModal: React.FC<IPurchaseModalProps> = ({screening}) => {
         return () => {
             clearInterval(interval);
         }
-    }, [screening, showSeatMap])
+    }, [])
 
     return(
         <div className="purchase-modal-container">
