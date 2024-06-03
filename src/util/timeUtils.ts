@@ -33,3 +33,24 @@ export const getRoundedCurrentTimeIsoString = () => {
 
     return curDate.toISOString();
 }
+
+export const determineDayString = (inputDateString: string) => {
+    const inputDate = new Date(inputDateString);
+    const today = new Date();
+    const tomorrow = new Date(today);
+    tomorrow.setDate(today.getDate() + 1);
+  
+    // Normalize the time parts to compare only date
+    today.setHours(0, 0, 0, 0);
+    tomorrow.setHours(0, 0, 0, 0);
+    inputDate.setHours(0, 0, 0, 0);
+
+    if (inputDate.getTime() === today.getTime()) {
+        return "Today";
+    } else if (inputDate.getTime() === tomorrow.getTime()) {
+        return "Tomorrow";
+    } else {
+        const dateObject: Date = new Date(inputDateString);
+        return dateObject.toLocaleDateString();
+    }
+}
