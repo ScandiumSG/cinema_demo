@@ -2,7 +2,7 @@ import { IScreening, IUpcomingScreening } from "@/interfaces/IScreening";
 import "./UpcomingScreeningGroup.css"
 import { useEffect, useState } from "react";
 import { sortScreeningsByDate } from "@/util/sortingUtils";
-import UpcomingScreeningItem from "./UpcomingScreeningItem/UpcomingScreeningItem";
+import ScreeningItem from "./ScreeningItem/ScreeningItem";
 
 interface IScreeningProps {
     date: string,
@@ -30,7 +30,7 @@ const UpcomingScreeningGroup: React.FC<IScreeningProps> = ({date, screenings}) =
             </span>
             {groupedScreenings!.map((screening: IScreening, index: number) => {
                 return(
-                    <UpcomingScreeningItem key={index} screening={screening}/>
+                    <ScreeningItem key={index} screening={screening}/>
                 )
             })}
         </div>

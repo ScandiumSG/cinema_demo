@@ -1,5 +1,5 @@
 import { IPurchaseModalContext, IScreening } from "@/interfaces/IScreening";
-import "./UpcomingScreeningItem.css"
+import "./ScreeningItem.css"
 import { getTimeFromDateTimeString } from "@/util/timeUtils";
 import { useContext } from "react";
 import { purchaseModalContext } from "@/util/context";
@@ -8,7 +8,7 @@ interface IScreeningItem {
     screening: IScreening,
 }
 
-const UpcomingScreeningItem: React.FC<IScreeningItem> = ({screening}) => {
+const ScreeningItem: React.FC<IScreeningItem> = ({screening}) => {
     const { setShowPurchase } = useContext<IPurchaseModalContext>(purchaseModalContext);
 
     const interactWithScreening = () => {
@@ -33,4 +33,4 @@ const UpcomingScreeningItem: React.FC<IScreeningItem> = ({screening}) => {
     )
 }
 
-export default UpcomingScreeningItem;
+export default ScreeningItem;
