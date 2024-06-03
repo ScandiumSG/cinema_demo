@@ -6,7 +6,7 @@ import { translateDateTimeStringWithoutSeconds } from "@/util/timeUtils";
 import { purchaseModalContext } from "@/util/context";
 import SeatView from "./SeatView/SeatView";
 import TicketView from "./TicketView/TicketView";
-import { getScreeningDetails } from "@/util/apiUtils";
+import { getTicketsForScreening } from "@/util/apiUtils";
 
 interface IPurchaseModalProps {
     screening: IScreening,
@@ -46,15 +46,25 @@ const PurchaseModal: React.FC<IPurchaseModalProps> = ({screening}) => {
     }
 
     const refetchScreening = async () => {
-        await fetch(getScreeningDetails(screening.movie.id, screening.id))
+        await fetch(getTicketsForScreening(screening.id, screening.movie.id))
             .then((res) => res.json())
             .then((res) => res.data)
-            .then((res) => setCurrentScreening({...res}))
+            .then((res) => {
+                const tempScreening = screening;
+                console.log(tempScreening);
+                tempScreening.tickets = res;
+                console.log(tempScreening);
+                return tempScreening;
+            })
+            .then((tempScreening) => setCurrentScreening({...tempScreening}))
             .then(() => console.log("Fetched screening data"))
     }
 
     useEffect(() => {
-        refetchScreening();
+        const interval = setInterval(() => refetchScreening(), 10000)
+        return () => {
+            clearInterval(interval);
+        }
     }, [screening, showSeatMap])
 
     return(
