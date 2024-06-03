@@ -7,7 +7,6 @@
 
     position: relative;
     height: 70%;
-    margin-bottom: 5rem;
 }
 
 .screening-movie-information {
@@ -16,10 +15,9 @@
 
 .screening-movie-details-poster {
     display: flex;
-
-
     position: relative;
-    width: 20rem;
+    max-width: 25rem;
+    width: 100%;
     max-height: 100%;
 }
 
