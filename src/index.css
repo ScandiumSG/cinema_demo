@@ -112,3 +112,13 @@ button:focus-visible {
 .standard-button:hover {
   background-color: darkseagreen;
 }
+
+.background-blurred {
+  height: calc(100% - var(--header-height));
+  margin: 0px;
+  overflow: hidden;
+  scroll-behavior:unset;
+  scrollbar-width: none;
+
+  filter: blur(2px) brightness(0.8);
+}
