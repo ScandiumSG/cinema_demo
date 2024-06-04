@@ -2,6 +2,7 @@ import { createContext } from 'react'
 import { IUserContext } from '@/interfaces/UserInterfaces';
 import { IPurchaseModalContext } from '@/interfaces/IScreening';
 import ISeat, { ISeatingContext } from '@/interfaces/ISeat';
+import { IBlurContext } from '@/interfaces/IUtils';
 
 export const userContext = createContext<IUserContext>({
     user: {},
@@ -13,7 +14,7 @@ export const userContext = createContext<IUserContext>({
 export const purchaseModalContext = createContext<IPurchaseModalContext>({
     setShowPurchase: () => {},
     showSeatingMap: false,
-    setShowSeatingMap: () => {},
+    setShowSeatingMap: (value: boolean) => {},
 })
 
 export const seatingContext = createContext<ISeatingContext>({
@@ -22,3 +23,10 @@ export const seatingContext = createContext<ISeatingContext>({
     allowSeating: true,
     toggleAllowSeating: () => {},
 });
+
+
+export const blurContext = createContext<IBlurContext>({
+    blurArray: [],
+    removeFromArray: (modalName: string) => {},
+    addToArray: (modalName: string) => {},
+})
