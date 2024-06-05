@@ -26,3 +26,7 @@
     right: 2rem;
     direction: rtl;
 }
+
+.ticket-item-button-container > * {
+    margin-left: 0.5rem;
+}

@@ -25,7 +25,7 @@ const TicketItem: React.FC<ITicketItemProps> = ({itemCategory, itemPrice, ticket
                 </button>
                 {(tickets[itemCategory] || 0) !== 0 && 
                     <>
-                        <span>{tickets[itemCategory] || 0}</span>
+                        <span className="ticket-item-itemnumber">{tickets[itemCategory] || 0}</span>
                         <button className="ticket-item-remove-button" onClick={() => decrement(itemCategory)}>
                             -
                         </button>
