@@ -26,7 +26,12 @@ const TicketView: React.FC<ITicketViewProps> = ({selectTickets, addTicket, remov
                 ))}
             </div>
             <div className="purchase-modal-confirm-container">
-                <button onClick={() => setShowSeatMap(true)}>Select seating</button>
+                <button 
+                    className="standard-button"
+                    onClick={() => setShowSeatMap(true)}
+                >
+                        Select seating
+                </button>
             </div>
         </>
     )
