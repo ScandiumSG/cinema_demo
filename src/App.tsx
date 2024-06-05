@@ -50,8 +50,6 @@ function App() {
     setBlurArray(tempBlurArray);
   }
 
-  useEffect(() => {console.log(blurArray.length)}, [blurArray]);
-
   return (
     <>
       <userContext.Provider
