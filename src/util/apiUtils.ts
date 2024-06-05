@@ -28,6 +28,12 @@ export const getUpcomingSpecificScreenings = (movieId: number, dateLimit: string
     return baseScreeningUrl + "/upcoming/" + movieId + "/" + dateLimit + "?limit=" + itemLimit;
 }
 
+// THEATER/SEATING ENDPOINT
+const baseTheaterUrl = baseUrl + "/location";
+export const getSeatsForTheater = (theaterId: number) => {
+    return `${baseTheaterUrl}/seats/${theaterId}`
+}
+
 // TICKET ENDPOINT
 const ticketBaseUrl = baseUrl + "/tickets";
 export const postTicket = () => ticketBaseUrl;
