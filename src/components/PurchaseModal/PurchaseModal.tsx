@@ -10,20 +10,24 @@ import { getTicketsForScreening } from "@/util/apiUtils";
 
 interface IPurchaseModalProps {
     screening: IScreening,
+    showSeatMap: boolean,
+    setShowSeatMap: (value: boolean) => void,
 }
 
 const defaultTickets: ITicketHandler = {
     totalTickets: 0
 }
 
-const PurchaseModal: React.FC<IPurchaseModalProps> = ({screening}) => {
+const PurchaseModal: React.FC<IPurchaseModalProps> = ({screening, showSeatMap, setShowSeatMap}) => {
     const [currentScreening, setCurrentScreening] = useState<IScreening | undefined>()
     const [selectTickets, setSelectTickets] = useState<ITicketHandler>(defaultTickets);
-    const [showSeatMap, setShowSeatMap] = useState<boolean>(false);
     const { setShowPurchase } = useContext<IPurchaseModalContext>(purchaseModalContext);
 
+
     const cancelPurchase = () => {
+        console.log("purchaseModal")
         setSelectTickets({...defaultTickets})
+
         setShowPurchase(undefined);
     }
 
@@ -51,9 +55,7 @@ const PurchaseModal: React.FC<IPurchaseModalProps> = ({screening}) => {
             .then((res) => res.data)
             .then((res) => {
                 const tempScreening = screening;
-                console.log(tempScreening);
                 tempScreening.tickets = res;
-                console.log(tempScreening);
                 return tempScreening;
             })
             .then((tempScreening) => setCurrentScreening({...tempScreening}))
@@ -80,8 +82,17 @@ const PurchaseModal: React.FC<IPurchaseModalProps> = ({screening}) => {
                 </button>
             </div>
             {showSeatMap ?
-                <SeatView selectTickets={selectTickets} screening={currentScreening} refetchScreening={refetchScreening}/> : 
-                <TicketView selectTickets={selectTickets} addTicket={addTicket} removeTicket={removeTicket} setShowSeatMap={setShowSeatMap} />
+                <SeatView 
+                    selectTickets={selectTickets} 
+                    screening={currentScreening} 
+                    refetchScreening={refetchScreening}
+                /> : 
+                <TicketView 
+                    selectTickets={selectTickets} 
+                    addTicket={addTicket} 
+                    removeTicket={removeTicket} 
+                    setShowSeatMap={setShowSeatMap} 
+                />
             }
         </div>
     )
