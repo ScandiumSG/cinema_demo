@@ -1,7 +1,7 @@
 .screening-item {
     background-color: var(--card-bg-color);
     border: 1px solid var(--light-border-color);
-    border-radius: 5px;
+    border-radius: 10px;
     height: fit-content;
     width: 8rem;
     min-width: 6rem;

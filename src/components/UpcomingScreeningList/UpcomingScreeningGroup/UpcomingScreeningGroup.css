@@ -1,5 +1,4 @@
 .upcoming-screening-group-parent-container {
-    background-color: goldenrod;
     padding: 0.4rem 0.2rem 0.5rem 0.2rem;
     border-radius: 15px;
 
@@ -26,5 +25,5 @@
     flex-direction: row;
     flex-flow: wrap;
 
-    justify-content: center;
+    justify-content: left;
 }
