@@ -19,8 +19,8 @@ const PageRouter = () => {
     const [showSeatMap, setShowSeatMap] = useState<boolean>(false);
 
     const hidePurchaseModal = () => {
-      console.log("hiding")
       removeFromArray("Purchase")
+      setShowSeatMap(false);
       setShowPurchase(false);
     }
 
