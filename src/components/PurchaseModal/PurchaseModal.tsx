@@ -1,9 +1,8 @@
 import "./PurchaseModal.css"
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { ITicketHandler } from "@/interfaces/ITicket";
-import { IPurchaseModalContext, IScreening } from "@/interfaces/IScreening";
+import { IScreening } from "@/interfaces/IScreening";
 import { translateDateTimeStringWithoutSeconds } from "@/util/timeUtils";
-import { purchaseModalContext } from "@/util/context";
 import SeatView from "./SeatView/SeatView";
 import TicketView from "./TicketView/TicketView";
 import { getSeatsForTheater, getTicketsForScreening } from "@/util/apiUtils";
@@ -12,23 +11,23 @@ interface IPurchaseModalProps {
     screening: IScreening,
     showSeatMap: boolean,
     setShowSeatMap: (value: boolean) => void,
+    removeDisplay: () => void,
 }
 
 const defaultTickets: ITicketHandler = {
     totalTickets: 0
 }
 
-const PurchaseModal: React.FC<IPurchaseModalProps> = ({screening, showSeatMap, setShowSeatMap}) => {
+const PurchaseModal: React.FC<IPurchaseModalProps> = ({screening, showSeatMap, setShowSeatMap, removeDisplay}) => {
     const [currentScreening, setCurrentScreening] = useState<IScreening | undefined>()
     const [selectTickets, setSelectTickets] = useState<ITicketHandler>(defaultTickets);
-    const { setShowPurchase } = useContext<IPurchaseModalContext>(purchaseModalContext);
 
 
     const cancelPurchase = () => {
         console.log("purchaseModal")
         setSelectTickets({...defaultTickets})
 
-        setShowPurchase(undefined);
+        removeDisplay();
     }
 
     const addTicket = (ticketType: string) => {

@@ -17,24 +17,16 @@ const PageRouter = () => {
     const [showPurchase, setShowPurchase] = useState<boolean>(false);
     const { blurArray, addToArray, removeFromArray } = useContext<IBlurContext>(blurContext);
     const [showSeatMap, setShowSeatMap] = useState<boolean>(false);
-    const [showSeatingMap, setShowSeatingMap] = useState<boolean>(false);
 
-    const displaySeating = () => {
-        setShowSeatMap(!showSeatMap);
+    const hidePurchaseModal = () => {
+      console.log("hiding")
+      removeFromArray("Purchase")
+      setShowPurchase(false);
     }
 
-
-    const displayPurchase = (screening: IScreening | undefined) => {
-        console.log("Hello");
-        console.log(screening);
-        if (showPurchase) {
-            setShowPurchase(false);
-            removeFromArray("Purchase");
-        } else {
-            setShowPurchase(true);
-            addToArray("Purchase");
-        }
-
+    const displayPurchase = (screening: IScreening) => {
+        setShowPurchase(true);
+        addToArray("Purchase");
         if (screening) {
             setSelectedScreening({...screening});
         }
@@ -47,6 +39,7 @@ const PageRouter = () => {
                 screening={{...selectedScreening}} 
                 showSeatMap={showSeatMap} 
                 setShowSeatMap={setShowSeatMap}
+                removeDisplay={hidePurchaseModal}
             />
         }
         <div className={blurArray.length !== 0 ? "app-container background-blurred" : "app-container"}>
