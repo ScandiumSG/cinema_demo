@@ -1,11 +1,14 @@
 import "./PurchaseModal.css"
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { ITicketHandler } from "@/interfaces/ITicket";
 import { IScreening } from "@/interfaces/IScreening";
 import SeatView from "./SeatView/SeatView";
 import TicketView from "./TicketView/TicketView";
 import { getSeatsForTheater, getTicketsForScreening } from "@/util/apiUtils";
 import PurchaseHeader from "./PurchaseHeader/PurchaseHeader";
+import { IUserContext } from "@/interfaces/UserInterfaces";
+import { userContext } from "@/util/context";
+import ISeat from "@/interfaces/ISeat";
 
 interface IPurchaseModalProps {
     screening: IScreening,
@@ -20,12 +23,12 @@ const defaultTickets: ITicketHandler = {
 
 const PurchaseModal: React.FC<IPurchaseModalProps> = ({screening, showSeatMap, setShowSeatMap, removeDisplay}) => {
     const [currentScreening, setCurrentScreening] = useState<IScreening | undefined>()
+    const [theaterSeatArrangement, setTheaterSeatArrangement] = useState<ISeat[]>()
     const [selectTickets, setSelectTickets] = useState<ITicketHandler>(defaultTickets);
+    const { user, showLoginModal } = useContext<IUserContext>(userContext);
 
     const cancelPurchase = () => {
-        console.log("purchaseModal")
         setSelectTickets({...defaultTickets})
-
         removeDisplay();
     }
 
@@ -47,30 +50,64 @@ const PurchaseModal: React.FC<IPurchaseModalProps> = ({screening, showSeatMap, s
         }
     }
 
-    const refetchScreening = async () => {
+    const fetchSeatsForTheater = async () => {
         const seats = await fetch(getSeatsForTheater(screening.theater.id))
             .then((res) => res.json())
             .then((res) => res.data)
+        setTheaterSeatArrangement(seats);    
+        return seats;
+    }
 
+    const refetchScreening = async () => {
         await fetch(getTicketsForScreening(screening.id, screening.movie.id))
             .then((res) => res.json())
             .then((res) => res.data)
             .then((res) => {
                 const tempScreening = screening;
                 tempScreening.tickets = res;
-                tempScreening.theater.seats = seats;
+                tempScreening.theater.seats = theaterSeatArrangement!;
                 return tempScreening;
             })
             .then((tempScreening) => setCurrentScreening({...tempScreening}))
-            .then(() => console.log("Fetched screening data"))
     }
 
     useEffect(() => {
-        const interval = setInterval(() => refetchScreening(), 10000)
-        return () => {
-            clearInterval(interval);
+        fetchSeatsForTheater()
+    }, [screening])
+
+    useEffect(() => {
+        if (theaterSeatArrangement) {
+            const interval = setInterval(() => refetchScreening(), 10000)
+            return () => {
+                clearInterval(interval);
+            }
         }
-    }, [])
+    }, [theaterSeatArrangement])
+
+    if (!user) {
+        return(
+            <div className="purchase-modal-no-user-container">
+                <span>
+                    You must to be logged in to purchase tickets.
+                </span>
+                <div className="purchase-modal-no-user-button-container">
+                    <button
+                        className="purchase-modal-login-button standard-button"
+                        onClick={() => cancelPurchase()}
+                    >
+                        Cancel
+                    </button>
+                    <button
+                        className="purchase-modal-login-button standard-button"
+                        onClick={() => showLoginModal()}
+                        >
+                        Login
+                    </button>
+                </div>
+            </div>
+        )
+    }
+
 
     return(
         <div className="purchase-modal-container">
@@ -80,6 +117,7 @@ const PurchaseModal: React.FC<IPurchaseModalProps> = ({screening, showSeatMap, s
                     selectTickets={selectTickets} 
                     screening={currentScreening} 
                     refetchScreening={refetchScreening}
+                    closeWindow={cancelPurchase}
                 /> : 
                 <TicketView 
                     selectTickets={selectTickets} 
