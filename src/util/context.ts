@@ -13,8 +13,6 @@ export const userContext = createContext<IUserContext>({
 
 export const purchaseModalContext = createContext<IPurchaseModalContext>({
     setShowPurchase: () => {},
-    showSeatingMap: false,
-    setShowSeatingMap: (value: boolean) => {},
 })
 
 export const seatingContext = createContext<ISeatingContext>({
