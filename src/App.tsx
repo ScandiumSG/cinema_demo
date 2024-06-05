@@ -1,23 +1,24 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import './App.css'
 import HeaderComponent from "@/components/header/HeaderComponent";
-import { userContext } from './util/context';
-import { Navigate, Route, Routes } from 'react-router-dom';
-import LandingPage from './pages/LandingPage/LandingPage';
-import MovieOverviewPage from './pages/MovieOverview/MovieOverviewPage';
+import { blurContext, userContext } from './util/context';
+
 import { IUserData } from './interfaces/UserInterfaces';
 import { readSessionStorage } from './util/userUtil';
-import MoviePage from './pages/MoviePage/MoviePage';
-import RegistrationPage from './pages/RegistrationPage/RegistrationPage';
-import ProfilePage from './pages/ProfilePage/ProfilePage';
-import UpcomingScreenings from './pages/UpcomingScreenings/UpcomingScreenings';
-import ScreeningPage from './pages/ScreeningPage/ScreeningPage';
+import PageRouter from './PageRouter';
+
 
 function App() {
   const [user, setUser] = useState<IUserData|undefined>(readSessionStorage())
   const [showModal, setShowModal] = useState<boolean>(false);
+  const [blurArray, setBlurArray] = useState<string[]>([]);
 
   const showLoginModal = () => {
+    if (showModal === false) {
+      addToBlurArray("Login");
+    } else {
+      removeFromBlurArray("Login");
+    }
     setShowModal(!showModal);
   }
 
@@ -31,6 +32,24 @@ function App() {
     }
   }
 
+  const addToBlurArray = (modalName: string) =>  {
+    const tempBlurArray = blurArray;
+    if (!tempBlurArray.includes(modalName)) {
+      tempBlurArray.push(modalName)
+    }
+    setBlurArray([...tempBlurArray])
+  }
+
+  const removeFromBlurArray = (modalName: string) =>  {
+    const tempBlurArray = [...blurArray];
+    const modalIndex = tempBlurArray.indexOf(modalName);
+    if (modalIndex === -1) {
+      return;
+    }
+    tempBlurArray.splice(modalIndex, 1);
+    setBlurArray(tempBlurArray);
+  }
+
   return (
     <>
       <userContext.Provider
@@ -41,44 +60,16 @@ function App() {
           loginModal: showModal
         }}
       >
-
-        <HeaderComponent />
-        <div className="app-container">
-          <Routes>
-            <Route 
-              path="/"
-              element={<LandingPage />}
-              />
-            <Route 
-              path="/movies/"
-              element={<MovieOverviewPage />}
-              />
-            <Route 
-              path="/movies/:id"
-              element={<MoviePage />}
-            />
-            <Route 
-              path="/screening/:movieId/"
-              element={<ScreeningPage />}
-            />
-            <Route 
-              path="screening/upcoming"
-              element={<UpcomingScreenings />}
-            />
-            <Route 
-              path="user/profile"
-              element={<ProfilePage />}
-            />
-            <Route 
-              path="/user/register/"
-              element={<RegistrationPage />}
-            /> 
-            <Route // Send unknown paths back to landing page
-              path="*"
-              element={<Navigate replace to="/" />}
-              />
-          </Routes>
-        </div>
+        <blurContext.Provider
+          value={{
+            blurArray: blurArray,
+            removeFromArray: removeFromBlurArray,
+            addToArray: addToBlurArray,
+          }}
+        >
+          <HeaderComponent />
+          <PageRouter />
+        </blurContext.Provider>
       </userContext.Provider>
     </>
   )

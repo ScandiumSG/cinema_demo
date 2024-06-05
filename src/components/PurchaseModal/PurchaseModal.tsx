@@ -1,30 +1,35 @@
 import "./PurchaseModal.css"
 import { useContext, useEffect, useState } from "react";
 import { ITicketHandler } from "@/interfaces/ITicket";
-import { IPurchaseModalContext, IScreening } from "@/interfaces/IScreening";
-import { translateDateTimeStringWithoutSeconds } from "@/util/timeUtils";
-import { purchaseModalContext } from "@/util/context";
+import { IScreening } from "@/interfaces/IScreening";
 import SeatView from "./SeatView/SeatView";
 import TicketView from "./TicketView/TicketView";
-import { getTicketsForScreening } from "@/util/apiUtils";
+import { getSeatsForTheater, getTicketsForScreening } from "@/util/apiUtils";
+import PurchaseHeader from "./PurchaseHeader/PurchaseHeader";
+import { IUserContext } from "@/interfaces/UserInterfaces";
+import { userContext } from "@/util/context";
+import ISeat from "@/interfaces/ISeat";
 
 interface IPurchaseModalProps {
     screening: IScreening,
+    showSeatMap: boolean,
+    setShowSeatMap: (value: boolean) => void,
+    removeDisplay: () => void,
 }
 
 const defaultTickets: ITicketHandler = {
     totalTickets: 0
 }
 
-const PurchaseModal: React.FC<IPurchaseModalProps> = ({screening}) => {
+const PurchaseModal: React.FC<IPurchaseModalProps> = ({screening, showSeatMap, setShowSeatMap, removeDisplay}) => {
     const [currentScreening, setCurrentScreening] = useState<IScreening | undefined>()
+    const [theaterSeatArrangement, setTheaterSeatArrangement] = useState<ISeat[]>()
     const [selectTickets, setSelectTickets] = useState<ITicketHandler>(defaultTickets);
-    const [showSeatMap, setShowSeatMap] = useState<boolean>(false);
-    const { setShowPurchase } = useContext<IPurchaseModalContext>(purchaseModalContext);
+    const { user, showLoginModal } = useContext<IUserContext>(userContext);
 
     const cancelPurchase = () => {
         setSelectTickets({...defaultTickets})
-        setShowPurchase(undefined);
+        removeDisplay();
     }
 
     const addTicket = (ticketType: string) => {
@@ -45,43 +50,81 @@ const PurchaseModal: React.FC<IPurchaseModalProps> = ({screening}) => {
         }
     }
 
+    const fetchSeatsForTheater = async () => {
+        const seats = await fetch(getSeatsForTheater(screening.theater.id))
+            .then((res) => res.json())
+            .then((res) => res.data)
+        setTheaterSeatArrangement(seats);    
+        return seats;
+    }
+
     const refetchScreening = async () => {
         await fetch(getTicketsForScreening(screening.id, screening.movie.id))
             .then((res) => res.json())
             .then((res) => res.data)
             .then((res) => {
                 const tempScreening = screening;
-                console.log(tempScreening);
                 tempScreening.tickets = res;
-                console.log(tempScreening);
+                tempScreening.theater.seats = theaterSeatArrangement!;
                 return tempScreening;
             })
             .then((tempScreening) => setCurrentScreening({...tempScreening}))
-            .then(() => console.log("Fetched screening data"))
     }
 
     useEffect(() => {
-        const interval = setInterval(() => refetchScreening(), 10000)
-        return () => {
-            clearInterval(interval);
+        fetchSeatsForTheater()
+    }, [screening])
+
+    useEffect(() => {
+        if (theaterSeatArrangement) {
+            const interval = setInterval(() => refetchScreening(), 10000)
+            return () => {
+                clearInterval(interval);
+            }
         }
-    }, [])
+    }, [theaterSeatArrangement])
+
+    if (!user) {
+        return(
+            <div className="purchase-modal-no-user-container">
+                <span>
+                    You must to be logged in to purchase tickets.
+                </span>
+                <div className="purchase-modal-no-user-button-container">
+                    <button
+                        className="purchase-modal-login-button standard-button"
+                        onClick={() => cancelPurchase()}
+                    >
+                        Cancel
+                    </button>
+                    <button
+                        className="purchase-modal-login-button standard-button"
+                        onClick={() => showLoginModal()}
+                        >
+                        Login
+                    </button>
+                </div>
+            </div>
+        )
+    }
+
 
     return(
         <div className="purchase-modal-container">
-            <div className="purchase-modal-screening-info">
-                <h3>{screening.movie.title}</h3>
-                <p>{translateDateTimeStringWithoutSeconds(screening.startTime)}</p>
-                <p>Theater: {screening.theater.name}</p>
-            </div>
-            <div className="purchase-modal-cancel-purchase-container">
-                <button className="purchase-modal-cancel-purchase" onClick={() => cancelPurchase()}>
-                    X
-                </button>
-            </div>
+            <PurchaseHeader cancelPurchase={cancelPurchase} screening={screening}/>
             {showSeatMap ?
-                <SeatView selectTickets={selectTickets} screening={currentScreening} refetchScreening={refetchScreening}/> : 
-                <TicketView selectTickets={selectTickets} addTicket={addTicket} removeTicket={removeTicket} setShowSeatMap={setShowSeatMap} />
+                <SeatView 
+                    selectTickets={selectTickets} 
+                    screening={currentScreening} 
+                    refetchScreening={refetchScreening}
+                    closeWindow={cancelPurchase}
+                /> : 
+                <TicketView 
+                    selectTickets={selectTickets} 
+                    addTicket={addTicket} 
+                    removeTicket={removeTicket} 
+                    setShowSeatMap={setShowSeatMap} 
+                />
             }
         </div>
     )

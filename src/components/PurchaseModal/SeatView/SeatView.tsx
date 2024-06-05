@@ -14,11 +14,13 @@ interface ISeatViewProps {
     selectTickets: ITicketHandler,
     screening: IScreening | undefined,
     refetchScreening: () => void,
+    closeWindow: () => void,
 }
 
-const SeatView: React.FC<ISeatViewProps> = ({selectTickets, screening, refetchScreening}) => {
+const SeatView: React.FC<ISeatViewProps> = ({selectTickets, screening, refetchScreening, closeWindow}) => {
     const [seatSelection, setSeatSelection] = useState<ISeat[]>();
     const [isLoading, setIsLoading] = useState<boolean>(false);
+    const [purchaseComplete, setPurchaseComplete] = useState<boolean>(false);
     const { user } = useContext<IUserContext>(userContext);
 
     const changeSeatSelection = (seats: ISeat[]) => {
@@ -50,13 +52,31 @@ const SeatView: React.FC<ISeatViewProps> = ({selectTickets, screening, refetchSc
             .then((res) => res.json())
             .then((res) => res.data)
             .then(() => refetchScreening())
-            .finally(() => setIsLoading(false))
+            .finally(() => {
+                setIsLoading(false)
+                setPurchaseComplete(true);
+            })
     }
 
-    if (screening === undefined) {
+    if (screening?.theater.seats == undefined) {
         return(
             <div>
                 <img src={loading} />
+            </div>
+        )
+    }
+
+    if (purchaseComplete) {
+        return(
+            <div className="purchase-modal-purchase-complete-container">
+                <h3>Purchase complete</h3>
+                <p> Thank you for your purchase of {seatSelection?.length} tickets to {screening.movie.title}.</p>
+                <button
+                    className="standard-button purchase-modal-return-button"
+                    onClick={() => closeWindow()}
+                > 
+                    Return to screening
+                </button>
             </div>
         )
     }

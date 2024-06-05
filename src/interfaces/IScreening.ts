@@ -24,7 +24,5 @@ export interface IUpcomingScreening {
 }
 
 export interface IPurchaseModalContext {
-    setShowPurchase: (screening: IScreening | undefined) => void,
-    showSeatingMap: boolean,
-    setShowSeatingMap: () => void,
+    setShowPurchase: (screening: IScreening ) => void,
 }

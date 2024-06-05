@@ -5,16 +5,10 @@ import { getSpecificMovieById } from "@/util/apiUtils";
 import ScreeningMovieDetails from "@/components/ScreeningMovieDetails/ScreeningMoviedetails";
 import UpcomingScreeningList from "@/components/UpcomingScreeningList/UpcomingScreeningList";
 import { IMovieDetails } from "@/interfaces/IMovie";
-import { purchaseModalContext } from "@/util/context";
-import PurchaseModal from "@/components/PurchaseModal/PurchaseModal";
-import { IScreening } from "@/interfaces/IScreening";
 
 const ScreeningPage = () => {
     const { movieId } = useParams();
     const [movieData, setMovieData] = useState<IMovieDetails>();
-    const [selectedScreening, setSelectedScreening] = useState<IScreening>();
-    const [showPurchase, setShowPurchase] = useState<boolean>(true);
-    const [showSeatingMap, setShowSeatingMap] = useState<boolean>(false);
     const navigate = useNavigate();
 
     const fetchData = async () => {
@@ -35,18 +29,6 @@ const ScreeningPage = () => {
             .catch((err: Error) => console.log(err.message));
     }
 
-    const displayPurchase = (screening: IScreening | undefined) => {
-        console.log(screening);
-        console.log(showPurchase);
-        setShowPurchase(!showPurchase);
-        if (screening) {
-            setSelectedScreening({...screening});
-        }
-    }
-
-    const displaySeating = () => {
-        setShowSeatingMap(!showSeatingMap);
-    }
 
     useEffect(() => {
         fetchData();
@@ -62,25 +44,16 @@ const ScreeningPage = () => {
     }
 
     return(
-        <purchaseModalContext.Provider
-        value={{
-            setShowPurchase: displayPurchase, 
-            showSeatingMap: showSeatingMap,
-            setShowSeatingMap: displaySeating
-        }}
-        >
-        {(showPurchase && selectedScreening) && <PurchaseModal screening={{...selectedScreening}}/>}
-        <div className="screening-page-parent-container">
-            <div className="screening-page-container">
-                <div className="screening-content-container">
-                    <ScreeningMovieDetails movie={movieData} />
-                    <div className="screening-upcoming-screenings">
-                        <UpcomingScreeningList movieId={movieData.id}/>
+            <div className="screening-page-parent-container">
+                <div className="screening-page-container">
+                    <div className="screening-content-container">
+                        <ScreeningMovieDetails movie={movieData} />
+                        <div className="screening-upcoming-screenings">
+                            <UpcomingScreeningList movieId={movieData.id}/>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        </purchaseModalContext.Provider>
     )
 }
 
