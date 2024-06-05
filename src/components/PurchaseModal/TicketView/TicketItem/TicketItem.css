@@ -1,16 +1,20 @@
 .ticket-item-container {
     box-shadow: 0.4rem;
-    border: 1px solid black;
+    border: 1px solid var(--light-border-color);
+    border-radius: 10px;
 
     display: flex;
     flex-direction: column;
 
     text-align: left;
     padding: 0.3rem;
+    margin-bottom: 0.8rem;
+
 }
 
 .ticket-item-category-header {
     margin: 0px;
+    font-variant: small-caps;
 }
 
 .ticket-item-price {
