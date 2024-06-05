@@ -14,7 +14,6 @@ const TheaterSeatSelector: React.FC<ITheaterSeatMap> = ({occupiedSeats, currentS
     const [seatData, setSeatData] = useState<ISeatData[]>();
     const [maxX, setMaxX] = useState<number>(400);
     const [maxY, setMaxY] = useState<number>(400);
-
     const { selectSeat } = useContext<ISeatingContext>(seatingContext);
 
     const emitSeat = (e: any) => {
@@ -79,11 +78,11 @@ const TheaterSeatSelector: React.FC<ITheaterSeatMap> = ({occupiedSeats, currentS
     }, [theaterSeats, occupiedSeats])
 
     if (seatData === undefined || occupiedSeats === undefined) {
-        return(<div>Could not find any seats associated with the theater.</div>)
+        return(<div>An error occured.</div>)
     } 
 
     return(
-        <svg width={maxX} height={maxY} viewBox={`0 0 ${maxX} ${maxY}`} xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
+        <svg width="100%" height="100%" viewBox={`0 0 ${maxX} ${maxY}`} xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
             {/* Define the movie seat symbol */}
             <symbol id="movie-seat" viewBox={`0 0 ${maxX-10} ${maxY-10}`} >
                 {/* Left arm */}
@@ -98,14 +97,14 @@ const TheaterSeatSelector: React.FC<ITheaterSeatMap> = ({occupiedSeats, currentS
                 rx="2"/>
             </symbol>
 
-            <symbol id="movie-screen" viewBox={`0 0 ${maxX} ${maxY}`} >
+            <symbol id="movie-screen" viewBox={`0 0 ${maxX-10} ${maxY-10}`} >
                 <path d={`M 1,30 Q ${maxX/2},-2 ${maxX},30`} fill="none" stroke="black" strokeWidth="3"/>
                 <text x="50%" y="35" fontSize="20" textAnchor="middle" fill="black">Screen</text>
             </symbol>
 
             <use 
                 xlinkHref="#movie-screen"
-                x={"0"}
+                x={"10"}
                 y={"0"}
             />
 
@@ -114,7 +113,7 @@ const TheaterSeatSelector: React.FC<ITheaterSeatMap> = ({occupiedSeats, currentS
                     key={index}
                     className={`theater-seat-map-seat-symbol ${determineSeatOccupancy(seat.seatId, seat.available)}`}
                     xlinkHref="#movie-seat"
-                    x={seat.seatNumber * 34 + (seat.seatRow % 2 * 11) + 20}
+                    x={seat.seatNumber * 34 + (seat.seatRow % 2 * 11)}
                     y={seat.seatRow * 38 + 60}
                     seat-id={seat.seatId}
                     seat-row={seat.seatRow}
