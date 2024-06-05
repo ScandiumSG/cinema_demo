@@ -2,10 +2,10 @@ import "./PurchaseModal.css"
 import { useEffect, useState } from "react";
 import { ITicketHandler } from "@/interfaces/ITicket";
 import { IScreening } from "@/interfaces/IScreening";
-import { translateDateTimeStringWithoutSeconds } from "@/util/timeUtils";
 import SeatView from "./SeatView/SeatView";
 import TicketView from "./TicketView/TicketView";
 import { getSeatsForTheater, getTicketsForScreening } from "@/util/apiUtils";
+import PurchaseHeader from "./PurchaseHeader/PurchaseHeader";
 
 interface IPurchaseModalProps {
     screening: IScreening,
@@ -21,7 +21,6 @@ const defaultTickets: ITicketHandler = {
 const PurchaseModal: React.FC<IPurchaseModalProps> = ({screening, showSeatMap, setShowSeatMap, removeDisplay}) => {
     const [currentScreening, setCurrentScreening] = useState<IScreening | undefined>()
     const [selectTickets, setSelectTickets] = useState<ITicketHandler>(defaultTickets);
-
 
     const cancelPurchase = () => {
         console.log("purchaseModal")
@@ -75,16 +74,7 @@ const PurchaseModal: React.FC<IPurchaseModalProps> = ({screening, showSeatMap, s
 
     return(
         <div className="purchase-modal-container">
-            <div className="purchase-modal-screening-info">
-                <h3>{screening.movie.title}</h3>
-                <p>{translateDateTimeStringWithoutSeconds(screening.startTime)}</p>
-                <p>Theater: {screening.theater.name}</p>
-            </div>
-            <div className="purchase-modal-cancel-purchase-container">
-                <button className="purchase-modal-cancel-purchase" onClick={() => cancelPurchase()}>
-                    X
-                </button>
-            </div>
+            <PurchaseHeader cancelPurchase={cancelPurchase} screening={screening}/>
             {showSeatMap ?
                 <SeatView 
                     selectTickets={selectTickets} 

@@ -1,0 +1,27 @@
+.purchase-modal-header-container {
+    border-bottom: 1px solid var(--light-border-color);
+    margin-bottom: 2rem;
+}
+
+.purchase-modal-screening-info > h3{
+    margin: 0px;
+}
+
+.purchase-modal-cancel-purchase-container {
+    position: absolute;
+    top: 0.2rem;
+    right: 0.2rem;
+
+    float: right;
+}
+
+.purchase-modal-cancel-purchase {
+    background: none;
+}
+
+@media only screen and (max-width: calc(750px)) {
+    .purchase-modal-cancel-purchase-container {
+        right: 2rem;
+    }
+
+}
