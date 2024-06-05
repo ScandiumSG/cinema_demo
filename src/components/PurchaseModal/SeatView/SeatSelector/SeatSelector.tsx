@@ -95,10 +95,10 @@ const SeatSelector: React.FC<ISeatSelectorProps> = ({ticketSelection, screening,
                 toggleAllowSeating: lockSeatSelection
             }}>
                 <div        
-                    className="seat-selector-theater-seat-selector-parent-container"
+                    className="seat-selector-theater-container"
                 >
                     {seatSelection && <TicketCounter selection={seatSelection}/>}
-                    <div className="seat-selector-theater-selector-container">
+                    <div className="seat-selector-container">
                         <TheaterSeatSelector 
                             occupiedSeats={occupiedSeats}
                             currentSelected={seatSelection}
@@ -106,7 +106,7 @@ const SeatSelector: React.FC<ISeatSelectorProps> = ({ticketSelection, screening,
                         />
                     </div>
                 </div>
-                <ScaleControl />
+                {/*<ScaleControl />*/}
             </seatingContext.Provider>
         </div>
     )
