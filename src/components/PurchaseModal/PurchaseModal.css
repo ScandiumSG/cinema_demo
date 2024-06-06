@@ -1,5 +1,5 @@
 .purchase-modal-container {
-    background-color: var(--card-bg-color);
+    background-color: var(--secondary-card-bg-color);
     z-index: 5;
     border-radius: 10px;
 
@@ -20,7 +20,7 @@
 }
 
 .purchase-modal-no-user-container {
-    background-color: var(--card-bg-color);
+    background-color: var(--secondary-card-bg-color);
     z-index: 5;
     border-radius: 10px;
 

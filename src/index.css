@@ -12,19 +12,28 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  
+  /*
   --primary-text-color: whitesmoke;
-  --card-bg-color: gainsboro;
+  --card-bg-color: lightsteelblue;
   --light-border-color: lightgray;
   --site-bg-color: whitesmoke(221, 235, 240);
-  /* --secondary-card-bg-color: rgba(186, 186, 255, 0.473); */
   --secondary-card-bg-color: honeydew;
   --button-color: rgb(42, 214, 157);
 
   --header-height: 3rem;
-  --header-bg-color: lightgray;
-  --accent-color: khaki;
+  --header-bg-color: steelblue;
+  --accent-color: magenta;
+  */
+  --site-bg-color: whitesmoke;
+  --light-border-color: #B5BAD0;
+  --card-bg-color: #81D2C7;
+  --secondary-card-bg-color: #C8D5B9;
+  --button-color: #81D2C7;
 
+  --secondary-text-color: #F4EDEA;
+  --header-height: 3rem;
+  --header-bg-color: #7389AE;
+  --accent-color: #7389AE;
 }
 
 a {
