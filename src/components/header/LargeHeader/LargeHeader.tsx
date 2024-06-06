@@ -8,7 +8,7 @@ const LargeHeader = () => {
                 Logo placeholder
             </div>
             <PageLinks />
-            <UserOverview/>
+            <UserOverview />
         </> 
     )
 }
