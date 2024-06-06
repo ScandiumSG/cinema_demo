@@ -1,5 +1,5 @@
 import PageLinks from "./PageLinks/PageLinks";
-import UserOverview from "./UserOverview/UserOverview";
+import UserOverview from "../UserOverview/UserOverview";
 
 const LargeHeader = () => {
     return(
