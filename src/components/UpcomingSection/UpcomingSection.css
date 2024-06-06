@@ -10,15 +10,15 @@
 .upcoming-section-header {
     padding: 0% 10%;
 
-    background-color: var(--card-bg-color);
-    border: 1px solid var(--light-border-color);
+    background-color: var(--site-bg-color);
+    border-bottom: 1px solid var(--light-border-color);
     border-radius: 15px 15px 0px 0px;
     margin-bottom: 5px;
     margin-top: 0px;
 
     position: sticky;
     top: 0rem;
-    z-index: 5;
+    z-index: 2;
 }
 
 .upcoming-card-list-container {
