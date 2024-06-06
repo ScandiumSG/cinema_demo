@@ -46,12 +46,19 @@ const ScreeningPage = () => {
     return(
             <div className="screening-page-parent-container">
                 <div className="screening-page-container">
+                    <h2 className="screening-movie-details-title">
+                        {movieData.title}
+                    </h2>
                     <div className="screening-content-container">
-                        <ScreeningMovieDetails movie={movieData} />
+                        <img
+                            className="screening-movie-details-poster"
+                            src="https://image.tmdb.org/t/p/original/hkxxMIGaiCTmrEArK7J56JTKUlB.jpg"
+                        />
                         <div className="screening-upcoming-screenings">
                             <UpcomingScreeningList movieId={movieData.id}/>
                         </div>
                     </div>
+                    <ScreeningMovieDetails movie={movieData} />
                 </div>
             </div>
     )

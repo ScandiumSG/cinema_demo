@@ -9,17 +9,10 @@ interface IMovieInput {
 const ScreeningMovieDetails: React.FC<IMovieInput> = ({movie}) => {
     return(
         <div className="screening-movie-details">
-            <h2 className="screening-movie-details-title">
-                {movie.title}
-            </h2>
             <div className="screening-movie-information">
-                <img
-                    className="screening-movie-details-poster"
-                    src="https://image.tmdb.org/t/p/original/hkxxMIGaiCTmrEArK7J56JTKUlB.jpg"
-                    />
                 <div className="screening-movie-details-info">
-                    <p className="screening-movie-deatils-description-header">
-                        Movie summary:
+                    <p className="screening-movie-details-description-header">
+                        Information about {movie.title}:
                     </p>
                     <p className="screening-movie-details-description">
                         {movie.description}

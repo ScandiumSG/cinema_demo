@@ -44,6 +44,17 @@
     grid-template-columns: 30rem calc(100% - 30rem);
 }
 
+.screening-movie-details-title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 1px solid var(--light-border-color);
+
+    position: relative;
+    margin-top: 0px;
+    height: 4rem;
+}
+
 .screening-content-theater-map {
     display: flex;
     place-content: center;
