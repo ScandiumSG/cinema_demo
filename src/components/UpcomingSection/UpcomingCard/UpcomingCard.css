@@ -4,8 +4,10 @@
     border-top: 1px solid var(--light-border-color);
     background-color: var(--card-bg-color);
     border-radius: 0.2rem;
-    height: fit-content;
     padding-bottom: 0.4rem;
+    
+    height: fit-content;
+    width: 100%;
 }
 
 .upcoming-card-start-time {
@@ -20,4 +22,5 @@
 
 .upcoming-card-parent-container {
     margin: 5px 5px 5px 5px;
+    width: 300px;
 }
