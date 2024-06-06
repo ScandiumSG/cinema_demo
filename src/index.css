@@ -14,15 +14,16 @@
 
   
   --primary-text-color: whitesmoke;
-  --card-bg-color: whitesmoke;
+  --card-bg-color: gainsboro;
   --light-border-color: lightgray;
-  --site-bg-color: rgb(221, 235, 240);
-  --secondary-card-bg-color: rgba(186, 186, 255, 0.473);
+  --site-bg-color: whitesmoke(221, 235, 240);
+  /* --secondary-card-bg-color: rgba(186, 186, 255, 0.473); */
+  --secondary-card-bg-color: honeydew;
   --button-color: rgb(42, 214, 157);
 
   --header-height: 3rem;
-  --header-bg-color: goldenrod;
-  --header-border-color: Royalblue;
+  --header-bg-color: lightgray;
+  --accent-color: khaki;
 
 }
 

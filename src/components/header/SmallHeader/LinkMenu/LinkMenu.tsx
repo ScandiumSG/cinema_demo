@@ -17,7 +17,9 @@ const LinkMenu = () => {
     return(
         <div className="header-dropdown-parent-container">
             <div 
-                className={showDropdown ? "header-dropdown-button-container clickable active" : "header-dropdown-button-container clickable"}
+                className={showDropdown ? 
+                    "header-dropdown-button-container clickable active" : "header-dropdown-button-container clickable"
+                }
                 onClick={() => setShowDropdown(!showDropdown)}
             >
                 <img 
