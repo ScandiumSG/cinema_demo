@@ -2,6 +2,7 @@ import { IScreening } from "@/interfaces/IScreening";
 import "./UpcomingScreeningGroup.css"
 import { useEffect, useState } from "react";
 import ScreeningItem from "./ScreeningItem/ScreeningItem";
+import { determineDayString } from "@/util/timeUtils";
 
 interface IScreeningProps {
     date: string,
@@ -25,7 +26,7 @@ const UpcomingScreeningGroup: React.FC<IScreeningProps> = ({date, screenings}) =
     return(
         <div className="upcoming-screening-group-parent-container">
             <span className="upcoming-screening-group-date-header">
-                {date}
+                {determineDayString(date)}
             </span>
             <div className="upcoming-screening-group-card-container">
                 {groupedScreenings!.map((screening: IScreening, index: number) => {

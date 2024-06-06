@@ -35,6 +35,9 @@ export const getRoundedCurrentTimeIsoString = () => {
 }
 
 export const determineDayString = (inputDateString: string) => {
+
+    const dayOfWeek: String[] = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+
     const inputDate = new Date(inputDateString);
     const today = new Date();
     const tomorrow = new Date(today);
@@ -45,12 +48,15 @@ export const determineDayString = (inputDateString: string) => {
     tomorrow.setHours(0, 0, 0, 0);
     inputDate.setHours(0, 0, 0, 0);
 
+    const dateObject: Date = new Date(inputDateString);
+    let returnString = "";
     if (inputDate.getTime() === today.getTime()) {
-        return "Today";
+        returnString += "Today";
     } else if (inputDate.getTime() === tomorrow.getTime()) {
-        return "Tomorrow";
+        returnString += "Tomorrow";
     } else {
-        const dateObject: Date = new Date(inputDateString);
-        return dateObject.toLocaleDateString();
+        returnString += `${dayOfWeek[dateObject.getDay()]}, ${dateObject.toLocaleDateString("no", {day: 'numeric', month: 'long', year: 'numeric'})}`;
     }
+
+    return returnString;
 }
