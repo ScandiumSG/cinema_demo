@@ -3,3 +3,12 @@ export interface IBlurContext {
     removeFromArray: (modalName: string) => void;
     addToArray: (modalName: string) => void;
 }
+
+export interface INavigationItem {
+    display: string,
+    route: string,
+}
+
+export interface IHeaderNavigation {
+    navItems: INavigationItem[],
+}

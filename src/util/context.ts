@@ -2,7 +2,7 @@ import { createContext } from 'react'
 import { IUserContext } from '@/interfaces/UserInterfaces';
 import { IPurchaseModalContext } from '@/interfaces/IScreening';
 import ISeat, { ISeatingContext } from '@/interfaces/ISeat';
-import { IBlurContext } from '@/interfaces/IUtils';
+import { IBlurContext, IHeaderNavigation, IHeaderNavigationContext } from '@/interfaces/IUtils';
 
 export const userContext = createContext<IUserContext>({
     user: {},
@@ -27,4 +27,8 @@ export const blurContext = createContext<IBlurContext>({
     blurArray: [],
     removeFromArray: (modalName: string) => {},
     addToArray: (modalName: string) => {},
+})
+
+export const headerNavigationContext = createContext<IHeaderNavigation>({
+    navItems: [{display: "", route: ""}]
 })
