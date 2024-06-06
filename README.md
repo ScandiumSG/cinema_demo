@@ -10,7 +10,7 @@
 
 ## About
 
-The contents of this repository is the frontend service for a cinema/movie-theater webpage. The associated backend is in a separate repostiory located at [cinema-server-backend](https://github.com/ScandiumSG/cinema_demo_backend).
+The contents of this repository is the frontend service for a cinema/movie-theater webpage. The project is not connected to any actual cinema, it is just a personal project. The associated backend is in a separate repostiory located at [cinema-server-backend](https://github.com/ScandiumSG/cinema_demo_backend).
 
 ### Built with
 ![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)
