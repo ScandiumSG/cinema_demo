@@ -21,3 +21,10 @@
     border-radius: 5px;
     border: 0.1px solid var(--light-border-color);
 }
+
+.movie-card-additional-information {
+    display: flex;
+    justify-content: space-between;
+
+    padding: 0px 1.5rem;
+}
