@@ -21,15 +21,30 @@ const baseScreeningUrl = baseUrl + "/screening"
 export const getScreeningDetails = (movieId: number, screeningId: number) => {
     return baseScreeningUrl + "/" + screeningId + "/" + movieId;
 }
-export const getUpcomingScreenings = (dateLimit: string, itemLimit: number) => {
-    return baseScreeningUrl + "/upcoming/" + dateLimit + "?limit=" + itemLimit;
+export const getUpcomingScreenings = (dateLimit: string, itemLimit: number, theaterFilter: number[]) => {
+    let url = baseScreeningUrl;
+    url += `/upcoming?date=${dateLimit}`
+    if (theaterFilter.length !== 0) {
+        const filterString: string = theaterFilter.map((id) => `,${id}`).join("");
+        url += `&theaterFilter=${filterString.substring(1, filterString.length)}`
+    }
+    url += `&limit=${itemLimit}`
+    return url
 }
-export const getUpcomingSpecificScreenings = (movieId: number, dateLimit: string, itemLimit: number) => {
-    return baseScreeningUrl + "/upcoming/" + movieId + "/" + dateLimit + "?limit=" + itemLimit;
+export const getUpcomingSpecificScreenings = (movieId: number, dateLimit: string, itemLimit: number, theaterFilter: number[]) => {
+    let url = baseScreeningUrl;
+    url += `/upcoming/${movieId}?date=${dateLimit}`
+    if (theaterFilter.length !== 0) {
+        const filterString: string = theaterFilter.map((id) => `,${id}`).join("");
+        url += `&theaterFilter=${filterString}`
+    }
+    url += `&limit=${itemLimit}`
+    return url;
 }
 
 // THEATER/SEATING ENDPOINT
 const baseTheaterUrl = baseUrl + "/location";
+export const getTheaters = () => baseTheaterUrl;
 export const getSeatsForTheater = (theaterId: number) => {
     return `${baseTheaterUrl}/seats/${theaterId}`
 }
