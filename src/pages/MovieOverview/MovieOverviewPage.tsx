@@ -31,7 +31,7 @@ const MovieOverviewPage = () => {
         <div className="movie-card-list-parent-container">
             <div className="movie-card-list-container">
                 {filteredMoviesList?.map((movie, index) => (
-                    <MovieCard key={index} movie={movie} />
+                    <MovieCard key={index} movie={movie} navigation={`/movies/${movie.id}`}/>
                 ))}
             </div>
         </div>
