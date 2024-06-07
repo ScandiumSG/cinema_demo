@@ -9,6 +9,7 @@ interface IScreeningFilterProps {
 }
 
 const ScreeningFilter: React.FC<IScreeningFilterProps> = ({ filterChange} ) => {
+    const [minimizedFilter, setMinimizedFilter] = useState<boolean>(true);
     const [theaters, setTheaters] = useState<ITheater[]>();
     const [theaterFilter, setTheaterFilter] = useState<Record<number, boolean>>();
 
@@ -46,12 +47,31 @@ const ScreeningFilter: React.FC<IScreeningFilterProps> = ({ filterChange} ) => {
         return(<div>Loading...</div>)
     }
 
+    if (minimizedFilter) {
+        return(
+            <div 
+                className="screening-filter-minimized-parent-container" 
+                onClick={() => setMinimizedFilter(false)}
+            >
+                <div>
+                    Configure filters
+                </div>
+                <button 
+                    className="screening-filter-show-filter-button"
+                >
+                    <img className="screening-filter-show-filter-button-icon" src="https://uxwing.com/wp-content/themes/uxwing/download/e-commerce-currency-shopping/filter-setting-icon.png" />
+                </button>
+            </div>
+        )
+    }
+
     return (
         <div className="screening-filter-parent-container">
             <div>
                 Date change
             </div>
             <div>
+                <span>Theater filter:</span>
                 {theaters.map((theater: ITheater, index: number) => (
                     <TheaterFilterItem 
                         key={index} 
