@@ -49,7 +49,13 @@ const SeatView: React.FC<ISeatViewProps> = ({selectTickets, screening, refetchSc
         }
 
         await fetch(postTicket(), options)
-            .then((res) => res.json())
+            .then((res) => {
+                if (res.status === 204) {
+                    return res;
+                } else {
+                    return res.json()}
+                }
+            )
             .then((res) => res.data)
             .then(() => refetchScreening())
             .finally(() => {
