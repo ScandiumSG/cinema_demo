@@ -1,17 +1,23 @@
 import { IScreening } from "@/interfaces/IScreening"
 import "./UpcomingCard.css"
 import { getTimeFromDateTimeString } from "@/util/timeUtils"
-import ScreeningMovieCard from "@/components/ScreeningMovieCard/ScreeningMovieCard"
+import MovieCard from "@/components/MovieCard/MovieCard"
+import { useNavigate } from "react-router-dom"
 
 interface IUpcomingCard {
     screening: IScreening,
 }
 
 const UpcomingCard: React.FC<IUpcomingCard> = ({screening}) => {
+    const navigate = useNavigate();
+
+    const handleNavigation = () => {
+        navigate(`/screening/${screening.movie.id}`)
+    }
 
     return(
-        <div className="upcoming-card-parent-container">
-            <ScreeningMovieCard movie={screening.movie} />
+        <div className="upcoming-card-parent-container clickable" onClick={() => handleNavigation()}>
+            <MovieCard movie={screening.movie} navigation={undefined}/>
             <div className="upcoming-card-locale-details">
                 <p className="upcoming-card-start-time">
                     {getTimeFromDateTimeString(screening.startTime)}
