@@ -21,8 +21,9 @@ const MovieOverviewPage = () => {
 
     useEffect(() =>  {
         if (movieList) {
-            console.log(movieList[1])
-            setFilteredMovieList([...movieList]);
+            const filteredList = movieList;
+            filteredList.sort((a, b) => b.year - a.year);
+            setFilteredMovieList([...filteredList]);
         }
     }, [movieList])
 
