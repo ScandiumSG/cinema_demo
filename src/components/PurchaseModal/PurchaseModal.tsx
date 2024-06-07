@@ -60,11 +60,17 @@ const PurchaseModal: React.FC<IPurchaseModalProps> = ({screening, showSeatMap, s
 
     const refetchScreening = async () => {
         await fetch(getTicketsForScreening(screening.id, screening.movie.id))
-            .then((res) => res.json())
-            .then((res) => res.data)
+            .then((res) => { 
+                if (res.status == 204) {
+                    return res;
+                } else {
+                    return res.json();
+                }
+            })
+            .then((res) => res?.data)
             .then((res) => {
                 const tempScreening = screening;
-                tempScreening.tickets = res;
+                tempScreening.tickets = !res ? [] : res;
                 tempScreening.theater.seats = theaterSeatArrangement!;
                 return tempScreening;
             })
