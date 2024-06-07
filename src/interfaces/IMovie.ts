@@ -3,7 +3,8 @@ export interface IMovie {
     title: string,
     year: number,
     rating: string,
-    runtime: number
+    runtime: number,
+    averageRating: number,
 }
 
 export interface IMovieDetails {
@@ -12,5 +13,6 @@ export interface IMovieDetails {
     description: string,
     year: number,
     rating: string,
-    runtime: number
+    runtime: number,
+    averageRating: number,
 }
