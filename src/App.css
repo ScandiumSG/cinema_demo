@@ -14,7 +14,7 @@
   height: fit-content;
   min-height: calc(100vh - var(--header-height));
 
-  position: absolute;
+  position: relative;
   top: var(--header-height);
   margin: 0px;
   border: 0px;

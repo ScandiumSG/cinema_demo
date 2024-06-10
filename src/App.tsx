@@ -6,6 +6,7 @@ import { blurContext, userContext } from './util/context';
 import { IUserData } from './interfaces/UserInterfaces';
 import { readSessionStorage } from './util/userUtil';
 import PageRouter from './PageRouter';
+import FooterComponent from './components/Footer/FooterComponent';
 
 
 function App() {
@@ -69,6 +70,7 @@ function App() {
         >
           <HeaderComponent />
           <PageRouter />
+          <FooterComponent />
         </blurContext.Provider>
       </userContext.Provider>
     </>
