@@ -2,7 +2,7 @@ import { timeCalculator } from "@/util/timeUtils";
 import "./MovieCard.css"
 import { IMovie } from "@/interfaces/IMovie";
 import { useNavigate } from "react-router-dom";
-import StarRating from "../common/StarRating/StarRating";
+import StarRating from "../StarRating/StarRating";
 
 interface Props {
     movie: IMovie,

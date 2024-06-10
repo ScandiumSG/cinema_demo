@@ -1,5 +1,5 @@
 import "./MovieOverviewPage.css"
-import MovieCard from "@/components/MovieCard/MovieCard";
+import MovieCard from "@/components/common/MovieCard/MovieCard";
 import { IMovie } from "@/interfaces/IMovie";
 import { getMoviesUnlimited } from "@/util/apiUtils";
 import { useEffect, useState } from "react";

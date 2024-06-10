@@ -1,7 +1,7 @@
 import { IScreening } from "@/interfaces/IScreening"
 import "./UpcomingCard.css"
 import { getTimeFromDateTimeString } from "@/util/timeUtils"
-import MovieCard from "@/components/MovieCard/MovieCard"
+import MovieCard from "@/components/common/MovieCard/MovieCard"
 import { useNavigate } from "react-router-dom"
 
 interface IUpcomingCard {
