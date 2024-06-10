@@ -53,12 +53,10 @@ const ScreeningFilter: React.FC<IScreeningFilterProps> = ({ filterChange} ) => {
                 className="screening-filter-minimized-parent-container" 
                 onClick={() => setMinimizedFilter(false)}
             >
-                <div>
-                    Configure filters
-                </div>
                 <button 
-                    className="screening-filter-show-filter-button"
+                    className="screening-filter-show-filter-button standard-button"
                 >
+                    Filter
                     <img className="screening-filter-show-filter-button-icon" src="https://uxwing.com/wp-content/themes/uxwing/download/e-commerce-currency-shopping/filter-setting-icon.png" />
                 </button>
             </div>
@@ -66,10 +64,7 @@ const ScreeningFilter: React.FC<IScreeningFilterProps> = ({ filterChange} ) => {
     }
 
     return (
-        <div className="screening-filter-parent-container">
-            <div>
-                Date change
-            </div>
+        <div className="screening-filter-parent-container highlight">
             <div>
                 <span>Theater filter:</span>
                 {theaters.map((theater: ITheater, index: number) => (
@@ -81,6 +76,12 @@ const ScreeningFilter: React.FC<IScreeningFilterProps> = ({ filterChange} ) => {
                     />
                 ))}
             </div>
+            <button
+                className="screening-filter-close-container-button"
+                onClick={() => setMinimizedFilter(true)}
+            >
+                X
+            </button>
         </div>
     )
 }
