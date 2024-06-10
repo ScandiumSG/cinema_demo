@@ -11,6 +11,7 @@ import LandingPage from './pages/LandingPage/LandingPage';
 import MovieOverviewPage from './pages/MovieOverview/MovieOverviewPage';
 import { IScreening } from "./interfaces/IScreening";
 import PurchaseModal from "./components/PurchaseModal/PurchaseModal";
+import AboutPage from "./pages/AboutPage/AboutPage";
 
 const PageRouter = () => {
     const [selectedScreening, setSelectedScreening] = useState<IScreening>();
@@ -48,6 +49,10 @@ const PageRouter = () => {
                 path="/"
                 element={<LandingPage />}
                 />
+              <Route 
+                path="/about/"
+                element={<AboutPage />}
+              />
               <Route 
                 path="/movies/"
                 element={<MovieOverviewPage />}
