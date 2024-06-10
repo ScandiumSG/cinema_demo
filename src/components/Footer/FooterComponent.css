@@ -1,0 +1,31 @@
+.footer-component-parent-container {
+    min-height: var(--header-height);
+    height: fit-content;
+    min-width: 30rem;
+    width: calc(100vw - calc(2 * 4rem));
+    display: flex;
+    justify-content: right;
+    align-items: center;
+
+    display: relative;
+    bottom: 2rem;
+
+    padding: 0px 4rem;
+    margin-top: 3rem;
+    border-top: 2px solid var(--light-border-color);
+
+    background-color: var(--secondary-card-bg-color);
+}
+
+.footer-component-parent-container > div {
+    margin: 0px 2rem;
+}
+
+@media only screen and (max-width: 600px) {
+    .footer-component-parent-container {
+        width: 100vw;
+        justify-content: center;
+        padding: 0px;
+        min-width: 15rem;
+    }
+}
