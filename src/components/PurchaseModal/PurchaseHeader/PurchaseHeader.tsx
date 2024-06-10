@@ -1,4 +1,4 @@
-import { translateDateTimeStringWithoutSeconds } from "@/util/timeUtils";
+import { determineDayString, getTimeFromDateTimeString } from "@/util/timeUtils";
 import "./PurchaseHeader.css"
 import { IScreening } from "@/interfaces/IScreening";
 
@@ -12,7 +12,7 @@ const PurchaseHeader: React.FC<IPurchaseHeaderProps> = ({screening, cancelPurcha
         <div className="purchase-modal-header-container">
             <div className="purchase-modal-screening-info">
                 <h3>{screening.movie.title}</h3>
-                <p>{translateDateTimeStringWithoutSeconds(screening.startTime)}</p>
+                <p>{determineDayString(screening.startTime)} - {getTimeFromDateTimeString(screening.startTime)}</p>
                 <p>Theater: {screening.theater.name}</p>
             </div>
             <div className="purchase-modal-cancel-purchase-container">
