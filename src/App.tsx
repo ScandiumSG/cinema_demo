@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import './App.css'
 import HeaderComponent from "@/components/header/HeaderComponent";
 import { blurContext, userContext } from './util/context';

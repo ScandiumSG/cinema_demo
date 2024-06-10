@@ -1,0 +1,46 @@
+.screening-filter-minimized-parent-container {
+    display: flex;
+    flex-direction: row;
+
+    justify-content: center;
+    align-items: center;
+}
+
+.screening-filter-show-filter-button {
+    background-color: none;
+    padding: 0.5rem 1rem;
+}
+
+.screening-filter-minimized-parent-container,
+.screening-filter-parent-container {
+    transition: all 0.2s ease-in-out;
+}
+
+.screening-filter-show-filter-button-icon {
+    width: 20px;
+}
+
+.screening-filter-parent-container {
+    display: flex;
+    flex-direction: row;
+    padding: 0.2rem 1rem;
+
+    border-radius: 10px;
+    background-color: var(--card-bg-color);
+}
+
+.screening-filter-close-container-button {
+    position: relative;
+    top: 0px;
+    right: -0.5rem;
+
+    height: 1.5rem;
+    width: 1.5rem;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border: 1px solid var(--light-border-color);
+    background-color: var(--button-color)
+}
