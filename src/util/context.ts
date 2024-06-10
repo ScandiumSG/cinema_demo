@@ -2,9 +2,10 @@ import { createContext } from 'react'
 import { IUserContext } from '@/interfaces/UserInterfaces';
 import { IPurchaseModalContext } from '@/interfaces/IScreening';
 import ISeat, { ISeatingContext } from '@/interfaces/ISeat';
-import { IBlurContext, IHeaderNavigation, IHeaderNavigationContext } from '@/interfaces/IUtils';
+import { IBlurContext, IHeaderNavigation } from '@/interfaces/IUtils';
 
 export const userContext = createContext<IUserContext>({
+    // @ts-ignore comment
     user: {},
     setUser: () => {},
     loginModal: false,
@@ -16,7 +17,9 @@ export const purchaseModalContext = createContext<IPurchaseModalContext>({
 })
 
 export const seatingContext = createContext<ISeatingContext>({
+    // @ts-ignore comment
     selectSeat: (seat: ISeat) => {},
+    // @ts-ignore comment
     discardSeat: (seat: ISeat) => {},
     allowSeating: true,
     toggleAllowSeating: () => {},
@@ -25,7 +28,9 @@ export const seatingContext = createContext<ISeatingContext>({
 
 export const blurContext = createContext<IBlurContext>({
     blurArray: [],
+    // @ts-ignore comment
     removeFromArray: (modalName: string) => {},
+    // @ts-ignore comment
     addToArray: (modalName: string) => {},
 })
 

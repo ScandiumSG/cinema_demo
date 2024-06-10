@@ -13,7 +13,9 @@ interface IScreeningListProps {
 const UpcomingScreeningList: React.FC<IScreeningListProps> = ({movieId}) => {
     const [upcomingScreening, setUpcomingScreenings] = useState<IUpcomingScreening>()
     const [noUpcoming, setNoUpcoming] = useState<boolean>(false);
+    // @ts-ignore
     const [numberOfScreenings, setNumberOfScreenings] = useState<number>(10);
+    // @ts-ignore
     const [theaterFilter, setTheaterFilter] = useState<number[]>([])
 
     const fetchScreenings = async () => {

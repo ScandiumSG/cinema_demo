@@ -2,7 +2,6 @@ import { IScreening } from "@/interfaces/IScreening";
 import "./SeatSelector.css"
 import TheaterSeatSelector from "./TheaterSeatMap/TheaterSeatMap";
 import TicketCounter from "./TicketCounter/TicketCounter";
-import ScaleControl from "./ScaleControl/ScaleControl";
 import { ITicketFromScreening, ITicketHandler } from "@/interfaces/ITicket";
 import { useEffect, useState } from "react";
 import ISeat from "@/interfaces/ISeat";

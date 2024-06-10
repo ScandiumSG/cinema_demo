@@ -12,6 +12,7 @@ import ScreeningFilter from "@/components/ScreeningFilter/ScreeningFilter";
 
 const UpcomingScreenings = () => {
     const [sortedUpcoming, setSortedUpcoming] = useState<IUpcomingScreening>();
+    // @ts-ignore comment
     const [numberOfUpcoming, setNumberOfUpcoming] = useState<number>(20);
     const [theaterFilter, setTheaterFilter] = useState<number[]>([]);
 
