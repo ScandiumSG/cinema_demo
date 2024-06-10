@@ -6,8 +6,7 @@
     width: 2.2rem;
     height: 2.2rem;
     border-radius: 50%;
-    border: 1px solid white;
-    background-color: white;
-    color: var(--bob-blue);
+    border: 3px solid var(--card-bg-color);
+    background-color: var(--secondary-card-bg-color);
     cursor: pointer;
 }

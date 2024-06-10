@@ -14,14 +14,24 @@ const UserOverview = () => {
     if (!user) {
         return (
             <div className="user-overview-outer-container">
-                <button onClick={() => showLoginModal()}>Login</button>
+                <button 
+                    className="user-over-view-button standard-button" 
+                    onClick={() => showLoginModal()}
+                >
+                    Login
+                </button>
             </div>
         )
     }
 
     return(
         <div className="user-overview-outer-container">
-            <button onClick={() => logOut()}>Logout</button>
+            <button 
+                className="standard-button"
+                onClick={() => logOut()}
+            >
+                Logout
+            </button>
             <AccountIcon />
         </div>
     )
