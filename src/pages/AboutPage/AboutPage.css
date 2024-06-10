@@ -1,0 +1,18 @@
+.about-page-parent-container {
+    display: flex;
+    flex-direction: column;
+
+    justify-content: first baseline;
+    align-items: center;
+
+    width: 80%;
+}
+
+.about-page-content {
+    width: 80%;
+    text-align: left;
+}
+
+.about-page-subheader {
+    padding-left: 2rem;
+}
