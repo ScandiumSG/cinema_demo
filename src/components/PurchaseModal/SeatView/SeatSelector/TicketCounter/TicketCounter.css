@@ -21,13 +21,11 @@
 .ticket-counter-text {
     font-size: large;
     font-weight: 600;
+    display: flex;
+    flex-direction: row;
 }
 
 .ticket-counter-mobile-button {
-    position: absolute;
-    top: 0px;
-    right: 0px;
-
     width: 10rem;
     height: 2rem;
 
@@ -67,7 +65,7 @@
         position: relative;
         top: 0rem;
         
-        overflow-y: hidden;
+        overflow: hidden;
 
         width: 90%;
         max-height: 7rem;
@@ -76,14 +74,14 @@
     }
 
     .ticket-counter-parent-container.open{
-        overflow-y: none;
+        overflow: none;
         scrollbar-width: none;
     }
 
     .ticket-counter-parent-container.close{
         position: relative;
 
-        overflow-y: scroll;
+        overflow: scroll;
         scrollbar-width: thin;
     }
 }

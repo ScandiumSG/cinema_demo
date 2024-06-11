@@ -52,18 +52,20 @@ const TicketCounter: React.FC<{selection: ISeat[]}> = ({selection}) => {
         return(
             <div className="ticket-counter-parent-container close">
                 <div className="ticket-counter-text">
-                    Seats: {selection.filter((s: ISeat) => s.id != -1).length} of {selection.length}
-                </div>
-                <div className="ticket-counter-item-list">
-                {selection.map((seat: ISeat, index: number) => (
-                    <TicketCounterItem key={index} seat={seat}/>
-                    ))}
-                </div>
-                <div
+                    <span>
+                        Seats: {selection.filter((s: ISeat) => s.id != -1).length} of {selection.length}
+                    </span>
+                    <div
                     className="ticket-counter-mobile-button close clickable"
                     onClick={() => setHideDetails(true)}
                 >
                     Hide details
+                </div>
+                </div>
+                <div className="ticket-counter-item-list scrollable">
+                    {selection.map((seat: ISeat, index: number) => (
+                        <TicketCounterItem key={index} seat={seat}/>
+                        ))}
                 </div>
             </div>
         )
