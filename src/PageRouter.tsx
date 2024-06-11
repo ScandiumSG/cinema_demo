@@ -12,6 +12,7 @@ import MovieOverviewPage from './pages/MovieOverview/MovieOverviewPage';
 import { IScreening } from "./interfaces/IScreening";
 import PurchaseModal from "./components/PurchaseModal/PurchaseModal";
 import AboutPage from "./pages/AboutPage/AboutPage";
+import FooterComponent from "./components/Footer/FooterComponent";
 
 const PageRouter = () => {
     const [selectedScreening, setSelectedScreening] = useState<IScreening>();
@@ -89,6 +90,7 @@ const PageRouter = () => {
                 element={<Navigate replace to="/" />}
                 />
             </Routes>
+            <FooterComponent />
           </div>
         </>
     )
