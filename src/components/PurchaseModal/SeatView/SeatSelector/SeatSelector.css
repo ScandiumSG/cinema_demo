@@ -19,12 +19,14 @@
 
 
     display: grid;
-    grid-template-columns: 12rem calc(100% - 12rem);
+    grid-template-columns: calc(100% - 12rem) 12rem ;
     column-gap: 0px;
     row-gap: 0px;
+    direction: rtl;
 }
 
 .seat-selector-container {
+    direction: ltr;
     width: calc(100% - 2rem);
     height: 30rem;
 
@@ -37,4 +39,14 @@
     justify-content: center;
     padding-left: 1rem;
     padding-right: 1rem;
+}
+
+@media only screen and (max-width: 750px) {
+    .seat-selector-theater-container {
+        direction: ltr;
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        margin-bottom: 2rem;
+    }
 }

@@ -96,7 +96,6 @@ const SeatSelector: React.FC<ISeatSelectorProps> = ({ticketSelection, screening,
                 <div        
                     className="seat-selector-theater-container"
                 >
-                    {seatSelection && <TicketCounter selection={seatSelection}/>}
                     <div className="seat-selector-container">
                         <TheaterSeatSelector 
                             occupiedSeats={occupiedSeats}
@@ -104,6 +103,9 @@ const SeatSelector: React.FC<ISeatSelectorProps> = ({ticketSelection, screening,
                             theaterSeats={currentScreening?.theater?.seats} 
                         />
                     </div>
+                    {seatSelection && 
+                        <TicketCounter selection={seatSelection}/>
+                    }
                 </div>
                 {/*<ScaleControl />*/}
             </seatingContext.Provider>

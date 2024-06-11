@@ -8,7 +8,8 @@ import { IUserContext } from "@/interfaces/UserInterfaces";
 import { userContext } from "@/util/context";
 import { postTicket } from "@/util/apiUtils";
 import loading from "@/assets/loading_dots.svg"
-import spinner from "@/assets/loading_spin.svg";
+import AnimatedButton from "@/components/common/AnimatedButton/AnimatedButton";
+
 
 interface ISeatViewProps {
     selectTickets: ITicketHandler,
@@ -96,21 +97,12 @@ const SeatView: React.FC<ISeatViewProps> = ({selectTickets, screening, refetchSc
                 setSelection={changeSeatSelection}
             />
             <div className="purchase-modal-confirm-container">
-            { !isLoading ? 
-                <button 
-                    className="purchase-modal-confirm-button standard-button"
-                    onClick={() => purchaseTickets()}
-                >
-                    Confirm seats
-                </button>
-                :
-                <button 
-                    className="purchase-modal-confirm-button-verify standard-button"
-                >
-                    <img className="loading-spinner" src={spinner} alt="Verifying..."/>
-                    <span>Purchasing...</span>
-                </button>
-            }
+                <AnimatedButton 
+                    isLoading={isLoading} 
+                    submitText="Confirm seats" 
+                    submitOnClick={purchaseTickets} 
+                    clickText="Purchasing..." 
+                />
             </div>
         </>
     )
