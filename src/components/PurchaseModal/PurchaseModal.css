@@ -7,7 +7,6 @@
     flex-direction: column;
     justify-content: center;
 
-    --purchase-modal-width: 35rem;
     width: var(--purchase-modal-width);
     min-width: 15rem;
     height: fit-content;

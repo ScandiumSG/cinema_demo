@@ -22,6 +22,8 @@
   --header-height: 3rem;
   --header-bg-color: #7389AE;
   --accent-color: #7389AE;
+
+  --purchase-modal-width: 35rem;
 }
 
 @media (prefers-color-scheme: dark) {
