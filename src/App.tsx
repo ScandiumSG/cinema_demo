@@ -2,11 +2,9 @@ import { useState } from 'react'
 import './App.css'
 import HeaderComponent from "@/components/header/HeaderComponent";
 import { blurContext, userContext } from './util/context';
-
 import { IUserData } from './interfaces/UserInterfaces';
 import { readSessionStorage } from './util/userUtil';
 import PageRouter from './PageRouter';
-import FooterComponent from './components/Footer/FooterComponent';
 
 
 function App() {
