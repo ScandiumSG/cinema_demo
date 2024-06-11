@@ -26,7 +26,7 @@
     
 }
 .screening-page-container {
-    width: 94%;
+    width: 96%;
     height: calc(90% - var(--header-height));
 }
 
