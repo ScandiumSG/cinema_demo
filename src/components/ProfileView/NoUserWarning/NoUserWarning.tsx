@@ -13,11 +13,13 @@ const NoUserWarning = () => {
             <h3>You are not logged in.</h3>
             <div className="profile-view-buttons-container">
                 <button 
+                    className="standard-button"
                     onClick={() => showLoginModal()}
                 >
                     Login
                 </button>
                 <button
+                    className="standard-button"
                     onClick={() => navigate("/")}
                 >
                     Back to frontpage
