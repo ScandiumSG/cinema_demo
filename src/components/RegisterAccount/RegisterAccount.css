@@ -4,6 +4,8 @@
     
     width: 70%;
     min-width: 28rem;
+    min-height: calc(100vh - calc(2 * var(--header-height)) - 0.1rem);
+    height: fit-content;
     position: relative;
     left: calc(calc(calc(100% - 70%) / 2));
     top: 1.5rem;
