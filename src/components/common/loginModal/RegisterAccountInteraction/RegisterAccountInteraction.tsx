@@ -11,7 +11,7 @@ const RegisterAccountInteraction: React.FC<IRegisterFunctions> = ({ resetModal }
     return(
         <div className="login-modal-register-container">
             <span>Don't have an account?</span>
-            <button className="login-modal-button" onClick={() => {resetModal(); navigate("user/register")}}>
+            <button className="login-modal-button standard-button" onClick={() => {resetModal(); navigate("user/register")}}>
                 Register now
             </button>
         </div>
