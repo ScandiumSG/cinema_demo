@@ -84,13 +84,13 @@ const RegisterAccount = () => {
             </div>
             <div className="register-account-button-container">
                 <button
-                    className="register-account-button cancel"
+                    className="register-account-button cancel standard-button"
                     onClick={() => navigate("/")}
                 >
                     Cancel
                 </button>
                 <button
-                    className="register-account-button submit"
+                    className="register-account-button submit standard-button"
                     onClick={() => postAccountRequest()}
                 >
                     Register
