@@ -17,3 +17,13 @@
 
     padding: 0px 0.5rem;
 }
+.header-cinema-logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.header-logo-image {
+    padding-top: 0.5rem;
+    width: var(--header-height);
+}
