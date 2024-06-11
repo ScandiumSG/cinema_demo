@@ -20,6 +20,7 @@
   border: 0px;
 
   display: flex;
+  flex-direction: column;
   justify-items: center;
   align-content: center;
 }

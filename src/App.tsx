@@ -70,7 +70,6 @@ function App() {
         >
           <HeaderComponent />
           <PageRouter />
-          <FooterComponent />
         </blurContext.Provider>
       </userContext.Provider>
     </>
