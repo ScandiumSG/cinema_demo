@@ -1,0 +1,13 @@
+.ticket-item-parent-container {
+    width: 20rem;
+    overflow: hidden;
+}
+
+.ticket-item-card-image-header {
+    object-fit: cover;
+    image-rendering: optimizeSpeed;
+    max-width: 100%;
+    width: 100%;
+    height: 10rem;
+    border-bottom: 1px solid var(--light-border-color);
+}
