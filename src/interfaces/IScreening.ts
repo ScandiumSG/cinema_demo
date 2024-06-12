@@ -1,5 +1,5 @@
 import { IMovieDetails } from "./IMovie";
-import ITheater from "./ITheater";
+import ITheater, { ITheaterWithoutSeat } from "./ITheater";
 import { ITicketFromScreening } from "./ITicket";
 
 export interface IScreeningShortened {
@@ -25,4 +25,11 @@ export interface IUpcomingScreening {
 
 export interface IPurchaseModalContext {
     setShowPurchase: (screening: IScreening ) => void,
+}
+
+export interface ITicketScreening {
+    id: number,
+    movie: IMovieDetails,
+    startTime: string,
+    theater: ITheaterWithoutSeat,
 }
