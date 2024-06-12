@@ -44,8 +44,18 @@ const PurchaseHistory: React.FC<IPurchaseHistoryProps> = ({user}) => {
     }, [showPrevious])
 
     return(
-        <div className="purchase-history-parent-container">
-            <h3 className="purchase-history-header">Tickets:</h3>
+        <div className="purchase-history-parent-container scrollable">
+            <div className="purchase-history-header-container">
+                <h3 className="purchase-history-header">My tickets:</h3>
+                <label>
+                    <input 
+                        type="checkbox" 
+                        checked={showPrevious} 
+                        onChange={() => setShowPrevious(!showPrevious)}
+                        />
+                    Show expired
+                </label>
+            </div>
             <div className="purchase-history-ticket-container">
                 {tickets.map((ticket: ITicket, index: number) => (
                     <TicketItem key={index} ticket={ticket}/>
