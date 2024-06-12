@@ -11,7 +11,7 @@ interface IPurchaseHistoryProps {
 
 const PurchaseHistory: React.FC<IPurchaseHistoryProps> = ({user}) => {
     const [tickets, setTickets] = useState<ITicket[]>([]);
-    const [showPrevious, setShowPrevious] = useState<boolean>(true);
+    const [showPrevious, setShowPrevious] = useState<boolean>(false);
 
     const fetchPurchased = async () => {
         const options = {
@@ -25,6 +25,10 @@ const PurchaseHistory: React.FC<IPurchaseHistoryProps> = ({user}) => {
         await fetch(getTicketPurchases(showPrevious), options)
             .then((res) => res.json())
             .then((res) => res.data)
+            .then((res: ITicket[]) => 
+                res.sort((a, b) => 
+                     new Date(b.screening.startTime).getTime() - new Date(a.screening.startTime).getTime())
+                )
             .then((res) => setTickets([...res]))
     }
 
@@ -33,9 +37,9 @@ const PurchaseHistory: React.FC<IPurchaseHistoryProps> = ({user}) => {
     }, [showPrevious])
 
     return(
-        <div>
-            <h3>Tickets:</h3>
-            <div>
+        <div className="purchase-history-parent-container">
+            <h3 className="purchase-history-header">Tickets:</h3>
+            <div className="purchase-history-ticket-container">
                 {tickets.map((ticket: ITicket, index: number) => (
                     <TicketItem key={index} ticket={ticket}/>
                 ))}
