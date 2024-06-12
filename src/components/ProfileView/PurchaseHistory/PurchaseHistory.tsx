@@ -15,24 +15,12 @@ const PurchaseHistory: React.FC<IPurchaseHistoryProps> = ({user}) => {
     const [showPrevious, setShowPrevious] = useState<boolean>(true);
 
     const sortTickets = (tickets: ITicket[]) => {
-        const curTime = new Date();
-        const activeTickets: ITicket[] = [];
-        const inactiveTickets: ITicket[] = [];
-
-        tickets.forEach((ticket: ITicket) => {
-            if (new Date(ticket.screening.startTime) > curTime) {
-                activeTickets.push(ticket)
-            } else {
-                inactiveTickets.push(ticket);
-            }
-        })
-        activeTickets.sort((a,b) => 
-            new Date(a.screening.startTime).getTime() - new Date(b.screening.startTime).getTime()
-        )
-        inactiveTickets.sort((a,b) => 
+        const sortedTickets: ITicket[] = tickets;
+        sortedTickets.sort((a,b) => 
             new Date(b.screening.startTime).getTime() - new Date(a.screening.startTime).getTime()
         )
-        return [...activeTickets, ...inactiveTickets];
+
+        return [...sortedTickets];
     }
 
     const fetchPurchased = async () => {
