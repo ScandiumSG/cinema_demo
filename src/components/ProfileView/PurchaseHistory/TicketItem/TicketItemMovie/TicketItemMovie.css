@@ -1,0 +1,5 @@
+.ticket-item-movie-info {
+    width: 90%;
+    border-bottom: 1px solid var(--light-border-color);
+    margin-bottom: 0.5rem;
+}
