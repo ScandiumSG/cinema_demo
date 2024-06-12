@@ -1,6 +1,5 @@
-import { IMovieDetails } from "./IMovie";
+import { ITicketScreening } from "./IScreening";
 import ISeat from "./ISeat";
-import { ITheaterWithoutSeat } from "./ITheater";
 import { IUserData } from "./UserInterfaces";
 
 export interface ITicketHandler {
@@ -23,12 +22,7 @@ export interface ITicketPost {
 export interface ITicket {
     customer: IUserData | null,
     id: number,
-    screening: {
-        id: number,
-        movie: IMovieDetails,
-        startTime: string,
-        theater: ITheaterWithoutSeat,
-    },
+    screening: ITicketScreening,
     screeningId: number,
     seat: ISeat,
 }
