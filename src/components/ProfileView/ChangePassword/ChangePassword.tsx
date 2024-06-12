@@ -85,7 +85,7 @@ const ChangePassword = () => {
     if (!showFields) {
         return(
             <div 
-                className="profile-change-password-container top-rounded-corners"
+                className="profile-change-password-container rounded-corners"
             >
                 <div
                     className="profile-change-password-show-element clickable"
@@ -98,7 +98,7 @@ const ChangePassword = () => {
     }
 
     return(
-        <div className="profile-change-password-container top-rounded-corners">
+        <div className="profile-change-password-container rounded-corners">
             <div className="profile-change-password-close-container">
                 <button
                     className="profile-change-password-hide-element"
