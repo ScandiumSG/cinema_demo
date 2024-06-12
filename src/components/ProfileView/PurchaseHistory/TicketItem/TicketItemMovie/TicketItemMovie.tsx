@@ -8,12 +8,12 @@ interface ITicketItemMovieProps {
 
 const TicketItemMovie: React.FC<ITicketItemMovieProps> = ({movie}) => {
     return(
-        <div className="ticket-item-movie-info">
-            <h3>
+        <div className="ticket-item-movie-info-container">
+            <h3 className="ticket-item-movie-title">
                 {movie.title}
             </h3>
-            <span>
-                {movie.rating} * 2d * {timeCalculator(movie.runtime)}
+            <span className="ticket-item-movie-info">
+                {movie.rating} - 2D - {timeCalculator(movie.runtime)}
             </span>
         </div>
     )
