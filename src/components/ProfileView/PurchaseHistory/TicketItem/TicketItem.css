@@ -8,6 +8,7 @@
     align-items: center;
 
     border: 1px solid var(--light-border-color);
+    background-color: var(--secondary-card-bg-color);
 }
 
 .ticket-item-parent-container.expired {
@@ -32,7 +33,7 @@
     height: fit-content;
     width: 80%;
     margin: 0.5rem 0rem;
-    padding: 0.5rem 0.5rem;    
+    padding: 0rem 0.5rem 0.5rem 0.5rem;    
     border-radius: 15px;
 }
 

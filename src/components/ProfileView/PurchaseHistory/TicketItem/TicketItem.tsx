@@ -19,7 +19,7 @@ const TicketItem: React.FC<ITicketItemProps> = ({ticket}) => {
 
     return(
         <div 
-            className={"ticket-item-parent-container top-rounded-corners clickable " + 
+            className={"ticket-item-parent-container rounded-corners clickable " + 
                 (expired ? "" : "expired")}
         >
             <img 
