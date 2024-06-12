@@ -11,7 +11,7 @@ interface ITicketItemScreeningProps {
 
 const TicketItemScreening: React.FC<ITicketItemScreeningProps> = ({screening, seat}) => {
     return (
-        <div className="ticket-item-screening-info highlight">
+        <div className="ticket-item-screening-info">
             <TicketItemScreeningField 
                 text="Theater" 
                 value={screening.theater.name}
