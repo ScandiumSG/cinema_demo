@@ -1,13 +1,38 @@
 .ticket-item-parent-container {
     width: 20rem;
     overflow: hidden;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+
+    border: 1px solid var(--light-border-color);
+}
+
+.ticket-item-parent-container.expired {
+    filter: grayscale(0.5) opacity(0.5);
 }
 
 .ticket-item-card-image-header {
     object-fit: cover;
-    image-rendering: optimizeSpeed;
+    object-position: 50% 30%;
     max-width: 100%;
     width: 100%;
     height: 10rem;
     border-bottom: 1px solid var(--light-border-color);
 }
+
+.ticket-item-information-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    
+    height: fit-content;
+    width: 80%;
+    margin: 0.5rem 0rem;
+    padding: 0.5rem 0.5rem;    
+    border-radius: 15px;
+}
+
