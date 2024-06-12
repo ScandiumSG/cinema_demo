@@ -11,7 +11,29 @@ interface IPurchaseHistoryProps {
 
 const PurchaseHistory: React.FC<IPurchaseHistoryProps> = ({user}) => {
     const [tickets, setTickets] = useState<ITicket[]>([]);
-    const [showPrevious, setShowPrevious] = useState<boolean>(false);
+    // @ts-ignore
+    const [showPrevious, setShowPrevious] = useState<boolean>(true);
+
+    const sortTickets = (tickets: ITicket[]) => {
+        const curTime = new Date();
+        const activeTickets: ITicket[] = [];
+        const inactiveTickets: ITicket[] = [];
+
+        tickets.forEach((ticket: ITicket) => {
+            if (new Date(ticket.screening.startTime) > curTime) {
+                activeTickets.push(ticket)
+            } else {
+                inactiveTickets.push(ticket);
+            }
+        })
+        activeTickets.sort((a,b) => 
+            new Date(a.screening.startTime).getTime() - new Date(b.screening.startTime).getTime()
+        )
+        inactiveTickets.sort((a,b) => 
+            new Date(b.screening.startTime).getTime() - new Date(a.screening.startTime).getTime()
+        )
+        return [...activeTickets, ...inactiveTickets];
+    }
 
     const fetchPurchased = async () => {
         const options = {
@@ -25,10 +47,7 @@ const PurchaseHistory: React.FC<IPurchaseHistoryProps> = ({user}) => {
         await fetch(getTicketPurchases(showPrevious), options)
             .then((res) => res.json())
             .then((res) => res.data)
-            .then((res: ITicket[]) => 
-                res.sort((a, b) => 
-                     new Date(b.screening.startTime).getTime() - new Date(a.screening.startTime).getTime())
-                )
+            .then((res: ITicket[]) => sortTickets(res))
             .then((res) => setTickets([...res]))
     }
 
