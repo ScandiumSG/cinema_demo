@@ -94,6 +94,10 @@ button:focus-visible {
   border-radius: 10px 10px 0px 0px;
 }
 
+.rounded-corners {
+  border-radius: 10px;
+}
+
 .clickable {
   cursor: pointer;
 }

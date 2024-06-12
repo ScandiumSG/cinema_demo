@@ -1,4 +1,6 @@
+import { ITicketScreening } from "./IScreening";
 import ISeat from "./ISeat";
+import { IUserData } from "./UserInterfaces";
 
 export interface ITicketHandler {
     [ticketType: string]: number,
@@ -15,4 +17,12 @@ export interface ITicketPost {
     movieId: number,
     customerId: string,
     seatId: number[],
+}
+
+export interface ITicket {
+    customer: IUserData | null,
+    id: number,
+    screening: ITicketScreening,
+    screeningId: number,
+    seat: ISeat,
 }

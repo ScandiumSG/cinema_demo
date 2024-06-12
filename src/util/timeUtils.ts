@@ -9,19 +9,27 @@ export const translateDateTimeString = (timeString: string) => {
     return dateObject.toLocaleDateString() + " " + dateObject.toLocaleTimeString();
 }
 
+
 export const translateDateTimeStringWithoutSeconds = (timeString: string) => {
     const string = translateDateTimeString(timeString);
     return string.substring(0, string.length-3);
-}
-
+    }
+    
 export const getTimeFromDateTimeString = (dateTimeString: string) => {
     const localTimeString = translateDateTimeString(dateTimeString);
     const timeString = localTimeString.split(" ")[1];
     const timeWithoutSeconds = timeString.substring(0,5);
-
+    
     return timeWithoutSeconds;
 }
-
+    
+export const getDateFromDateTimeString = (dateTimeString: string) => {
+    const dateObject: Date = new Date(dateTimeString);
+    const localDateTimeString = dateObject.toLocaleDateString("no", {day: 'numeric', month: 'short', year: 'numeric'})
+    
+    return localDateTimeString;
+}
+        
 export const getRoundedCurrentTimeIsoString = () => {
     const curDate = new Date();
     curDate.setSeconds(0,0);

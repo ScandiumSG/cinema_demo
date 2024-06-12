@@ -1,0 +1,35 @@
+.purchase-history-parent-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+
+    width: 100%;
+    max-height: 31rem;
+    margin-bottom: 1rem;
+}
+
+.purchase-history-ticket-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem 2rem;
+}
+
+.purchase-history-header-container {
+    position: sticky;
+    top: 0px;
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+    background-color: var(--site-bg-color);
+    z-index: 2;
+}
+
+.purchase-history-header {
+    margin: 1rem 0rem 0rem 0rem;
+}

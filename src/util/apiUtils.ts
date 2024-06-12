@@ -56,6 +56,13 @@ export const postTicket = () => ticketBaseUrl;
 export const getTicketsForScreening = (screeningId: number, movieId: number) => {
     return `${ticketBaseUrl}/refetch/${screeningId}/${movieId}` 
 }
+export const getTicketPurchases = (showPrevious: boolean | undefined) => {
+    if (showPrevious === undefined) {
+        return `${ticketBaseUrl}/purchased`
+    } else {
+        return `${ticketBaseUrl}/purchased?showPrevious=${showPrevious}`
+    }
+}
 
 // AUTHENTICATION ENDPOINT
 const authBaseUrl = baseUrl + "/auth";

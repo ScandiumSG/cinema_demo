@@ -6,6 +6,7 @@ import InfoField from "./InfoField/InfoField";
 import { userInfoUrl } from "@/util/apiUtils";
 import NoUserWarning from "./NoUserWarning/NoUserWarning";
 import ChangePassword from "./ChangePassword/ChangePassword";
+import PurchaseHistory from "./PurchaseHistory/PurchaseHistory";
 
 interface ITempData extends IUserData {
     password: string
@@ -112,6 +113,7 @@ const ProfileView = () => {
                 }
             </div>
             <ChangePassword />
+            <PurchaseHistory user={user}/>
         </div>
     )
 }
