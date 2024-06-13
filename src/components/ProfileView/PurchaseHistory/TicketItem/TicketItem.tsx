@@ -28,7 +28,11 @@ const TicketItem: React.FC<ITicketItemProps> = ({ticket}) => {
             />
             <div className="ticket-item-information-container">
                 <TicketItemMovie movie={ticket.screening.movie} />
-                <TicketItemScreening screening={ticket.screening} seat={ticket.seat} />
+                <TicketItemScreening 
+                    ticketType={ticket.ticketType} 
+                    screening={ticket.screening} 
+                    seat={ticket.seat} 
+                />
             </div>
         </div>
     )
