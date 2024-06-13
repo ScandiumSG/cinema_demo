@@ -4,6 +4,10 @@ export default interface ISeat {
     seatNumber: number
 }
 
+export interface ISeatWithTicket extends ISeat {
+    ticketType: number,
+}
+
 export interface ISeatData {
     seatId: number,
     seatRow: number,
@@ -12,8 +16,8 @@ export interface ISeatData {
 }
 
 export interface ISeatingContext {
-    selectSeat: (seat: ISeat) => void;
-    discardSeat: (seat: ISeat) => void;
+    selectSeat: (seat: ISeatWithTicket) => void;
+    discardSeat: (seat: ISeatWithTicket) => void;
     allowSeating: boolean,
     toggleAllowSeating: () => void,
 }
