@@ -12,13 +12,18 @@
 
 }
 
-.ticket-item-category-header {
+
+.ticket-item-category-header, .ticket-item-price, .ticket-item-description {
     margin: 0px;
+}
+
+.ticket-item-category-header {
     font-variant: small-caps;
 }
 
-.ticket-item-price {
-    margin: 0px;
+.ticket-item-description {
+    font-size: small;
+    font-style: italic;
 }
 
 .ticket-item-button-container {

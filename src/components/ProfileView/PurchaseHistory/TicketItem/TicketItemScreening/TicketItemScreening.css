@@ -1,16 +1,18 @@
 .ticket-item-screening-info {
-    /*
     display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    gap: 2rem;
-    */
+    flex-direction: column;
+
+    padding: 0rem 0.5rem;
+    width: 100%;
+    padding: 0rem 0.5rem;
+    
+    border-radius: 20px;
+}
+
+.ticket-item-screening-info-split {
     
     display: grid;
     grid-template-columns: 1fr 1fr;
     row-gap: 1rem;
-    width: 90%;
-    padding: 0rem 0.5rem;
-
-    border-radius: 20px;
+    width: 100%;
 }

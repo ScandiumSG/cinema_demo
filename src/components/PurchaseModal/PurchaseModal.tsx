@@ -1,10 +1,10 @@
 import "./PurchaseModal.css"
 import { useContext, useEffect, useState } from "react";
-import { ITicketHandler } from "@/interfaces/ITicket";
+import { ITicketHandler, ITicketType } from "@/interfaces/ITicket";
 import { IScreening } from "@/interfaces/IScreening";
 import SeatView from "./SeatView/SeatView";
 import TicketView from "./TicketView/TicketView";
-import { getSeatsForTheater, getTicketsForScreening } from "@/util/apiUtils";
+import { getSeatsForTheater, getTicketTypes, getTicketsForScreening } from "@/util/apiUtils";
 import PurchaseHeader from "./PurchaseHeader/PurchaseHeader";
 import { IUserContext } from "@/interfaces/UserInterfaces";
 import { userContext } from "@/util/context";
@@ -26,6 +26,18 @@ const PurchaseModal: React.FC<IPurchaseModalProps> = ({screening, showSeatMap, s
     const [theaterSeatArrangement, setTheaterSeatArrangement] = useState<ISeat[]>()
     const [selectTickets, setSelectTickets] = useState<ITicketHandler>(defaultTickets);
     const { user, showLoginModal } = useContext<IUserContext>(userContext);
+    const [ticketOptions, setTicketOptions] = useState<ITicketType[]>([]);
+
+    const fetchTicketOptions = async () => {
+        await fetch(getTicketTypes())
+            .then((res) => res.json())
+            .then((res) => res.data)
+            .then((res: ITicketType[]) => res.map((ticket) => (
+                {...ticket, price: (ticket.price / 100)}
+            )))
+            .then((res) => setTicketOptions([...res]))
+    }
+
 
     const cancelPurchase = () => {
         setSelectTickets({...defaultTickets})
@@ -78,6 +90,10 @@ const PurchaseModal: React.FC<IPurchaseModalProps> = ({screening, showSeatMap, s
     }
 
     useEffect(() => {
+        fetchTicketOptions();
+    }, [])
+
+    useEffect(() => {
         fetchSeatsForTheater()
     }, [screening])
 
@@ -120,12 +136,14 @@ const PurchaseModal: React.FC<IPurchaseModalProps> = ({screening, showSeatMap, s
             <PurchaseHeader cancelPurchase={cancelPurchase} screening={screening}/>
             {showSeatMap ?
                 <SeatView 
+                    ticketOptions={ticketOptions}
                     selectTickets={selectTickets} 
                     screening={currentScreening} 
                     refetchScreening={refetchScreening}
                     closeWindow={cancelPurchase}
                 /> : 
                 <TicketView 
+                    ticketOptions={ticketOptions}
                     selectTickets={selectTickets} 
                     addTicket={addTicket} 
                     removeTicket={removeTicket} 

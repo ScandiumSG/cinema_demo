@@ -2,25 +2,26 @@ import { IScreening } from "@/interfaces/IScreening";
 import "./SeatSelector.css"
 import TheaterSeatSelector from "./TheaterSeatMap/TheaterSeatMap";
 import TicketCounter from "./TicketCounter/TicketCounter";
-import { ITicketFromScreening, ITicketHandler } from "@/interfaces/ITicket";
+import { ITicketFromScreening, ITicketHandler, ITicketType } from "@/interfaces/ITicket";
 import { useEffect, useState } from "react";
-import ISeat from "@/interfaces/ISeat";
+import ISeat, { ISeatWithTicket } from "@/interfaces/ISeat";
 import { seatingContext } from "@/util/context";
 
 interface ISeatSelectorProps {
+    ticketOptions: ITicketType[],
     ticketSelection: ITicketHandler,
     screening: IScreening,
-    seatSelection: ISeat[] | undefined,
-    setSelection: (seats: ISeat[]) => void,
+    seatSelection: ISeatWithTicket[] | undefined,
+    setSelection: (seats: ISeatWithTicket[]) => void,
 }
 
-const oneSeatSelectedObject = {
+const oneSeatSelectedObject: ISeat = {
     id: -1,
     row: -1,
     seatNumber: -1,
 }
 
-const SeatSelector: React.FC<ISeatSelectorProps> = ({ticketSelection, screening, seatSelection, setSelection}) => {
+const SeatSelector: React.FC<ISeatSelectorProps> = ({ticketOptions, ticketSelection, screening, seatSelection, setSelection}) => {
     const [allowSeatSelection, setAllowSeatSelection] = useState<boolean>(true);
     const [occupiedSeats, setOccupiedSeats] = useState<ISeat[] | undefined>();
     const [currentScreening, setCurrentScreening] = useState<IScreening>(screening)
@@ -28,16 +29,21 @@ const SeatSelector: React.FC<ISeatSelectorProps> = ({ticketSelection, screening,
     const selectSeat = (seat: ISeat) => {
         //Check if seat already exists in seatSelection
         const previouslySelected = seatSelection
-            ?.findIndex((s: ISeat) => s.id == seat.id);
+            ?.findIndex((s: ISeatWithTicket) => s.id == seat.id);
         if (previouslySelected !== -1) {
             discardSeat(seat);
             return;
         }
 
-        const seatIndex = seatSelection?.findIndex((s: ISeat) => s.id === -1);
+        const seatObject = seatSelection?.find((s: ISeatWithTicket) => s.id === -1);
+        if (!seatObject || !seatSelection) {
+            return;
+        }
+
+        const seatIndex = seatSelection.indexOf(seatObject!);
         if ((seatIndex !== -1 && seatIndex !== undefined) && seatSelection) {
             const modifiedSeatSelection = seatSelection;
-            modifiedSeatSelection[seatIndex] = seat;
+            modifiedSeatSelection[seatIndex] = {...seat, ticketType: seatObject.ticketType};
             sortSeats(modifiedSeatSelection)
             setSelection([...modifiedSeatSelection]);
         }
@@ -49,7 +55,8 @@ const SeatSelector: React.FC<ISeatSelectorProps> = ({ticketSelection, screening,
             const modifiedSeatSelection = seatSelection;
             modifiedSeatSelection
                 .splice(modifiedSeatSelection.indexOf(seatToRemove), 1)
-            modifiedSeatSelection.push(oneSeatSelectedObject);
+            modifiedSeatSelection.push(
+                {...oneSeatSelectedObject, ticketType: seatToRemove.ticketType});
             sortSeats(modifiedSeatSelection)
             setSelection([...modifiedSeatSelection]);
         }
@@ -77,9 +84,20 @@ const SeatSelector: React.FC<ISeatSelectorProps> = ({ticketSelection, screening,
     }, [currentScreening])
 
     useEffect(() =>  {
-        const seatArray: ISeat[] | undefined = [];
+        const seatArray: ISeatWithTicket[] | undefined = [];
+        const ticketTypeIds: number[] = []
+        Object.entries(ticketSelection).forEach(([entry, value]) => {
+            if (entry != "totalTickets") {
+                const id = ticketOptions.find((opt) => opt.name == entry)?.id;
+                if (id) {
+                    for (let i = 0; i < value; i++) {
+                        ticketTypeIds.push(id);
+                    }
+                }
+            }
+        })
         for (let i = 0; i < ticketSelection.totalTickets; i++) {
-            seatArray.push(oneSeatSelectedObject)
+            seatArray.push({...oneSeatSelectedObject, ticketType: ticketTypeIds[i]})
         }
         setSelection([...seatArray])
     }, [ticketSelection])
