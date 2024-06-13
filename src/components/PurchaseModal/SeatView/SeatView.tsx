@@ -2,7 +2,7 @@ import { ITicketHandler, ITicketPost, ITicketType } from "@/interfaces/ITicket";
 import SeatSelector from "./SeatSelector/SeatSelector";
 import "./SeatView.css"
 import { IScreening } from "@/interfaces/IScreening";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { ISeatWithTicket } from "@/interfaces/ISeat";
 import { IUserContext } from "@/interfaces/UserInterfaces";
 import { userContext } from "@/util/context";
