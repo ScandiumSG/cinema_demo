@@ -16,8 +16,8 @@ export interface ISeatData {
 }
 
 export interface ISeatingContext {
-    selectSeat: (seat: ISeatWithTicket) => void;
-    discardSeat: (seat: ISeatWithTicket) => void;
+    selectSeat: (seat: ISeat) => void;
+    discardSeat: (seat: ISeat) => void;
     allowSeating: boolean,
     toggleAllowSeating: () => void,
 }

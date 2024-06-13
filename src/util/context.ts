@@ -18,7 +18,7 @@ export const purchaseModalContext = createContext<IPurchaseModalContext>({
 
 export const seatingContext = createContext<ISeatingContext>({
     // @ts-ignore comment
-    selectSeat: (seat: ISeatWithTicket) => {},
+    selectSeat: (seat: ISeat) => {},
     // @ts-ignore comment
     discardSeat: (seat: ISeatWithTicket) => {},
     allowSeating: true,

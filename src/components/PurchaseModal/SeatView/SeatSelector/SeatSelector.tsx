@@ -26,7 +26,7 @@ const SeatSelector: React.FC<ISeatSelectorProps> = ({ticketOptions, ticketSelect
     const [occupiedSeats, setOccupiedSeats] = useState<ISeat[] | undefined>();
     const [currentScreening, setCurrentScreening] = useState<IScreening>(screening)
 
-    const selectSeat = (seat: ISeatWithTicket) => {
+    const selectSeat = (seat: ISeat) => {
         //Check if seat already exists in seatSelection
         const previouslySelected = seatSelection
             ?.findIndex((s: ISeatWithTicket) => s.id == seat.id);
@@ -49,7 +49,7 @@ const SeatSelector: React.FC<ISeatSelectorProps> = ({ticketOptions, ticketSelect
         }
     }
 
-    const discardSeat = (seat: ISeatWithTicket) => {
+    const discardSeat = (seat: ISeat) => {
         const seatToRemove = seatSelection?.find((s: ISeat) => s.id === seat.id);
         if (seatToRemove && seatSelection) {
             const modifiedSeatSelection = seatSelection;
