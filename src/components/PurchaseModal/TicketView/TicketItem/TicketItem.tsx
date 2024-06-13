@@ -1,32 +1,34 @@
 import { standardCurrency } from "@/util/localizationUtil";
 import "./TicketItem.css"
-import { ITicketHandler } from "@/interfaces/ITicket";
+import { ITicketHandler, ITicketType } from "@/interfaces/ITicket";
 
 interface ITicketItemProps {
-    itemCategory: string, 
-    itemPrice: number, 
+    ticketType: ITicketType,
     tickets: ITicketHandler,
     increment: (ticketType: string) => void,
     decrement: (ticketType: string) => void,
 }
 
-const TicketItem: React.FC<ITicketItemProps> = ({itemCategory, itemPrice, tickets, increment, decrement}) => {
+const TicketItem: React.FC<ITicketItemProps> = ({ticketType, tickets, increment, decrement}) => {
     return(
         <div className="ticket-item-container">
             <h3 className="ticket-item-category-header">
-                {itemCategory}
+                {ticketType.name}
             </h3>
+            <p className="ticket-item-description">
+                {ticketType.description}
+            </p>
             <p className="ticket-item-price">
-                {itemPrice+standardCurrency}
+                {ticketType.price+standardCurrency}
             </p>
             <div className="ticket-item-button-container">
-                <button className="ticket-item-add-button" onClick={() => increment(itemCategory)}>
+                <button className="ticket-item-add-button" onClick={() => increment(ticketType.name)}>
                     +
                 </button>
-                {(tickets[itemCategory] || 0) !== 0 && 
+                {(tickets[ticketType.name] || 0) !== 0 && 
                     <>
-                        <span className="ticket-item-itemnumber">{tickets[itemCategory] || 0}</span>
-                        <button className="ticket-item-remove-button" onClick={() => decrement(itemCategory)}>
+                        <span className="ticket-item-itemnumber">{tickets[ticketType.name] || 0}</span>
+                        <button className="ticket-item-remove-button" onClick={() => decrement(ticketType.name)}>
                             -
                         </button>
                     </>
