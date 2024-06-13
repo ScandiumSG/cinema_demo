@@ -10,6 +10,7 @@ export interface ITicketHandler {
 export interface ITicketFromScreening {
     id: number,
     seat: ISeat,
+    ticketType: ITicketType,
 }
 
 export interface ITicketPost {
@@ -17,6 +18,7 @@ export interface ITicketPost {
     movieId: number,
     customerId: string,
     seatId: number[],
+    ticketTypeId: number[],
 }
 
 export interface ITicket {
@@ -25,4 +27,13 @@ export interface ITicket {
     screening: ITicketScreening,
     screeningId: number,
     seat: ISeat,
+    ticketType: ITicketType,
+}
+
+export interface ITicketType {
+    id: number,
+    name: string,
+    description: string,
+    price: number,
+    isActive: boolean,
 }
