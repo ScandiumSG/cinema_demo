@@ -1,7 +1,7 @@
 import { createContext } from 'react'
 import { IUserContext } from '@/interfaces/UserInterfaces';
 import { IPurchaseModalContext } from '@/interfaces/IScreening';
-import ISeat, { ISeatingContext } from '@/interfaces/ISeat';
+import { ISeatingContext } from '@/interfaces/ISeat';
 import { IBlurContext, IHeaderNavigation } from '@/interfaces/IUtils';
 
 export const userContext = createContext<IUserContext>({
@@ -18,9 +18,9 @@ export const purchaseModalContext = createContext<IPurchaseModalContext>({
 
 export const seatingContext = createContext<ISeatingContext>({
     // @ts-ignore comment
-    selectSeat: (seat: ISeat) => {},
+    selectSeat: (seat: ISeatWithTicket) => {},
     // @ts-ignore comment
-    discardSeat: (seat: ISeat) => {},
+    discardSeat: (seat: ISeatWithTicket) => {},
     allowSeating: true,
     toggleAllowSeating: () => {},
 });
