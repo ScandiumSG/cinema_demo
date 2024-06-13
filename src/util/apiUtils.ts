@@ -53,6 +53,7 @@ export const getSeatsForTheater = (theaterId: number) => {
 // TICKET ENDPOINT
 const ticketBaseUrl = baseUrl + "/tickets";
 export const postTicket = () => ticketBaseUrl;
+export const getTicketTypes = () => `${ticketBaseUrl}/types` 
 export const getTicketsForScreening = (screeningId: number, movieId: number) => {
     return `${ticketBaseUrl}/refetch/${screeningId}/${movieId}` 
 }
