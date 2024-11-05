@@ -12,7 +12,10 @@ const LargeHeader = () => {
 
     return (
         <>
-            <div className="header-cinema-logo" onClick={() => toFrontpage()}>
+            <div
+                className="header-cinema-logo clickable"
+                onClick={() => toFrontpage()}
+            >
                 <img className="header-logo-image" src={logo} />
             </div>
             <PageLinks />
