@@ -1,13 +1,13 @@
 import UserOverview from "../UserOverview/UserOverview";
-import LinkMenu from "./LinkMenu/LinkMenu"
+import LinkMenu from "./LinkMenu/LinkMenu";
 
 const SmallHeader = () => {
-    return(
+    return (
         <>
             <LinkMenu />
             <UserOverview />
         </>
-    )
-}
+    );
+};
 
 export default SmallHeader;

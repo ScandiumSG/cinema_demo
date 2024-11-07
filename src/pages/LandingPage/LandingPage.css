@@ -1,0 +1,10 @@
+.landing-page-parent-container {
+    /* 5px is header border radius */
+    height: calc(100vh - calc(2 * var(--header-height)) - 2px);
+    min-height: 20rem;
+}
+
+.landing-page-movie-highlight-container {
+    width: 80%;
+    padding: 0% 10%;
+}
