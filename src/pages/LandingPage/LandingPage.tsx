@@ -22,6 +22,7 @@ const LandingPage = () => {
             .then((res) => setHighlightData({ ...res }));
     };
 
+    //@ts-ignore
     const navigateToScreening = (id: number) => {
         // TODO: Change to show only upcoming screenings of the specified movie id
         navigate("/screening/upcoming");
