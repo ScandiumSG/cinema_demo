@@ -51,7 +51,7 @@ const LandingPage = () => {
                     className="landing-page-movie-highlight-container clickable"
                     onClick={() => navigateToScreening(highlightData.id)}
                 >
-                    <h3 className="landing-page-movie-highlight-title">
+                    <h3 className="landing-page-movie-highlight-movie-title">
                         {highlightData.title}
                     </h3>
                     <StarRating
