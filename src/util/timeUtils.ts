@@ -1,3 +1,8 @@
+/**
+ * Translate a number of minutes into hours and minutes.
+ * @param timeInMinutes Total number of minutes
+ * @returns A Time string of the format hh:mm
+ */
 export const timeCalculator = (timeInMinutes: number) => {
     const hours = Math.floor(timeInMinutes / 60);
     const minutes = timeInMinutes - 60 * hours;
