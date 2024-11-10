@@ -1,6 +1,5 @@
 .footer-component-parent-container {
-    min-height: var(--header-height);
-    height: fit-content;
+    height: var(--header-height);
     min-width: 30rem;
     width: calc(100vw - calc(2 * 4rem));
     display: flex;

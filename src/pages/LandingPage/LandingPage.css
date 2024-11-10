@@ -1,0 +1,31 @@
+.landing-page-parent-container {
+    /* 5px is header border radius */
+    height: calc(100vh - calc(2 * var(--header-height)) - 2px);
+    min-height: 20rem;
+}
+
+.landing-page-movie-highlight-container {
+    width: 80%;
+    padding: 0% 10%;
+}
+
+.landing-page-highlight-container {
+    margin: 20px 5% 10px 5%;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.landing-page-movie-highlight-title {
+    text-align: left;
+    text-decoration: underline;
+}
+
+.landing-page-history-container {
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    align-content: center;
+
+    margin: 0% 5%;
+}

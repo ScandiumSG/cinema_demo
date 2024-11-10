@@ -1,25 +1,21 @@
 import { useParams } from "react-router-dom";
-import "./MoviePage.css"
+import "./MoviePage.css";
 import { useEffect, useState } from "react";
 import { IMovieDetails } from "@/interfaces/IMovie";
 import { getSpecificMovieById } from "@/util/apiUtils";
 import { timeCalculator } from "@/util/timeUtils";
-import loading from "@/assets/loading_dots.svg"
-
+import loading from "@/assets/loading_dots.svg";
 
 const MoviePage = () => {
     const [movieData, setMovieData] = useState<IMovieDetails>();
     const { id } = useParams();
 
-    
     const retrieveData = async (index: number) => {
         await fetch(getSpecificMovieById(index))
             .then((res) => res.json())
             .then((res) => res.data)
-            .then((res) => setMovieData({...res}))
-    }
-
-
+            .then((res) => setMovieData({ ...res }));
+    };
 
     useEffect(() => {
         if (id !== undefined) {
@@ -28,18 +24,18 @@ const MoviePage = () => {
                 retrieveData(parsedId);
             }
         }
-    }, [id])
+    }, [id]);
 
     if (movieData === undefined) {
-        return(
+        return (
             <div className="movie-page-parent-container">
                 <p>Loading...</p>
-                <img src={loading} alt="Loading indicator"/>
+                <img src={loading} alt="Loading indicator" />
             </div>
-        )
+        );
     }
 
-    return(
+    return (
         <div className="movie-page-parent-container scrollable">
             <div className="movie-page-header-information">
                 <h2>{movieData?.title}</h2>
@@ -48,25 +44,20 @@ const MoviePage = () => {
                 <div className="movie-page-image">
                     <img src="https://image.tmdb.org/t/p/original/hkxxMIGaiCTmrEArK7J56JTKUlB.jpg" />
                 </div>
-                <div>Placeholder</div>
             </div>
             <div className="movie-page-information-section">
                 <div className="movie-page-information-description">
-                    <span>
-                        {movieData?.description}
-                    </span>
+                    <span>{movieData?.description}</span>
                 </div>
                 <div className="movie-page-information-runtime">
-                    <span>
-                    🕔 {timeCalculator(movieData.runtime)}
-                    </span>
+                    <span>🕔 {timeCalculator(movieData.runtime)}</span>
                 </div>
                 <div className="movie-page-information-age-rating">
                     Rated: {movieData.rating}
                 </div>
             </div>
         </div>
-    )
-}
+    );
+};
 
 export default MoviePage;

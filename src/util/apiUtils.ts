@@ -4,70 +4,93 @@ const baseUrl = import.meta.env.VITE_BACKEND_BASE_URL;
 // TODO: Add auth token from user to this one
 // @ts-ignore comment
 const fetchOptions = {
-    "headers": {
+    headers: {
         "Content-Type": "application/json",
     },
-}
+};
+
+// FRONTPAGE ENDPOINT
+const frontpageBaseUrl = baseUrl + "/rel";
+const frontpageHighlightMovie = frontpageBaseUrl + "/highlight";
+export const getFrontpageHighlight = () => frontpageHighlightMovie;
 
 // MOVIE ENDPOINT
-const movieBaseUrl = baseUrl + "/movie"
+const movieBaseUrl = baseUrl + "/movie";
 export const getMoviesUnlimited = () => movieBaseUrl;
-export const getMoviesLimited = (limit: number) => 
-    baseUrl + "/movie?limit="+limit;
-export const getSpecificMovieById = (id: number) => 
-    movieBaseUrl + "/" + id
+export const getMoviesLimited = (limit: number) =>
+    baseUrl + "/movie?limit=" + limit;
+export const getSpecificMovieById = (id: number) => movieBaseUrl + "/" + id;
 
 // SCREENING ENDPOINT
-const baseScreeningUrl = baseUrl + "/screening"
+const baseScreeningUrl = baseUrl + "/screening";
 export const getScreeningDetails = (movieId: number, screeningId: number) => {
     return baseScreeningUrl + "/" + screeningId + "/" + movieId;
-}
-export const getUpcomingScreenings = (dateLimit: string, itemLimit: number, theaterFilter: number[]) => {
+};
+export const getUpcomingScreenings = (
+    dateLimit: string,
+    itemLimit: number,
+    theaterFilter: number[]
+) => {
     let url = baseScreeningUrl;
-    url += `/upcoming?date=${dateLimit}`
+    url += `/upcoming?date=${dateLimit}`;
     if (theaterFilter.length !== 0) {
-        const filterString: string = theaterFilter.map((id) => `,${id}`).join("");
-        url += `&theaterFilter=${filterString.substring(1, filterString.length)}`
+        const filterString: string = theaterFilter
+            .map((id) => `,${id}`)
+            .join("");
+        url += `&theaterFilter=${filterString.substring(
+            1,
+            filterString.length
+        )}`;
     }
-    url += `&limit=${itemLimit}`
-    return url
-}
-export const getUpcomingSpecificScreenings = (movieId: number, dateLimit: string, itemLimit: number, theaterFilter: number[]) => {
-    let url = baseScreeningUrl;
-    url += `/upcoming/${movieId}?date=${dateLimit}`
-    if (theaterFilter.length !== 0) {
-        const filterString: string = theaterFilter.map((id) => `,${id}`).join("");
-        url += `&theaterFilter=${filterString}`
-    }
-    url += `&limit=${itemLimit}`
+    url += `&limit=${itemLimit}`;
     return url;
-}
+};
+export const getUpcomingSpecificScreenings = (
+    movieId: number,
+    dateLimit: string,
+    itemLimit: number,
+    theaterFilter: number[]
+) => {
+    let url = baseScreeningUrl;
+    url += `/upcoming/${movieId}?date=${dateLimit}`;
+    if (theaterFilter.length !== 0) {
+        const filterString: string = theaterFilter
+            .map((id) => `,${id}`)
+            .join("");
+        url += `&theaterFilter=${filterString}`;
+    }
+    url += `&limit=${itemLimit}`;
+    return url;
+};
 
 // THEATER/SEATING ENDPOINT
 const baseTheaterUrl = baseUrl + "/location";
 export const getTheaters = () => baseTheaterUrl;
 export const getSeatsForTheater = (theaterId: number) => {
-    return `${baseTheaterUrl}/seats/${theaterId}`
-}
+    return `${baseTheaterUrl}/seats/${theaterId}`;
+};
 
 // TICKET ENDPOINT
 const ticketBaseUrl = baseUrl + "/tickets";
 export const postTicket = () => ticketBaseUrl;
-export const getTicketTypes = () => `${ticketBaseUrl}/types` 
-export const getTicketsForScreening = (screeningId: number, movieId: number) => {
-    return `${ticketBaseUrl}/refetch/${screeningId}/${movieId}` 
-}
+export const getTicketTypes = () => `${ticketBaseUrl}/types`;
+export const getTicketsForScreening = (
+    screeningId: number,
+    movieId: number
+) => {
+    return `${ticketBaseUrl}/refetch/${screeningId}/${movieId}`;
+};
 export const getTicketPurchases = (showPrevious: boolean | undefined) => {
     if (showPrevious === undefined) {
-        return `${ticketBaseUrl}/purchased`
+        return `${ticketBaseUrl}/purchased`;
     } else {
-        return `${ticketBaseUrl}/purchased?showPrevious=${showPrevious}`
+        return `${ticketBaseUrl}/purchased?showPrevious=${showPrevious}`;
     }
-}
+};
 
 // AUTHENTICATION ENDPOINT
 const authBaseUrl = baseUrl + "/auth";
-export const loginUrl = () => authBaseUrl + "/login"
+export const loginUrl = () => authBaseUrl + "/login";
 export const registerUrl = () => authBaseUrl + "/signup";
 
 // PROFILE ENDPOINT
