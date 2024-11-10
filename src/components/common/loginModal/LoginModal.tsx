@@ -1,5 +1,5 @@
 import { ChangeEvent, useContext, useEffect, useState } from "react";
-import "./LoginModal.css"
+import "./LoginModal.css";
 import { ILoginCredentials, IUserContext } from "@/interfaces/UserInterfaces";
 import { loginUrl } from "@/util/apiUtils";
 import { userContext } from "@/util/context";
@@ -10,58 +10,58 @@ import LoginButtons from "./LoginButtons/LoginButtons";
 const defaultLoginData = {
     email: "",
     password: "",
-}
+};
 
 const LoginModal = () => {
-    const { loginModal, showLoginModal, setUser } = useContext<IUserContext>(userContext);
+    const { loginModal, showLoginModal, setUser } =
+        useContext<IUserContext>(userContext);
     const [invalidCredentials, setInvalidCredentials] = useState<string>("");
     const [loading, setLoading] = useState<boolean>(false);
     const [loginData, setLoginData] = useState<ILoginCredentials>({
         email: sessionStorage.getItem("login_attempt_email") || "",
-        password: ""
-    })
-
+        password: "",
+    });
 
     useEffect(() => {
         setLoginData({
             email: sessionStorage.getItem("login_attempt_email") || "",
-            password: ""
-        })
-    }, [loginModal])
+            password: "",
+        });
+    }, [loginModal]);
 
     const handleEmailChange = (e: ChangeEvent<HTMLInputElement>) => {
         sessionStorage.setItem("login_attempt_email", e?.target?.value);
-        setLoginData({...loginData, [e.target.id]: e.target.value})
-    }
+        setLoginData({ ...loginData, [e.target.id]: e.target.value });
+    };
 
     const handlePasswordChange = (e: ChangeEvent<HTMLInputElement>) => {
-        setLoginData({...loginData, [e.target.id]: e.target.value});
-    }
+        setLoginData({ ...loginData, [e.target.id]: e.target.value });
+    };
 
     const enterSubmit = (event: string) => {
         if (event === "Enter" && !loading) {
             postLoginCredentials();
         }
-    }
+    };
 
     const postLoginCredentials = async () => {
         let fetchFailedFlag = false;
-        if (loginData.email === "" ) {
-            setInvalidCredentials("Enter your email")
+        if (loginData.email === "") {
+            setInvalidCredentials("Enter your email");
             return;
         } else if (loginData.password === "") {
-            setInvalidCredentials("Enter your password")
+            setInvalidCredentials("Enter your password");
             return;
-        } 
+        }
 
         const loginOptions = {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
-            }, 
-            body: JSON.stringify(loginData)
-        }
-        setLoading(true)
+            },
+            body: JSON.stringify(loginData),
+        };
+        setLoading(true);
         await fetch(loginUrl(), loginOptions)
             .then((res) => {
                 if (res.status === 400) {
@@ -72,45 +72,72 @@ const LoginModal = () => {
                 }
             })
             .then((res) => {
-                if (fetchFailedFlag) { throw new Error(res) } 
-                else {
+                if (fetchFailedFlag) {
+                    throw new Error(res);
+                } else {
                     setInvalidCredentials("");
                     return res;
-                }})
+                }
+            })
             .then((res) => {
-                setUser(res)
+                setUser(res);
             })
             .then(() => resetModal())
             .catch((err: Error) => {
-                setInvalidCredentials(err.message)
+                setInvalidCredentials(err.message);
             })
-            .finally(() =>  setLoading(false))
-    }
+            .finally(() => setLoading(false));
+    };
+
+    const [testUser, setTestUser] = useState<boolean>(false);
+
+    /**
+     * Temporary method to insert testing-account credentials into the loginData state
+     */
+    const loginTestUser = () => {
+        const testUserCredentials = {
+            email: "hardcoded@testemail.com",
+            password: "UnsafePassword123",
+        };
+
+        setLoginData(testUserCredentials);
+        setTestUser(true);
+    };
+
+    useEffect(() => {
+        if (testUser == true) {
+            postLoginCredentials();
+        }
+        setTestUser(false);
+    }, [testUser]);
 
     const resetModal = () => {
         setLoginData(defaultLoginData);
         sessionStorage.removeItem("login_attempt_email");
         showLoginModal();
-    }
+    };
 
-    return(
+    return (
         <div className="login-modal-container">
             <h3>Log in</h3>
-            <LoginInput 
+            <LoginInput
                 loginData={loginData}
                 emailChange={handleEmailChange}
                 passwordChange={handlePasswordChange}
                 enterSubmit={enterSubmit}
                 errorMessage={invalidCredentials}
             />
-            <LoginButtons 
+            <LoginButtons
                 showModal={showLoginModal}
                 submitCredentials={postLoginCredentials}
                 isLoading={loading}
             />
-            <RegisterAccountInteraction resetModal={resetModal}/>
+            <RegisterAccountInteraction resetModal={resetModal} />
+            <a className="clickable" onClick={() => loginTestUser()}>
+                Login to testing account
+            </a>
         </div>
-    )
-}
+    );
+};
 
 export default LoginModal;
