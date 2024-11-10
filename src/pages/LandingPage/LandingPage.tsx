@@ -43,20 +43,32 @@ const LandingPage = () => {
 
     return (
         <div className="landing-page-parent-container">
-            <h2 className="landing-page-movie-highlight-title">
-                Best rated active movie
-            </h2>
-            <div
-                className="landing-page-movie-highlight-container clickable"
-                onClick={() => navigateToScreening(highlightData.id)}
-            >
-                <h3 className="landing-page-movie-highlight-title">
-                    {highlightData.title}
-                </h3>
-                <StarRating rating={highlightData.averageRating}></StarRating>
-                <span>Runtime: {timeCalculator(highlightData.runtime)}</span>
+            <div className="landing-page-highlight-container">
+                <h2 className="landing-page-movie-highlight-title">
+                    Best rated active movie
+                </h2>
+                <div
+                    className="landing-page-movie-highlight-container clickable"
+                    onClick={() => navigateToScreening(highlightData.id)}
+                >
+                    <h3 className="landing-page-movie-highlight-title">
+                        {highlightData.title}
+                    </h3>
+                    <StarRating
+                        rating={highlightData.averageRating}
+                    ></StarRating>
+                    <span>
+                        Runtime: {timeCalculator(highlightData.runtime)}
+                    </span>
+                </div>
             </div>
-            {user ? <PurchaseHistory user={user} /> : <></>}
+            {user ? (
+                <div className="landing-page-history-container">
+                    <PurchaseHistory user={user} />
+                </div>
+            ) : (
+                <></>
+            )}
         </div>
     );
 };
