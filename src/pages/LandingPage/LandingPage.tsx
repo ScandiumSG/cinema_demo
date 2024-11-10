@@ -1,14 +1,18 @@
 import "./LandingPage.css";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import loading from "@/assets/loading_dots.svg";
 import { getFrontpageHighlight } from "@/util/apiUtils";
 import { IMovie } from "@/interfaces/IMovie";
 import StarRating from "@/components/common/StarRating/StarRating";
 import { timeCalculator } from "@/util/timeUtils";
 import { useNavigate } from "react-router-dom";
+import { IUserContext } from "@/interfaces/UserInterfaces";
+import { userContext } from "@/util/context";
+import PurchaseHistory from "@/components/ProfileView/PurchaseHistory/PurchaseHistory";
 
 const LandingPage = () => {
     const [highlightData, setHighlightData] = useState<IMovie>();
+    const { user } = useContext<IUserContext>(userContext);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -52,6 +56,7 @@ const LandingPage = () => {
                 <StarRating rating={highlightData.averageRating}></StarRating>
                 <span>Runtime: {timeCalculator(highlightData.runtime)}</span>
             </div>
+            {user ? <PurchaseHistory user={user} /> : <></>}
         </div>
     );
 };
