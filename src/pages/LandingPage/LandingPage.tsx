@@ -64,7 +64,10 @@ const LandingPage = () => {
             </div>
             {user ? (
                 <div className="landing-page-history-container">
-                    <PurchaseHistory user={user} />
+                    <h2 className="landing-page-movie-highlight-title">
+                        My tickets
+                    </h2>
+                    <PurchaseHistory user={user} showHeader={false} />
                 </div>
             ) : (
                 <></>
